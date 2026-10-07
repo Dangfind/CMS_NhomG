@@ -13,12 +13,12 @@ get_header(); ?>
 
 			<?php
 			while ( have_posts() ) : the_post();
-		        get_template_part( 'template-parts/content', 'job-single' );
+		        get_template_part( 'template-parts/content', 'job-detail' );
 
 			endwhile; // End of the loop.
 			?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php 
+<?php
 get_footer();

@@ -89,3 +89,8 @@ if( jobscout_is_woocommerce_activated() ){
 if( jobscout_is_wp_job_manager_activated() ) :
 	require get_template_directory() . '/inc/wp-job-manager-filters.php';
 endif;
+
+/**
+ * NhomG - Job Detail & Contact page.
+ */
+require get_template_directory() . '/inc/nhomg-jobs.php';
