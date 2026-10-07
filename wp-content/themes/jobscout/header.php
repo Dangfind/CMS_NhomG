@@ -34,7 +34,6 @@
     
     /**
      * Before Header
-     * @hooked jobscout_responsive_header - 15
      * @hooked jobscout_page_start - 20 
     */
     do_action( 'jobscout_before_header' );
@@ -42,7 +41,7 @@
     /**
      * Header
      * 
-     * @hooked jobscout_header - 20     
+     * @hooked cmsng_render_header - 20
     */
     do_action( 'jobscout_header' );
 
