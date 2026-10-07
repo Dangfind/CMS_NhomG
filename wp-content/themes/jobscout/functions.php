@@ -34,6 +34,9 @@ require get_template_directory() . '/inc/template-functions.php';
 /** Shared CMS_NhomG header, footer, navigation and settings. */
 require get_template_directory() . '/inc/cmsng-chrome.php';
 
+/** Home content only; shared header/footer remain unchanged. */
+require get_template_directory() . '/sections/home/functions.php';
+
 /**
  * Custom functions for selective refresh.
  */
