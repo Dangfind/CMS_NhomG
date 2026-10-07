@@ -1,0 +1,130 @@
+/* Scoped shared chrome. Uses JobScout's existing font, icons and container widths. */
+.cmsng-header,
+.cmsng-footer {
+    --cmsng-orange: #f58220;
+    --cmsng-ink: #302a27;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.cmsng-header *,
+.cmsng-footer * { box-sizing: border-box; }
+.cmsng-header [hidden],
+.cmsng-footer [hidden] { display: none !important; }
+.cmsng-header { background: #fff; color: var(--cmsng-ink); }
+.cmsng-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 112px; }
+.cmsng-brand { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; max-width: 220px; padding: 16px 0; }
+.cmsng-brand .custom-logo-link,
+.cmsng-footer-brand .custom-logo-link { display: block; line-height: 0; }
+.cmsng-brand .custom-logo { display: block; width: auto; max-width: 200px; max-height: 64px; height: auto; }
+.cmsng-recruiting { margin-top: 6px; color: #555; font-size: 11px; letter-spacing: 4px; line-height: 1.4; }
+.cmsng-logo-missing { display: block; width: 180px; height: 54px; }
+.cmsng-header-navigation { display: flex; align-items: center; gap: 36px; min-width: 0; }
+.cmsng-menu,
+.cmsng-footer-menu,
+.cmsng-socials { list-style: none; padding: 0; margin: 0; }
+.cmsng-menu { display: flex; align-items: center; flex-wrap: wrap; gap: 30px; }
+.cmsng-menu > li { position: relative; margin: 0; }
+.cmsng-menu a,
+.cmsng-menu .cmsng-unconfigured { display: block; padding: 18px 0; color: var(--cmsng-ink); font-size: 13px; font-weight: 700; text-decoration: none; text-transform: uppercase; }
+.cmsng-menu > .current-menu-item > a::after,
+.cmsng-menu > .current-menu-ancestor > a::after,
+.cmsng-menu > .current_page_parent > a::after,
+.cmsng-menu > .cmsng-current-section > a::after { content: ''; position: absolute; right: 0; bottom: 6px; left: 0; height: 3px; background: var(--cmsng-orange); }
+.cmsng-submit-job { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 23px; background: var(--cmsng-orange); color: #fff; border: 0; border-radius: 0; font-size: 12px; font-weight: 700; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+.cmsng-header .cmsng-submit-job:hover,
+.cmsng-header .cmsng-submit-job:focus { color: #fff; background: var(--cmsng-orange); }
+.cmsng-menu-toggle { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 44px; margin: 0; padding: 10px; color: var(--cmsng-ink); background: transparent; border: 1px solid #ddd; border-radius: 0; }
+.cmsng-menu-toggle:hover,
+.cmsng-menu-toggle:focus { color: var(--cmsng-ink); background: transparent; }
+.cmsng-menu-bars,
+.cmsng-menu-bars::before,
+.cmsng-menu-bars::after { display: block; width: 22px; height: 2px; background: currentColor; }
+.cmsng-menu-bars { position: relative; }
+.cmsng-menu-bars::before,
+.cmsng-menu-bars::after { content: ''; position: absolute; left: 0; }
+.cmsng-menu-bars::before { top: -7px; }
+.cmsng-menu-bars::after { top: 7px; }
+.cmsng-header a:focus-visible,
+.cmsng-header button:focus-visible,
+.cmsng-footer a:focus-visible,
+.cmsng-footer button:focus-visible,
+.cmsng-footer input:focus-visible { outline: 2px solid #302a27; outline-offset: 4px; }
+.cmsng-menu .sub-menu { position: absolute; z-index: 20; top: 100%; left: 0; display: none; min-width: 180px; max-width: 280px; padding: 8px 16px; margin: 0; list-style: none; background: #fff; border: 1px solid #ddd; }
+.cmsng-menu .sub-menu a { padding: 10px 0; overflow-wrap: anywhere; }
+.cmsng-menu .sub-menu .sub-menu { position: static; border: 0; padding: 0 0 0 12px; min-width: 0; }
+.cmsng-menu li:hover > .sub-menu,
+.cmsng-menu li:focus-within > .sub-menu { display: block; }
+
+.cmsng-newsletter { padding: 35px 0; background: var(--cmsng-orange); color: #fff; }
+.cmsng-newsletter-inner { display: flex; align-items: center; gap: 65px; }
+.cmsng-footer .cmsng-newsletter-title { flex: 0 0 295px; margin: 0; color: #fff; font-family: inherit; font-size: 28px; font-weight: 600; line-height: 1.25; }
+.cmsng-newsletter-form { flex: 1; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) 170px; gap: 16px; margin: 0; }
+.cmsng-email-field { position: relative; min-width: 0; background: #fff; }
+.cmsng-email-icon { position: absolute; left: 19px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; color: #999; font-size: 20px; pointer-events: none; }
+.cmsng-footer .cmsng-email { display: block; width: 100%; height: 52px; min-width: 0; padding: 0 16px 0 52px; margin: 0; border: 0; border-radius: 0; background: #fff; color: #302a27; font-family: inherit; font-size: 14px; box-shadow: none; }
+.cmsng-footer .cmsng-email::placeholder { color: #888; opacity: 1; }
+.cmsng-footer .cmsng-subscribe { height: 52px; margin: 0; padding: 0 20px; border: 2px solid #fff; border-radius: 0; background: transparent; color: #fff; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 1px; box-shadow: none; }
+.cmsng-footer .cmsng-subscribe:hover,
+.cmsng-footer .cmsng-subscribe:focus { background: transparent; color: #fff; border-color: #fff; }
+.cmsng-newsletter-status { grid-column: 1 / -1; margin: 0; color: #302a27; font-size: 13px; }
+.cmsng-newsletter-form noscript { grid-column: 1 / -1; }
+.cmsng-footer-main { padding: 65px 0 60px; background: #f5f5f5; }
+.cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.cmsng-footer-brand .custom-logo { display: block; width: auto; max-width: 220px; height: auto; max-height: 80px; }
+.cmsng-footer-navigation { max-width: 100%; }
+.cmsng-footer-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 36px; }
+.cmsng-footer-menu li { margin: 0; }
+.cmsng-footer-menu a,
+.cmsng-footer-menu .cmsng-unconfigured { color: #555; font-size: 13px; font-weight: 700; text-transform: uppercase; text-decoration: none; }
+.cmsng-socials { display: flex; justify-content: center; gap: 12px; }
+.cmsng-socials li { margin: 0; }
+.cmsng-social { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 50%; color: #fff; font-size: 18px; text-decoration: none; }
+.cmsng-social svg { width: 18px; height: 18px; }
+.cmsng-footer .cmsng-social:hover,
+.cmsng-footer .cmsng-social:focus { color: #fff; }
+.cmsng-social-facebook { background: #3b5998; }
+.cmsng-social-google { background: #dd4b39; }
+.cmsng-social-line { background: #00b900; }
+.cmsng-social-twitter { background: #55acee; }
+.cmsng-copyright { display: flex; align-items: center; min-height: 54px; padding: 15px 0; background: #30251f; color: #bbb; text-align: center; font-size: 12px; }
+.cmsng-copyright-text { width: 100%; overflow-wrap: anywhere; }
+.cmsng-copyright-text p { margin: 0; }
+.cmsng-copyright-text a { color: inherit; }
+
+@media (max-width: 1199px) and (min-width: 1025px) {
+    .cmsng-header-inner { gap: 20px; }
+    .cmsng-header-navigation { gap: 24px; }
+    .cmsng-menu { gap: 22px; }
+}
+
+@media (max-width: 1024px) {
+    .cmsng-header-inner { flex-wrap: wrap; gap: 0 20px; min-height: 92px; }
+    .cmsng-brand { padding: 14px 0; }
+    .cmsng-brand .custom-logo { max-width: 180px; max-height: 52px; }
+    .cmsng-header-navigation { flex: 0 0 100%; flex-direction: column; align-items: stretch; gap: 16px; padding: 8px 0 24px; }
+    .cmsng-menu { flex-direction: column; align-items: stretch; gap: 0; }
+    .cmsng-menu > li > a,
+    .cmsng-menu > li > .cmsng-unconfigured { padding: 13px 0; }
+    .cmsng-menu > li > a::after { right: auto; width: 30px; bottom: 5px; }
+    .cmsng-menu .sub-menu { position: static; display: block; min-width: 0; max-width: none; border: 0; padding: 0 0 0 20px; }
+    .cmsng-submit-job { align-self: flex-start; }
+    .cmsng-newsletter-inner { gap: 30px; }
+    .cmsng-footer .cmsng-newsletter-title { flex-basis: 250px; font-size: 25px; }
+    .cmsng-newsletter-form { grid-template-columns: minmax(0, 1fr) 145px; }
+}
+
+@media (max-width: 767px) {
+    .cmsng-header-inner,
+    .cmsng-newsletter-inner,
+    .cmsng-footer-inner,
+    .cmsng-copyright-text { max-width: 420px; padding-left: 15px; padding-right: 15px; }
+    .cmsng-newsletter { padding: 28px 0; }
+    .cmsng-newsletter-inner { flex-direction: column; align-items: stretch; gap: 22px; }
+    .cmsng-footer .cmsng-newsletter-title { flex-basis: auto; font-size: 25px; }
+    .cmsng-newsletter-form { flex: auto; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .cmsng-footer .cmsng-subscribe { width: 100%; }
+    .cmsng-footer-main { padding: 45px 0; }
+    .cmsng-footer-menu { gap: 16px 22px; }
+}

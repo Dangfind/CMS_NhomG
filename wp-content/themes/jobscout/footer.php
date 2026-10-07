@@ -19,10 +19,7 @@
     /**
      * Footer
      * 
-     * @hooked jobscout_footer_start  - 20
-     * @hooked jobscout_footer_top    - 30
-     * @hooked jobscout_footer_bottom - 40
-     * @hooked jobscout_footer_end    - 50
+     * @hooked cmsng_render_footer - 20
     */
     do_action( 'jobscout_footer' );
     
