@@ -96,6 +96,11 @@ endif;
  */
 require get_template_directory() . '/inc/nhomg-jobs.php';
 
+/**
+ * NhomG - News Detail page module.
+ */
+require get_template_directory() . '/news-detail/news-detail.php';
+
 function nhomg_is_news_page() {
 	return is_page_template('page-news.php') || is_page_template('news.php') || is_page('news');
 }
