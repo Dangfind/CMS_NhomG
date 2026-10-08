@@ -96,13 +96,28 @@ endif;
  */
 require get_template_directory() . '/inc/nhomg-jobs.php';
 
+function nhomg_is_news_page() {
+	return is_page_template('page-news.php') || is_page_template('news.php') || is_page('news');
+}
+
 add_action('wp_enqueue_scripts', function () {
-	if (is_page_template('page-news.php')) {
+	if (nhomg_is_news_page()) {
+		$css_file = get_template_directory() . '/news.css';
+		$ver = file_exists($css_file) ? filemtime($css_file) : '1.0';
 		wp_enqueue_style(
 			'news-page',
-			get_stylesheet_directory_uri() . '/news.css',
-			array(),
-			'1.0'
+			get_template_directory_uri() . '/news.css',
+			array('jobscout'),
+			$ver
 		);
 	}
+});
+
+add_filter('body_class', function ($classes) {
+	if (nhomg_is_news_page()) {
+		$classes   = array_diff($classes, array('rightsidebar', 'leftsidebar'));
+		$classes[] = 'full-width';
+		$classes[] = 'nhomg-news-page';
+	}
+	return $classes;
 });
