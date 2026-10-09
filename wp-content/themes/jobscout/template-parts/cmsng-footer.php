@@ -5,7 +5,7 @@ $cmsng_socials = array( 'facebook' => array( 'Facebook', 'facebook-f' ), 'google
 <footer id="colophon" class="cmsng-footer" itemscope itemtype="https://schema.org/WPFooter">
     <section class="cmsng-newsletter" aria-labelledby="cmsng-newsletter-title">
         <div class="container cmsng-newsletter-inner">
-            <h2 id="cmsng-newsletter-title" class="cmsng-newsletter-title">Subscribe To Our<br>Newsletter</h2>
+            <h2 id="cmsng-newsletter-title" class="cmsng-newsletter-title">Subscribe To<br>Our Newsletter</h2>
             <form class="cmsng-newsletter-form" data-cmsng-newsletter aria-describedby="cmsng-newsletter-status">
                 <div class="cmsng-email-field">
                     <label class="screen-reader-text" for="cmsng-newsletter-email"><?php esc_html_e( 'Email address', 'jobscout' ); ?></label>
@@ -38,11 +38,19 @@ $cmsng_socials = array( 'facebook' => array( 'Facebook', 'facebook-f' ), 'google
                     <li>
                         <?php if ( $cmsng_url ) : ?>
                             <a class="cmsng-social cmsng-social-<?php echo esc_attr( $cmsng_key ); ?>" href="<?php echo esc_url( $cmsng_url ); ?>" aria-label="<?php echo esc_attr( $cmsng_social[0] ); ?>">
-                                <i class="fab fa-<?php echo esc_attr( $cmsng_social[1] ); ?>" aria-hidden="true"></i>
+                                <?php if ( 'google' === $cmsng_key ) : ?>
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/images/google-g.svg' ); ?>" width="24" height="24" alt="" aria-hidden="true">
+                                <?php else : ?>
+                                    <i class="fab fa-<?php echo esc_attr( $cmsng_social[1] ); ?>" aria-hidden="true"></i>
+                                <?php endif; ?>
                             </a>
                         <?php else : ?>
                             <span class="cmsng-social cmsng-social-<?php echo esc_attr( $cmsng_key ); ?>" aria-disabled="true" role="img" aria-label="<?php echo esc_attr( $cmsng_social[0] . ' — ' . __( 'link not configured', 'jobscout' ) ); ?>">
-                                <i class="fab fa-<?php echo esc_attr( $cmsng_social[1] ); ?>" aria-hidden="true"></i>
+                                <?php if ( 'google' === $cmsng_key ) : ?>
+                                    <img src="<?php echo esc_url( get_template_directory_uri() . '/images/google-g.svg' ); ?>" width="24" height="24" alt="" aria-hidden="true">
+                                <?php else : ?>
+                                    <i class="fab fa-<?php echo esc_attr( $cmsng_social[1] ); ?>" aria-hidden="true"></i>
+                                <?php endif; ?>
                             </span>
                         <?php endif; ?>
                     </li>
@@ -51,6 +59,9 @@ $cmsng_socials = array( 'facebook' => array( 'Facebook', 'facebook-f' ), 'google
         </div>
     </div>
     <div class="cmsng-copyright">
-        <div class="container cmsng-copyright-text"><?php echo wp_kses_post( get_theme_mod( 'footer_copyright', '' ) ); ?></div>
+        <div class="container cmsng-copyright-text"><?php
+            $cmsng_copyright = trim( (string) get_theme_mod( 'footer_copyright', '' ) );
+            echo $cmsng_copyright ? wp_kses_post( $cmsng_copyright ) : esc_html( '© ' . wp_date( 'Y' ) . ' ' . get_bloginfo( 'name' ) );
+        ?></div>
     </div>
 </footer>

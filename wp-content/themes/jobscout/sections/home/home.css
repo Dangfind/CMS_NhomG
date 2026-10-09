@@ -1,0 +1,93 @@
+/* All Home rules stay inside the content wrapper. Reference viewport: 1440px. */
+.lam-home { --lam-home-orange: #f47714; --lam-home-gray: #f2f2f2; color: #302b28; font-family: inherit; font-size: 16px; font-weight: 400; line-height: 1.5; width: 100%; }
+.lam-home *, .lam-home *::before, .lam-home *::after { box-sizing: border-box; }
+.lam-home .lam-home-container { width: min(1050px, calc(100% - 48px)); margin: 0 auto; }
+.lam-home .lam-home-hero { display: flex; align-items: center; min-height: 540px; background-color: #555b59; background-position: center; background-size: cover; color: #fff; }
+.lam-home .lam-home-hero-inner { width: min(940px, calc(100% - 48px)); margin: 0 auto; }
+.lam-home .lam-home-title { margin: 0 0 8px; color: #fff; font-size: 36px; font-weight: 700; line-height: 1.25; }
+.lam-home .lam-home-intro { margin: 0 0 18px; color: #eee; font-size: 16px; line-height: 1.6; }
+.lam-home .lam-home-search { display: grid; grid-template-columns: minmax(0, 1fr) 240px 162px; gap: 16px; padding: 20px; margin: 0; background: rgba(0,0,0,.25); }
+.lam-home .lam-home-search-field { position: relative; min-width: 0; background: #fff; }
+.lam-home .lam-home-field-icon { position: absolute; top: 50%; left: 18px; width: 18px; height: 18px; transform: translateY(-50%); color: var(--lam-home-orange); font-size: 18px; pointer-events: none; }
+.lam-home .lam-home-search-input, .lam-home .lam-home-location { display: block; width: 100%; min-width: 0; height: 52px; margin: 0; padding: 0 14px 0 48px; border: 1px solid #ddd; border-radius: 0; background: #fff; box-shadow: none; color: #555; font-family: inherit; font-size: 16px; font-weight: 400; }
+.lam-home .lam-home-search-input::placeholder { color: #aaa; opacity: 1; }
+.lam-home .lam-home-location { padding-right: 30px; text-overflow: ellipsis; }
+.lam-home .lam-home-search-submit { min-width: 0; min-height: 52px; margin: 0; padding: 0 16px; border: 0; border-radius: 0; background: var(--lam-home-orange); box-shadow: none; color: #fff; font-family: inherit; font-size: 16px; font-weight: 700; letter-spacing: 0; }
+.lam-home .lam-home-search-submit:hover, .lam-home .lam-home-search-submit:focus { background: var(--lam-home-orange); color: #fff; }
+.lam-home .lam-home-jobs { padding: 60px 0 70px; background: var(--lam-home-gray); }
+.lam-home .lam-home-section-title { margin: 0 0 36px; color: #302b28; font-family: inherit; font-size: 36px; font-weight: 700; line-height: 1.3; text-align: center; }
+.lam-home .lam-home-job-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 30px; }
+.lam-home .lam-home-job-card { min-width: 0; min-height: 242px; padding: 22px 24px 20px; background: #fff; border: 0; border-radius: 0; box-shadow: none; }
+.lam-home .lam-home-job-heading { display: flex; align-items: center; gap: 24px; min-width: 0; }
+.lam-home .lam-home-logo-frame { display: flex; align-items: center; justify-content: center; flex: 0 0 120px; width: 120px; height: 120px; border: 1px solid #ccc; }
+.lam-home .lam-home-company-logo { display: block; width: 100%; height: 100%; padding: 8px; object-fit: contain; }
+.lam-home .lam-home-logo-empty { display: block; width: 100%; height: 100%; }
+.lam-home .lam-home-job-details { flex: 1; min-width: 0; }
+.lam-home .lam-home-job-title { margin: 0 0 7px; font-size: 17px; font-weight: 700; line-height: 1.5; text-transform: uppercase; overflow-wrap: anywhere; }
+.lam-home .lam-home-job-title a, .lam-home .lam-home-news-card-title a { color: inherit; text-decoration: none; }
+.lam-home .lam-home-job-date { margin: 0 0 7px; color: #999; font-size: 12px; line-height: 1.5; }
+.lam-home .lam-home-job-meta { display: flex; flex-wrap: wrap; width: fit-content; max-width: 100%; list-style: none; padding: 5px 0; margin: 0; background: #f4f4f4; color: #777; font-size: 12px; line-height: 1.5; }
+.lam-home .lam-home-job-meta li { min-width: 0; padding: 0 9px; margin: 0; overflow-wrap: anywhere; }
+.lam-home .lam-home-job-meta li + li { border-left: 1px solid #ccc; }
+.lam-home .lam-home-job-summary { padding: 0 0 0 19px; margin: 14px 0 0; color: #777; font-size: 13px; line-height: 1.7; list-style-type: disc; overflow-wrap: anywhere; }
+.lam-home .lam-home-job-summary li { padding: 0; margin: 0; }
+.lam-home .lam-home-more-wrap { margin-top: 48px; text-align: center; }
+.lam-home .lam-home-outline-button { display: inline-flex; justify-content: center; align-items: center; min-width: 222px; min-height: 52px; padding: 12px 25px; border: 1px solid var(--lam-home-orange); border-radius: 0; background: transparent; color: var(--lam-home-orange); font-size: 14px; font-weight: 700; text-align: center; text-decoration: none; }
+.lam-home .lam-home-career { padding: 70px 24px 78px; min-height: 500px; background-color: #38322f; background-position: center; background-size: cover; color: #fff; text-align: center; }
+.lam-home .lam-home-career-inner { max-width: 900px; margin: 0 auto; }
+.lam-home .lam-home-career .lam-home-section-title { margin-bottom: 26px; color: #fff; }
+.lam-home .lam-home-career-copy { margin: 0 0 26px; color: #e1dedc; font-size: 16px; line-height: 1.6; }
+.lam-home .lam-home-about-button { min-width: 182px; margin-top: 14px; border-color: #fff; color: #fff; }
+.lam-home .lam-home-news { padding: 60px 0 80px; background: var(--lam-home-gray); }
+.lam-home .lam-home-news-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 50px 30px; }
+.lam-home .lam-home-news-card { display: flex; align-items: center; min-width: 0; min-height: 240px; padding: 20px; gap: 30px; background: #fff; border: 0; border-radius: 0; box-shadow: none; }
+.lam-home .lam-home-news-image-link { display: block; flex: 0 0 200px; width: 200px; height: 200px; }
+.lam-home .lam-home-news-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.lam-home .lam-home-image-empty { background: #eee; }
+.lam-home .lam-home-news-copy { flex: 1; min-width: 0; }
+.lam-home .lam-home-news-card-title { margin: 0 0 10px; font-size: 18px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.lam-home .lam-home-news-excerpt { margin: 0 0 8px; color: #555; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.lam-home .lam-home-read-more { color: var(--lam-home-orange); font-size: 14px; font-weight: 600; text-decoration: none; }
+.lam-home .lam-home-empty { min-height: 242px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 30px; background: #fff; color: #555; text-align: center; }
+.lam-home .lam-home-results-status { margin: -12px 0 24px; text-align: center; }
+.lam-home .lam-home-results-status a { color: #a94300; }
+.lam-home a:focus-visible, .lam-home button:focus-visible, .lam-home input:focus-visible, .lam-home select:focus-visible { outline: 2px solid var(--lam-home-orange); outline-offset: 3px; }
+.lam-home a, .lam-home button, .lam-home input, .lam-home select { transition: none; }
+@media (max-width: 1199px) {
+    .lam-home .lam-home-desktop-break { display: none; }
+    .lam-home .lam-home-job-heading { gap: 18px; }
+    .lam-home .lam-home-logo-frame { flex-basis: 100px; width: 100px; height: 100px; }
+    .lam-home .lam-home-news-card { gap: 20px; }
+    .lam-home .lam-home-news-image-link { flex-basis: 160px; width: 160px; height: 190px; }
+}
+@media (max-width: 900px) {
+    .lam-home .lam-home-search { grid-template-columns: minmax(0, 1fr) 210px; }
+    .lam-home .lam-home-search-submit { grid-column: 1 / -1; }
+    .lam-home .lam-home-job-grid, .lam-home .lam-home-news-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+    .lam-home .lam-home-job-card { min-height: 220px; }
+    .lam-home .lam-home-logo-frame { flex-basis: 120px; width: 120px; height: 120px; }
+    .lam-home .lam-home-news-image-link { flex-basis: 200px; width: 200px; height: 200px; }
+    .lam-home .lam-home-news-card { gap: 30px; }
+    .lam-home .lam-home-career { padding-top: 60px; padding-bottom: 60px; }
+}
+@media (max-width: 575px) {
+    .lam-home .lam-home-container, .lam-home .lam-home-hero-inner { width: calc(100% - 32px); }
+    .lam-home .lam-home-hero { min-height: 540px; padding: 50px 0; }
+    .lam-home .lam-home-title, .lam-home .lam-home-section-title { font-size: 28px; }
+    .lam-home .lam-home-intro { font-size: 14px; }
+    .lam-home .lam-home-search { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 14px; }
+    .lam-home .lam-home-search-input, .lam-home .lam-home-location, .lam-home .lam-home-search-submit { font-size: 14px; }
+    .lam-home .lam-home-jobs, .lam-home .lam-home-news { padding: 45px 0; }
+    .lam-home .lam-home-job-card { padding: 18px; }
+    .lam-home .lam-home-job-heading { align-items: flex-start; gap: 14px; }
+    .lam-home .lam-home-logo-frame { flex-basis: 82px; width: 82px; height: 82px; }
+    .lam-home .lam-home-job-title { font-size: 15px; }
+    .lam-home .lam-home-job-meta { font-size: 11px; }
+    .lam-home .lam-home-job-meta li { padding: 0 6px; }
+    .lam-home .lam-home-career { padding: 45px 16px; }
+    .lam-home .lam-home-career-copy { font-size: 14px; }
+    .lam-home .lam-home-news-card { padding: 18px; gap: 16px; align-items: flex-start; }
+    .lam-home .lam-home-news-image-link { flex-basis: 112px; width: 112px; height: 160px; }
+    .lam-home .lam-home-news-card-title { font-size: 16px; line-height: 1.4; }
+    .lam-home .lam-home-news-excerpt { font-size: 13px; }
+}
