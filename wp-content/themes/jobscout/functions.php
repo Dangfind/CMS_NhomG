@@ -1,4 +1,5 @@
 <?php
+
 /**
  * JobScout functions and definitions
  *
@@ -8,8 +9,8 @@
  */
 
 $jobscout_theme_data = wp_get_theme();
-if( ! defined( 'JOBSCOUT_THEME_VERSION' ) ) define ( 'JOBSCOUT_THEME_VERSION', $jobscout_theme_data->get( 'Version' ) );
-if( ! defined( 'JOBSCOUT_THEME_NAME' ) ) define( 'JOBSCOUT_THEME_NAME', $jobscout_theme_data->get( 'Name' ) );
+if (!defined('JOBSCOUT_THEME_VERSION')) define('JOBSCOUT_THEME_VERSION', $jobscout_theme_data->get('Version'));
+if (!defined('JOBSCOUT_THEME_NAME')) define('JOBSCOUT_THEME_NAME', $jobscout_theme_data->get('Name'));
 
 /**
  * Implement Local Font Method functions.
@@ -42,7 +43,7 @@ require get_template_directory() . '/sections/home/functions.php';
  */
 require get_template_directory() . '/inc/partials.php';
 
-if( jobscout_is_rara_theme_companion_activated() ) :
+if (jobscout_is_rara_theme_companion_activated()) :
 	/**
 	 * Modify filter hooks of RTC plugin.
 	 */
@@ -71,24 +72,60 @@ require get_template_directory() . '/inc/metabox.php';
 
 /**
  * Getting Started
-*/
+ */
 require get_template_directory() . '/inc/dashboard/dashboard.php';
 
 /**
  * Plugin Recommendation
-*/
+ */
 require get_template_directory() . '/inc/tgmpa/recommended-plugins.php';
 
 /**
  * Add theme compatibility function for woocommerce if active
-*/
-if( jobscout_is_woocommerce_activated() ){
-    require get_template_directory() . '/inc/woocommerce-functions.php';    
+ */
+if (jobscout_is_woocommerce_activated()) {
+	require get_template_directory() . '/inc/woocommerce-functions.php';
 }
 
 /**
  * Modify filter hooks of WP Job Manager plugin.
  */
-if( jobscout_is_wp_job_manager_activated() ) :
+if (jobscout_is_wp_job_manager_activated()) :
 	require get_template_directory() . '/inc/wp-job-manager-filters.php';
 endif;
+
+/**
+ * NhomG - Job Detail & Contact page.
+ */
+require get_template_directory() . '/inc/nhomg-jobs.php';
+
+/**
+ * NhomG - News Detail page module.
+ */
+require get_template_directory() . '/news-detail/news-detail.php';
+
+function nhomg_is_news_page() {
+	return is_page_template('page-news.php') || is_page_template('news.php') || is_page('news');
+}
+
+add_action('wp_enqueue_scripts', function () {
+	if (nhomg_is_news_page()) {
+		$css_file = get_template_directory() . '/news.css';
+		$ver = file_exists($css_file) ? filemtime($css_file) : '1.0';
+		wp_enqueue_style(
+			'news-page',
+			get_template_directory_uri() . '/news.css',
+			array('jobscout'),
+			$ver
+		);
+	}
+});
+
+add_filter('body_class', function ($classes) {
+	if (nhomg_is_news_page()) {
+		$classes   = array_diff($classes, array('rightsidebar', 'leftsidebar'));
+		$classes[] = 'full-width';
+		$classes[] = 'nhomg-news-page';
+	}
+	return $classes;
+});

@@ -81,7 +81,7 @@ function cmsng_submit_job_url() {
 }
 
 function cmsng_news_context() {
-    return is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_author() || is_date();
+    return is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_author() || is_date() || is_page_template( 'page-news.php' ) || is_page_template( 'news.php' ) || is_page( 'news' );
 }
 
 function cmsng_jobs_context() {
