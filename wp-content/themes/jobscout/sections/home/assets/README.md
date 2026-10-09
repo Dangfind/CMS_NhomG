@@ -1,5 +1,8 @@
-Tài nguyên gốc chưa được cung cấp. Không dùng ảnh chụp giao diện hoặc ảnh stock thay thế.
+# Ảnh nền Home
 
-Có thể đặt ảnh gốc phong cảnh Nhật Bản tại `hero.jpg`, ảnh hoa anh đào tại `career.jpg` (cũng hỗ trợ jpeg/webp/png). Home tự nhận các file này nếu chưa chọn ảnh trong **Tùy biến → Home — Content**. Không đặt logo header/footer ở đây.
+Hai URL để thay nằm trong `backgrounds.php`:
 
-Logo công ty và ảnh tin lấy từ dữ liệu WordPress; không lấy ảnh bất kỳ trong nội dung việc làm để làm logo.
+- `hero`: ảnh Kyoto, chùa và ánh nắng — mặc định `hero.jpg` cùng thư mục.
+- `career`: ảnh hoa anh đào và kiến trúc — mặc định `career.jpg` cùng thư mục.
+
+Hai ảnh hiện chưa có theo yêu cầu. Có thể đặt file đúng tên, thay hai URL trong PHP, hoặc chọn ảnh tại Customizer → Home — Content. Không cần sửa header/footer. Logo công ty và ảnh blog được đọc từ dữ liệu WordPress, không đặt ở thư mục này.

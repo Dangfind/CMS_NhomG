@@ -45,8 +45,8 @@
 .lam-home .lam-home-news-image { display: block; width: 100%; height: 100%; object-fit: cover; }
 .lam-home .lam-home-image-empty { background: #eee; }
 .lam-home .lam-home-news-copy { flex: 1; min-width: 0; }
-.lam-home .lam-home-news-card-title { margin: 0 0 12px; font-size: 19px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
-.lam-home .lam-home-news-excerpt { margin: 0 0 8px; color: #555; font-size: 14px; line-height: 1.6; overflow-wrap: anywhere; }
+.lam-home .lam-home-news-card-title { margin: 0 0 10px; font-size: 18px; font-weight: 700; line-height: 1.4; overflow-wrap: anywhere; }
+.lam-home .lam-home-news-excerpt { margin: 0 0 8px; color: #555; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .lam-home .lam-home-read-more { color: var(--lam-home-orange); font-size: 14px; font-weight: 600; text-decoration: none; }
 .lam-home .lam-home-empty { min-height: 242px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 30px; background: #fff; color: #555; text-align: center; }
 .lam-home .lam-home-results-status { margin: -12px 0 24px; text-align: center; }

@@ -1,79 +1,79 @@
-# Home — nhánh Lam/Home
+# Home — Lam/Home
 
-Home hiển thị tự động từ `front-page.php` khi theme JobScout đang kích hoạt, kể cả khi **Cài đặt → Đọc** còn chọn bài viết mới nhất. Không cần đổi database để bật giao diện. Nếu dùng trang chủ tĩnh, giữ trang đó ở mục Homepage và chọn trang News riêng ở Posts page.
+Home gọi `get_header()` và `get_footer()` đúng một lần. Newsletter nằm trong footer chung. CSS nội dung chỉ nằm trong `.lam-home`; không có bản header/footer riêng cho Home.
 
-Chỉ sửa `front-page.php` và bổ sung một đoạn `require` trong `functions.php`. Toàn bộ code mới nằm trong `sections/home/`. Không sửa `header.php`, `footer.php`, module/CSS/JS header-footer hoặc các template của trang khác. `front-page.php` gọi `get_header()` và `get_footer()` đúng một lần. Nội dung Home mở `main.lam-home`; hook nội dung riêng chỉ thay wrapper trên request Home và giữ `#acc-content` để footer chung đóng đúng.
+## Hai URL ảnh nền để gắn sau
 
-## File
+Sửa hai giá trị `hero` và `career` trong `assets/backgrounds.php`. Hiện chúng trỏ đến:
+- `sections/home/assets/hero.jpg`: phong cảnh Kyoto, chùa và ánh nắng.
+- `sections/home/assets/career.jpg`: hoa anh đào và kiến trúc.
 
-- `functions.php`: dữ liệu, tìm kiếm, URL, Customizer, enqueue CSS chỉ ở Home.
-- `template.php`: bốn section theo thứ tự mẫu.
-- `hero.php`, `jobs.php`, `career.php`, `news.php`: markup từng section.
-- `job-card.php`, `news-card.php`: card riêng Home, tái sử dụng bằng `get_template_part( 'sections/home/job-card', null, array( 'post' => $wp_post ) )` hoặc `news-card`.
-- `home.css`: selector giới hạn trong `.lam-home`, breakpoint cho tablet/mobile; không nạp thư viện mới.
-- `demo.php`: công cụ quản trị tạo mẫu theo yêu cầu chủ động.
-- `assets/README.md`: vị trí đặt ảnh gốc.
-- `tests/search.php`: kiểm thử độc lập, dùng SQLite trong RAM và bộ biên dịch `WP_Meta_Query` gốc; không mở database dự án.
+Có thể đặt file vào hai vị trí này, thay bằng URL ảnh thật, hoặc chọn ảnh trong **Giao diện → Tùy biến → Home — Content**. Ảnh Customizer được ưu tiên, tiếp theo file có sẵn jpg/jpeg/webp/png, cuối cùng hai URL chờ. Hai file nền hiện chưa tồn tại theo yêu cầu; hai URL này sẽ trả 404 đến khi bổ sung ảnh. Overlay và màu nền dự phòng đã có.
 
-Không cần JavaScript riêng: tìm kiếm dùng GET và chạy đầy đủ khi tắt JavaScript. Giữ nguyên JavaScript của header/footer.
+Logo thương hiệu gốc cũng chưa có trong theme/uploads và `custom_logo` chưa được đặt. Chọn logo trong **Site Identity** để cả header và footer cùng dùng; không tái tạo phần bị che đen trong ảnh mẫu.
 
-## Tài nguyên và cấu hình
+## Nguồn dữ liệu và sửa lỗi
 
-**Giao diện → Tùy biến → Home — Content**: chọn ảnh nền banner Nhật Bản và ảnh Career hoa anh đào. Hoặc đặt tài nguyên gốc trong `sections/home/assets/hero.jpg` và `career.jpg` (hỗ trợ jpeg/webp/png). Ảnh trong Customizer được ưu tiên. Chưa có ảnh thì dùng nền màu trơn, không thay bằng ảnh bất kỳ và không cắt screenshot làm nền.
+Home dùng CPT `job_listing` đã đăng ký trong `inc/nhomg-jobs.php`, không đăng ký CPT mới.
 
-Ảnh mẫu gốc là 1440 × 3470. Nội dung triển khai theo kích thước tương ứng: banner 540px, khung danh sách 1050px, hai cột job 510px và logo 120px; Career tối thiểu 500px; news hai cột với ảnh 200px. Font kế thừa Nunito Sans hiện có của JobScout; chưa có file font gốc để xác nhận chính xác typography. Chiều cao header/footer hiện tại được giữ nguyên theo phạm vi yêu cầu.
+- Provider NhomG lưu logo công ty ở featured image, highlights ở `_nhomg_highlights`. Home đã đọc đúng hai nguồn này. Vẫn ưu tiên `_company_logo` nếu có, và dùng excerpt/content khi không có highlights.
+- Database có 7 jobs, trong đó một Chief Operating Officer bị trùng. Truy vấn cũ lấy sáu tin mới nhất nên bỏ Hotel Manager. Sáu tin tham chiếu đã có `_lam_home_order` từ 1 đến 6 theo thứ tự: Hotel Manager, General Manager, Banquet Manager, Bellman, Chief Operating Officer, Loss Prevention Officer.
+- Database có 9 posts, gồm các bản trùng tiêu đề và một slug Project Development bị trùng. Bốn bài Home được chọn theo permalink thật đang resolve; giữ nguyên URL, nội dung và các bản trùng.
+- Bốn bài được sửa featured image theo đúng quan hệ: Project/storefront, Restaurant/roof, Hospitality/cherry blossoms, Venue/koi. Ba excerpt trống lấy đoạn Lorem ipsum của bài Project Development có sẵn, đúng nội dung mẫu. Không đổi nội dung bài hoặc ngày tạo.
+- Không xóa hoặc đổi tên bài thật. Số lượng vẫn là 7 jobs, 9 posts.
 
-URL About và View More Jobs đọc cấu hình dùng chung qua `cmsng_section_url()`. Chọn các trang thật trong **CMS_NhomG — Header & Footer**. Khi chưa có đích, nút hiển thị không liên kết (`aria-disabled`), không sinh URL giả.
+`_lam_home_order` là thứ tự biên tập riêng Home: số nhỏ đứng trước, sau đó jobs tự sắp theo featured/ngày và news theo ngày. Có ô **Home position** trong màn hình sửa job/bài viết; để trống để dùng thứ tự tự động. Cài đặt không ảnh hưởng query của Jobs/News hoặc trang chi tiết. Job đã tuyển, hết hạn, draft/password vẫn bị loại dù có số thứ tự.
 
-## Dữ liệu việc làm và tìm kiếm
-
-Không đăng ký CPT mới. Đọc `job_listing` của provider hiện có:
-
-| Thông tin | Nguồn |
-| --- | --- |
-| Tên, URL, ngày tạo | post title, permalink, post date |
-| Logo / công ty | `_company_logo` (attachment ID hoặc URL), `_company_name` |
-| Loại / chuyên mục | `job_listing_type`, `job_listing_category` |
-| Địa điểm | `_job_location`; hỗ trợ geolocation và taxonomy `job_listing_region` / `job_listing_location` |
-| Nổi bật | `_featured`; sắp xếp trước, sau đó ngày đăng mới nhất |
-| Còn hiệu lực | `publish`, không password, `_filled` khác 1 hoặc thiếu, `_job_expires` chưa quá ngày hiện tại hoặc trống/thiếu |
-| Mô tả | excerpt, nếu thiếu dùng content; lấy tối đa ba dòng/bullet, bỏ HTML/shortcode |
-
-Mặc định lấy 6 việc. Không có provider hoặc dữ liệu thì hiện trạng thái rỗng, không truy vấn nhầm `post`.
-
-Form dùng `search_keywords` và `search_location`, không dùng tham số `s` để tránh biến Home thành tìm kiếm tin tức. Giá trị được kiểm tra kiểu, sanitize và giới hạn 200 ký tự. Địa điểm lấy từ các việc đang mở; chỉ hiển thị Tokyo mặc định nếu dữ liệu thật có Tokyo. Trạng thái mặc định Top Jobs vẫn là các việc mới/nổi bật; địa điểm trong form được áp dụng khi người dùng submit. Sau submit giữ nguyên giá trị đã chọn, kể cả địa điểm vừa hết dữ liệu. Có thông báo không tìm thấy và liên kết Clear filters.
-
-Nếu đã có trang Jobs chứa shortcode `[jobs]` và WP Job Manager đang hoạt động, form chuyển đến permalink của trang đó bằng tham số chuẩn, giữ các query param định tuyến của permalink dạng `?page_id=...`. Ưu tiên trang Jobs được cấu hình dùng chung rồi đến tùy chọn WPJM. Khi chưa có trang xử lý, hoặc có taxonomy địa điểm cần bộ lọc riêng, kết quả lọc ngay tại Top Jobs trên Home. Từ khóa tìm tiêu đề/nội dung, công ty, kỹ năng và chuyên mục. Query/filter chỉ áp dụng trên truy vấn việc làm phụ của Home, có tháo hook sau khi chạy; không đổi main query.
-
-Tích hợp WPJM sử dụng API và tham số đã kiểm tra trong [mã nguồn WP Job Manager chính thức](https://github.com/Automattic/WP-Job-Manager/blob/master/wp-job-manager-functions.php).
-
-## Tin tức
-
-Đọc 4 `post` công khai mới nhất, bỏ sticky priority, loại bài password; không lẫn `job_listing`. Ảnh ưu tiên featured image, sau đó ảnh hợp lệ đầu tiên trong content bằng HTML API WordPress. Nếu cả hai thiếu thì giữ khung màu xám. Excerpt ưu tiên trường excerpt rồi tạo từ content bỏ shortcode/HTML. Ảnh, tiêu đề và Read More mở permalink của bài tương ứng. Hai vòng lặp card đều gọi `wp_reset_postdata()` sau truy vấn phụ.
-
-## Tạo dữ liệu mẫu (tùy chọn)
-
-Chưa tự tạo hoặc thay đổi dữ liệu trong quá trình triển khai. Để tạo mẫu:
-
-1. Cài/kích hoạt provider `job_listing` mà dự án sử dụng (JobScout hiện hỗ trợ WP Job Manager).
-2. Quản trị viên mở **Công cụ → Home sample data**, đọc mô tả và bấm **Create sample data**.
-3. Công cụ tạo 6 jobs và 4 bài mẫu bằng WordPress API, không sửa trang, menu hoặc bản ghi thật. Jobs đặt hạn 90 ngày và địa điểm Ho Chi Minh City. Gắn logo công ty, ảnh bài viết gốc sau đó.
-
-Yêu cầu POST, quyền quản trị/publish và nonce hợp lệ. Chống tạo trùng bằng `_lam_home_demo_key`, kể cả bản ghi đã bỏ vào thùng rác. Bản ghi đã có không bị ghi đè; có thể chạy lại sau lỗi từng phần. Không có thao tác seed trong Home/init và không có SQL ghi trực tiếp.
-
-## Kết quả kiểm tra và giới hạn
-
-Chạy từ thư mục theme:
-
+`tools/repair-reference.php` là công cụ CLI kiểm tra/sửa dữ liệu hiện có, không chạy từ web hoặc tự chạy trên request Home:
 ```powershell
-php -l functions.php
-php -l front-page.php
-Get-ChildItem sections/home -Recurse -Filter '*.php' | ForEach-Object { php -l $_.FullName }
-php sections/home/tests/search.php
+php sections/home/tools/repair-reference.php
+php sections/home/tools/repair-reference.php --apply
 ```
+Công cụ tìm bài theo slug/permalink và ảnh theo filename, kiểm tra dữ liệu trước khi sửa, sao lưu excerpt/thumbnail/order vào thư mục temp trước khi ghi bằng WordPress API. Không chứa hostname, đường dẫn máy hoặc ID cố định.
 
-Đã kiểm tra cú pháp, tìm từ khóa/địa điểm/kết hợp, tên công ty/kỹ năng, featured-first, hết hạn/đã tuyển/draft/password, taxonomy địa điểm, dữ liệu rỗng, thiếu ảnh và đầu vào bất thường bằng bộ fixture SQLite trong RAM. Kiểm tra HTTP local xác nhận một header/newsletter/footer, đủ bốn section, giữ bộ lọc và trạng thái rỗng đúng; CSS Home không xuất hiện ở Sample Page. File dùng chung được đối chiếu SHA256, giữ nguyên.
+Lần áp dụng 09/10/2026 đã sao lưu tại `C:\Users\LAM\AppData\Local\Temp\cms1050.tmp`. Đây là bản sao trạng thái trước sửa dữ liệu, không phải file code giao diện.
 
-Website local hiện chỉ có Sample Page và bài Hello world, chưa có WP Job Manager, bản ghi việc làm, trang About/Jobs hoặc ảnh gốc. Vì vậy kiểm thử tìm kiếm có kết quả dùng fixture; chưa kiểm tra với dữ liệu việc làm thật hoặc chạy công cụ seed trong trang quản trị.
+## Tìm kiếm và điều hướng
 
-Công cụ trình duyệt lỗi khởi động `codex app-server`. Chưa chụp Home, kiểm tra layout trực quan/tràn ngang tại 1440/1024/768/375px hoặc đối chiếu pixel với ảnh mẫu. Hai ảnh nền, logo công ty, ảnh tin và font gốc còn thiếu nên chưa thể khớp toàn bộ ảnh. Không thay đổi thành phần dùng chung để bù sai lệch header/footer.
+Form gửi GET `search_keywords`, `search_location`, giữ các tham số permalink dạng plain và không dùng `s` ở Home. Khi có trang WPJM phù hợp thì chuyển đến trang đó; hiện provider NhomG dùng bộ lọc Home. Từ khóa tìm tiêu đề/nội dung, công ty, kỹ năng và taxonomy.
+
+Địa điểm lấy từ jobs đang mở, cộng các điểm tìm kiếm được cấu hình trong **Home — Content → Additional search locations**. Tokyo được cấu hình mặc định và gửi đúng giá trị `Tokyo`; dữ liệu hiện có chỉ ở Ho Chi Minh City nên tìm Tokyo trả trạng thái không có kết quả. Không đổi địa điểm các jobs để giả có việc ở Tokyo. Home chưa submit vẫn hiển thị sáu Top Jobs; sau submit giữ bộ lọc thực tế.
+
+View More Jobs, More About Us và menu dùng các URL chung từ WordPress. Các mục chưa có trang đích tiếp tục hiển thị trạng thái chưa cấu hình, không tạo link giả.
+
+## Component chung
+
+Chỉ chỉnh `css/cmsng-chrome.css`, `template-parts/cmsng-footer.php` và thêm `images/google-g.svg`:
+- Header rộng tối đa 1320px, cao tối thiểu 86px ở desktop; brand bên trái, menu/CTA bên phải; giữ gạch chân HOME và menu mobile.
+- Newsletter đúng hai dòng “Subscribe To” / “Our Newsletter”, thu lại container và cân ô email/nút.
+- Footer căn giữa, Google nhiều màu trên nền trắng. Khi copyright cấu hình trống, dùng năm hiện tại và tên website thật.
+- Giữ logic newsletter hiện có; chưa có backend lưu/gửi email thì không báo đăng ký thành công.
+Không sửa `header.php`, `footer.php`, JS chung hoặc liên kết của các trang khác.
+
+## File thay đổi trong lần sửa này
+
+- `sections/home/functions.php`: adapter logo/highlights, thứ tự Home, Tokyo, URL nền.
+- `sections/home/news.php`: query tin theo thứ tự Home.
+- `sections/home/home.css`: typography tin tức để đoạn mô tả và tiêu đề dài vừa card.
+- `sections/home/editor.php`: trường thứ tự có nonce/quyền sửa bài.
+- `sections/home/assets/backgrounds.php`, `assets/README.md`: hai URL nền chờ bổ sung.
+- `sections/home/tools/repair-reference.php`: sửa dữ liệu có sao lưu, CLI-only.
+- `sections/home/tests/search.php`: thêm kiểm tra thứ tự, bản ghi meta trùng, lọc và query isolation.
+- `css/cmsng-chrome.css`, `template-parts/cmsng-footer.php`, `images/google-g.svg`.
+- `sections/home/README.md`: tài liệu và kết quả hiện tại.
+
+## Kiểm tra ngày 09/10/2026
+
+- PHP syntax: toàn bộ PHP trong Home, front-page và footer component đều đạt.
+- 36 kiểm tra Home SQLite trong RAM đạt: bộ lọc, eligibility, SQL-like input, route, excerpt/image fallback, thứ tự biên tập, meta trùng và query isolation.
+- 17 kiểm tra chrome routing đạt.
+- Kiểm thử DOM menu/newsletter tại 1440/1024/768/375px đạt; đây không phải kiểm thử layout trực quan.
+- HTTP anonymous: Home 200, không admin bar; đúng một header/footer/newsletter, 6 jobs có 3 highlights, 4 news có ảnh/excerpt, Tokyo chọn mặc định, copyright không trống.
+- 24 tài nguyên local đang sử dụng (gồm 6 logo công ty, 4 ảnh blog, Google SVG, CSS/JS) trả 200. Hai ảnh nền chờ cố ý chưa có được tách riêng.
+- 10 permalink card trả 200; bốn permalink news resolve đúng ID của bài đang hiển thị.
+- Tìm Hotel trả 4 jobs (gồm bản Chief trùng vẫn được giữ), HCMC trả tối đa 6, Bellman + HCMC trả 1, Tokyo và từ khóa không tồn tại trả 0, có trạng thái rỗng.
+- Database vẫn có 7 jobs, 9 posts; không commit/push.
+
+Công cụ browser lỗi khởi động `codex app-server: The system cannot find the path specified (os error 3)`. Chưa chụp trang mới hoặc kiểm chứng tràn ngang/layout ở cùng viewport/zoom. Breakpoint có sẵn và các phần tử co giãn đã được rà soát trong CSS, nhưng cần xác nhận trực quan khi browser hoạt động. Không tuyên bố khớp 100%.
+
+Khác biệt còn lại: hai ảnh nền do người dùng sẽ gắn sau; thiếu logo thương hiệu; ảnh blog gốc hiện chỉ khoảng 110px nên có thể mờ khi phóng lên khung 200px; chưa xác định được font gốc từ mẫu và vẫn dùng font Nunito Sans hiện có của theme.

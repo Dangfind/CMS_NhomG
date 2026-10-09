@@ -1,6 +1,6 @@
 <?php
 defined( 'ABSPATH' ) || exit;
-$news = new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'has_password' => false, 'posts_per_page' => 4, 'ignore_sticky_posts' => true, 'orderby' => array( 'date' => 'DESC', 'ID' => 'DESC' ), 'no_found_rows' => true ) );
+$news = lam_home_news();
 ?>
 <section class="lam-home-news" aria-labelledby="lam-home-news-title">
     <div class="lam-home-container">

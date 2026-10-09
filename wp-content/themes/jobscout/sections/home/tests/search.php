@@ -159,6 +159,17 @@ $route_taxonomy = false;
 $route_pages[42]->post_content = 'No jobs shortcode';
 check( lam_home_search_route()['url'], 'https://example.test/#lam-home-jobs', 'Unimplemented Jobs page does not swallow search' );
 
+// Editorial order must retain automatic fallback, filtering and query isolation.
+$db->exec( "INSERT INTO wp_postmeta(post_id,meta_key,meta_value) VALUES (9,'_lam_home_order','1'),(3,'_lam_home_order','2'),(3,'_lam_home_order','99'),(2,'_lam_home_order','-1'),(10,'_lam_home_order','invalid')" );
+check( results(), array( 9, 3, 1, 11, 2, 10 ), 'Curated jobs appear once, before automatic jobs; invalid positions ignored' );
+check( results( '', 'Tokyo' ), array( 3, 1, 11 ), 'Curated ordering preserves location filtering and availability' );
+check( lam_home_news_order( $untouched, new HomeTestQuery( array() ) ), $untouched, 'Other news queries keep their original order' );
+fixture( 20, 'Newer news', '2026-10-09', array(), 'publish', 'post' );
+fixture( 21, 'Curated news', '2026-10-01', array( '_lam_home_order' => 1 ), 'publish', 'post' );
+$news_clauses = lam_home_news_order( array( 'orderby' => 'wp_posts.post_date DESC, wp_posts.ID DESC' ), new HomeTestQuery( array( 'lam_home_news' => true ) ) );
+$news_ids = array_map( 'intval', $db->query( "SELECT ID FROM wp_posts WHERE post_type='post' ORDER BY " . $news_clauses['orderby'] )->fetchAll( PDO::FETCH_COLUMN ) );
+check( $news_ids, array( 21, 20, 8 ), 'Home news honors editorial positions, then newest fallback' );
+
 // Demo inserts operate only on this in-memory fixture. Guards throw before writes.
 function wp_slash( $value ) { return $value; }
 function get_posts( $args ) {

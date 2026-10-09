@@ -60,8 +60,8 @@ function lam_home_job_clauses( $clauses, $query ) {
             '%' . $wpdb->esc_like( $location ) . '%', $location
         );
     }
-    // Keeps jobs with no _featured field; a subquery prevents duplicate cards.
-    $clauses['orderby'] = "COALESCE((SELECT MAX(CAST(lam_feature.meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} AS lam_feature WHERE lam_feature.post_id = {$wpdb->posts}.ID AND lam_feature.meta_key = '_featured'), 0) DESC, {$wpdb->posts}.post_date DESC, {$wpdb->posts}.ID DESC";
+    // Explicit editorial order first; automatic jobs retain featured/newest order.
+    $clauses['orderby'] = lam_home_order_sql() . ", COALESCE((SELECT MAX(CAST(lam_feature.meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} AS lam_feature WHERE lam_feature.post_id = {$wpdb->posts}.ID AND lam_feature.meta_key = '_featured'), 0) DESC, {$wpdb->posts}.post_date DESC, {$wpdb->posts}.ID DESC";
     return $clauses;
 }
 /** Fallback for an existing job_listing provider without WP Job Manager. */
@@ -109,7 +109,22 @@ function lam_home_jobs( $filters = array(), $limit = 6 ) {
         finally { remove_filter( 'posts_search', 'lam_home_job_search', 20 ); }
     } finally { remove_filter( 'posts_clauses', 'lam_home_job_clauses', 20 ); }
 }
-/** Select options come only from published, currently available jobs. */
+/** Home-only editorial metadata; scalar subquery cannot duplicate cards. */
+function lam_home_order_sql() {
+    global $wpdb;
+    return "COALESCE((SELECT MIN(CAST(lam_order.meta_value AS UNSIGNED)) FROM {$wpdb->postmeta} AS lam_order WHERE lam_order.post_id = {$wpdb->posts}.ID AND lam_order.meta_key = '_lam_home_order' AND CAST(lam_order.meta_value AS UNSIGNED) BETWEEN 1 AND 9999), 2147483647) ASC";
+}
+function lam_home_news_order( $clauses, $query ) {
+    if ( $query->get( 'lam_home_news' ) ) $clauses['orderby'] = lam_home_order_sql() . ', ' . $clauses['orderby'];
+    return $clauses;
+}
+function lam_home_news() {
+    add_filter( 'posts_clauses', 'lam_home_news_order', 20, 2 );
+    try {
+        return new WP_Query( array( 'post_type' => 'post', 'post_status' => 'publish', 'has_password' => false, 'posts_per_page' => 4, 'ignore_sticky_posts' => true, 'orderby' => array( 'date' => 'DESC', 'ID' => 'DESC' ), 'no_found_rows' => true, 'lam_home_news' => true ) );
+    } finally { remove_filter( 'posts_clauses', 'lam_home_news_order', 20 ); }
+}
+/** Actual job locations plus administrator-configured search destinations. */
 function lam_home_locations() {
     if ( ! post_type_exists( 'job_listing' ) ) return array();
     $args = lam_home_job_args( array(), -1 );
@@ -132,6 +147,10 @@ function lam_home_locations() {
                 foreach ( $terms as $term ) $locations[ $term->name ] = $term->name;
             }
         }
+    }
+    foreach ( preg_split( '/[\r\n]+/', (string) get_theme_mod( 'lam_home_locations', 'Tokyo' ) ) as $location ) {
+        $location = trim( sanitize_text_field( $location ) );
+        if ( $location ) $locations[ $location ] = $location;
     }
     natcasesort( $locations );
     return $locations;
@@ -167,9 +186,15 @@ function lam_home_job_logo( $id ) {
     $logo = get_post_meta( $id, '_company_logo', true );
     if ( is_numeric( $logo ) ) return wp_get_attachment_image( absint( $logo ), 'thumbnail', false, array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
     if ( is_string( $logo ) && esc_url( $logo ) ) return '<img class="lam-home-company-logo" src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_post_meta( $id, '_company_name', true ) ) . '" loading="lazy" width="120" height="120">';
+    // NhomG's existing job editor explicitly stores company logos as thumbnails.
+    if ( function_exists( 'nhomg_job_logo' ) && has_post_thumbnail( $id ) ) return get_the_post_thumbnail( $id, 'full', array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
     return '<span class="lam-home-logo-empty"><span class="screen-reader-text">' . esc_html__( 'Company logo unavailable', 'jobscout' ) . '</span></span>';
 }
 function lam_home_job_summary( $post ) {
+    if ( isset( $post->ID ) && function_exists( 'nhomg_job_highlights' ) ) {
+        $highlights = nhomg_job_highlights( $post->ID, 3 );
+        if ( $highlights ) return array_map( 'wp_strip_all_tags', $highlights );
+    }
     $source = $post->post_excerpt ? $post->post_excerpt : $post->post_content;
     preg_match_all( '/<li\b[^>]*>(.*?)<\/li>/is', $source, $matches );
     $lines = $matches[1];
@@ -207,10 +232,16 @@ function lam_home_background( $key ) {
             }
         }
     }
+    if ( ! $url && in_array( $key, array( 'hero', 'career' ), true ) ) {
+        $backgrounds = require __DIR__ . '/assets/backgrounds.php';
+        $url = esc_url_raw( $backgrounds[ $key ] );
+    }
     return $url ? 'background-image: linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)), url("' . str_replace( array( '\\', '"', "\n", "\r" ), array( '\\\\', '\\"', '', '' ), $url ) . '");' : '';
 }
 function lam_home_customize( $wp_customize ) {
-    $wp_customize->add_section( 'lam_home', array( 'title' => __( 'Home — Content', 'jobscout' ), 'priority' => 36, 'description' => __( 'Upload the original reference images. Home content only; shared chrome is unchanged.', 'jobscout' ) ) );
+    $wp_customize->add_section( 'lam_home', array( 'title' => __( 'Home — Content', 'jobscout' ), 'priority' => 36, 'description' => __( 'Upload the original reference images. Two background URLs can be supplied later. Configure additional search locations below.', 'jobscout' ) ) );
+    $wp_customize->add_setting( 'lam_home_locations', array( 'default' => 'Tokyo', 'sanitize_callback' => 'sanitize_textarea_field' ) );
+    $wp_customize->add_control( 'lam_home_locations', array( 'section' => 'lam_home', 'label' => __( 'Additional search locations (one per line)', 'jobscout' ), 'description' => __( 'These are search destinations, not job counts. A destination without open jobs returns no results.', 'jobscout' ), 'type' => 'textarea' ) );
     foreach ( array( 'hero' => 'Banner image — Japanese landscape', 'career' => 'Career image — cherry blossoms' ) as $key => $label ) {
         $setting = 'lam_home_' . $key . '_image';
         $wp_customize->add_setting( $setting, array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
@@ -219,4 +250,7 @@ function lam_home_customize( $wp_customize ) {
 }
 add_action( 'customize_register', 'lam_home_customize' );
 
-if ( is_admin() ) require __DIR__ . '/demo.php';
+if ( is_admin() ) {
+    require __DIR__ . '/demo.php';
+    require __DIR__ . '/editor.php';
+}
