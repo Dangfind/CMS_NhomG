@@ -14,7 +14,7 @@ Logo thương hiệu gốc cũng chưa có trong theme/uploads và `custom_logo`
 
 ## Nguồn dữ liệu và sửa lỗi
 
-Home dùng CPT `job_listing` đã đăng ký trong `inc/nhomg-jobs.php`, không đăng ký CPT mới.
+Home dùng CPT `job_listing` đã đăng ký trong `inc/jobs.php`, không đăng ký CPT mới.
 
 - Provider NhomG lưu logo công ty ở featured image, highlights ở `_nhomg_highlights`. Home đã đọc đúng hai nguồn này. Vẫn ưu tiên `_company_logo` nếu có, và dùng excerpt/content khi không có highlights.
 - Database có 7 jobs, trong đó một Chief Operating Officer bị trùng. Truy vấn cũ lấy sáu tin mới nhất nên bỏ Hotel Manager. Sáu tin tham chiếu đã có `_lam_home_order` từ 1 đến 6 theo thứ tự: Hotel Manager, General Manager, Banquet Manager, Bellman, Chief Operating Officer, Loss Prevention Officer.
