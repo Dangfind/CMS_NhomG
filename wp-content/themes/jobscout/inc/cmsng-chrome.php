@@ -165,23 +165,19 @@ function cmsng_menu_fallback( $args ) {
     echo '</ul>';
 }
 
-/** Use the original uploaded logo; do not approximate it with site-title text. */
+/** One shared text brand for the header and footer. */
 function cmsng_logo() {
-    if ( has_custom_logo() ) {
-        the_custom_logo();
-    } else {
-        echo '<a class="cmsng-logo-missing" href="' . esc_url( home_url( '/' ) ) . '"><span class="screen-reader-text">' . esc_html( get_bloginfo( 'name' ) ) . '</span></a>';
-    }
+    echo '<a class="cmsng-brand-link" href="' . esc_url( home_url( '/' ) ) . '">' . esc_html( 'Nhóm G' ) . '</a>';
 }
 
 function cmsng_customize_chrome( $wp_customize ) {
     $wp_customize->add_section( 'cmsng_chrome', array(
         'title' => __( 'CMS_NhomG — Header & Footer', 'jobscout' ),
-        'description' => __( 'Assign Primary and CMS_NhomG Footer menus in Menus. Set the original logo in Site Identity. Empty social URLs are displayed as inactive icons. Newsletter storage/delivery is not configured.', 'jobscout' ),
+        'description' => __( 'Assign Primary and CMS_NhomG Footer menus in Menus. The shared brand is Nhóm G. Empty social URLs are displayed as inactive icons. Newsletter storage/delivery is not configured.', 'jobscout' ),
         'priority' => 35,
     ) );
     $wp_customize->add_setting( 'cmsng_recruiting', array( 'default' => 'RECRUITING', 'sanitize_callback' => 'sanitize_text_field' ) );
-    $wp_customize->add_control( 'cmsng_recruiting', array( 'section' => 'cmsng_chrome', 'label' => __( 'Text below header logo (clear if included in logo)', 'jobscout' ), 'type' => 'text' ) );
+    $wp_customize->add_control( 'cmsng_recruiting', array( 'section' => 'cmsng_chrome', 'label' => __( 'Text below header brand', 'jobscout' ), 'type' => 'text' ) );
     foreach ( array( 'jobs' => 'JOBS', 'news' => 'NEWS / BLOG', 'about' => 'ABOUT', 'contact' => 'CONTACT', 'companies' => 'COMPANIES', 'submit' => 'SUBMIT JOB' ) as $key => $label ) {
         $name = 'cmsng_page_' . $key;
         $wp_customize->add_setting( $name, array( 'default' => 0, 'sanitize_callback' => 'absint' ) );
