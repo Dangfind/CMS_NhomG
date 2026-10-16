@@ -97,12 +97,12 @@ endif;
 /**
  * NhomG - Job Detail & Contact page.
  */
-require get_template_directory() . '/inc/nhomg-jobs.php';
+require get_template_directory() . '/inc/jobs.php';
 
 /**
  * NhomG - About Us page (middle content area only).
  */
-require get_template_directory() . '/inc/nhomg-about.php';
+require get_template_directory() . '/inc/about.php';
 
 /**
  * NhomG - News Detail page module.
