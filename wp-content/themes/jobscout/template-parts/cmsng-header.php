@@ -6,7 +6,7 @@ $cmsng_submit_label = get_theme_mod( 'post_job_label', '' );
 $cmsng_submit_label = $cmsng_submit_label ? $cmsng_submit_label : 'SUBMIT JOB';
 ?>
 <header id="masthead" class="cmsng-header" itemscope itemtype="https://schema.org/WPHeader">
-    <div class="container cmsng-header-inner">
+    <div class="cmsng-header-inner">
         <div class="cmsng-brand">
             <?php cmsng_logo(); ?>
             <?php if ( $cmsng_recruiting ) : ?>
