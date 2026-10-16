@@ -302,4 +302,76 @@ body.nhomg-news-detail-page .content-area {
         font-size: 18px;
     }
 }
+/* Khung chung: breadcrumb, header card, content box, lưới recent */
+.news-detail-container,
+.news-detail-recent-section {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
 
+.news-detail-recent-section {
+    margin-top: 60px;
+}
+
+/* Header card: full chiều rộng khung */
+.news-detail-header-card {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 24px 28px;
+    box-sizing: border-box;
+}
+
+/* Khung nội dung: 780px, canh trái theo mẫu */
+.news-detail-content-box {
+    width: 100%;
+    max-width: 780px;
+    margin-left: 0;
+    margin-right: auto;
+    padding: 35px;
+    box-sizing: border-box;
+}
+
+:root {
+    --nd-card-inset: 0px; /* thumbnail card nằm sát mép khung card */
+}
+
+.news-detail-header-card {
+    padding: 24px 28px;
+    margin-left: calc(-1 * (28px + 1px - var(--nd-card-inset)));
+}
+
+.news-detail-content-box {
+    padding: 35px 40px;
+    max-width: 780px;
+    margin-left: calc(-1 * (40px + 1px - var(--nd-card-inset)));
+}
+
+/* Màn hình hẹp: tắt kéo lệch để khung không bị tràn ra ngoài */
+@media (max-width: 1200px) {
+    .news-detail-header-card,
+    .news-detail-content-box {
+        margin-left: 0;
+    }
+}
+/* Header card: cùng mép trái khung với content box, thumbnail vẫn ở x=120 */
+/* Header card: kéo dài sang phải cho cùng mép phải với lưới news list */
+.news-detail-header-card {
+    width: calc(100% + 41px);   /* 41px = phần đã kéo sang trái */
+    max-width: none;
+    margin-left: -41px;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .news-detail-header-card {
+        width: 100%;
+        margin-left: 0;
+    }
+}
