@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'NHOMG_JOBS_VERSION', '1.1.0' );
+define( 'NHOMG_JOBS_VERSION', '1.0.1' );
 
 /*--------------------------------------------------------------
 # Post type & taxonomy (fallback khi chưa có WP Job Manager)
@@ -21,30 +21,16 @@ function nhomg_register_job_post_type() {
     if ( ! post_type_exists( 'job_listing' ) ) {
         register_post_type( 'job_listing', array(
             'labels' => array(
-                'name'               => __( 'Jobs', 'jobscout' ),
-                'singular_name'      => __( 'Job', 'jobscout' ),
-                'add_new'            => __( 'Add New Job', 'jobscout' ),
-                'add_new_item'       => __( 'Add New Job', 'jobscout' ),
-                'edit_item'          => __( 'Edit Job', 'jobscout' ),
-                'new_item'           => __( 'New Job', 'jobscout' ),
-                'view_item'          => __( 'View Job', 'jobscout' ),
-                'view_items'         => __( 'View Jobs', 'jobscout' ),
-                'search_items'       => __( 'Search Jobs', 'jobscout' ),
-                'not_found'          => __( 'No jobs found.', 'jobscout' ),
-                'not_found_in_trash' => __( 'No jobs found in Trash.', 'jobscout' ),
-                'all_items'          => __( 'All Jobs', 'jobscout' ),
-                'featured_image'     => __( 'Company logo', 'jobscout' ),
-                'set_featured_image' => __( 'Set company logo', 'jobscout' ),
-                'remove_featured_image' => __( 'Remove company logo', 'jobscout' ),
-                'use_featured_image' => __( 'Use as company logo', 'jobscout' ),
-                'item_published'     => __( 'Job published.', 'jobscout' ),
-                'item_updated'       => __( 'Job updated.', 'jobscout' ),
-                'menu_name'          => __( 'Jobs', 'jobscout' ),
+                'name'          => __( 'Jobs', 'jobscout' ),
+                'singular_name' => __( 'Job', 'jobscout' ),
+                'add_new_item'  => __( 'Add New Job', 'jobscout' ),
+                'edit_item'     => __( 'Edit Job', 'jobscout' ),
+                'all_items'     => __( 'All Jobs', 'jobscout' ),
+                'menu_name'     => __( 'Jobs', 'jobscout' ),
             ),
             'public'       => true,
             'show_in_rest' => true,
             'menu_icon'    => 'dashicons-businessman',
-            'menu_position' => 25,
             'supports'     => array( 'title', 'editor', 'excerpt', 'thumbnail' ),
             'has_archive'  => 'jobs',
             'rewrite'      => array( 'slug' => 'job', 'with_front' => false ),
@@ -56,13 +42,6 @@ function nhomg_register_job_post_type() {
             'labels'            => array(
                 'name'          => __( 'Job Types', 'jobscout' ),
                 'singular_name' => __( 'Job Type', 'jobscout' ),
-                'search_items'  => __( 'Search Job Types', 'jobscout' ),
-                'all_items'     => __( 'All Job Types', 'jobscout' ),
-                'edit_item'     => __( 'Edit Job Type', 'jobscout' ),
-                'update_item'   => __( 'Update Job Type', 'jobscout' ),
-                'add_new_item'  => __( 'Add New Job Type', 'jobscout' ),
-                'new_item_name' => __( 'New Job Type Name', 'jobscout' ),
-                'not_found'     => __( 'No job types found.', 'jobscout' ),
             ),
             'hierarchical'      => true,
             'show_in_rest'      => true,
@@ -76,13 +55,6 @@ function nhomg_register_job_post_type() {
             'labels'            => array(
                 'name'          => __( 'Job Categories', 'jobscout' ),
                 'singular_name' => __( 'Job Category', 'jobscout' ),
-                'search_items'  => __( 'Search Job Categories', 'jobscout' ),
-                'all_items'     => __( 'All Job Categories', 'jobscout' ),
-                'edit_item'     => __( 'Edit Job Category', 'jobscout' ),
-                'update_item'   => __( 'Update Job Category', 'jobscout' ),
-                'add_new_item'  => __( 'Add New Job Category', 'jobscout' ),
-                'new_item_name' => __( 'New Job Category Name', 'jobscout' ),
-                'not_found'     => __( 'No job categories found.', 'jobscout' ),
             ),
             'hierarchical'      => true,
             'show_in_rest'      => true,
@@ -109,17 +81,17 @@ add_action( 'init', 'nhomg_register_job_post_type', 99 );
  */
 function nhomg_job_fields() {
     return array(
-        '_company_name'          => array( 'label' => __( 'Company name', 'jobscout' ), 'type' => 'text', 'wpjm' => true, 'group' => 'company' ),
-        '_job_location'          => array( 'label' => __( 'Location (short, e.g. Ho Chi Minh City)', 'jobscout' ), 'type' => 'text', 'wpjm' => true, 'group' => 'company' ),
-        '_application'           => array( 'label' => __( 'Application email or URL (empty = Contact page)', 'jobscout' ), 'type' => 'text', 'wpjm' => true, 'group' => 'company' ),
-        '_company_website'       => array( 'label' => __( 'Company website', 'jobscout' ), 'type' => 'url', 'wpjm' => true, 'group' => 'company' ),
-        '_nhomg_overview'        => array( 'label' => __( 'Overview about Company', 'jobscout' ), 'type' => 'editor', 'group' => 'content' ),
-        '_nhomg_key_skills'      => array( 'label' => __( 'Our Key Skills', 'jobscout' ), 'type' => 'editor', 'group' => 'content' ),
-        '_nhomg_why_love'        => array( 'label' => __( 'Why You\'ll Love Working Here', 'jobscout' ), 'type' => 'editor', 'group' => 'content' ),
-        '_nhomg_location_detail' => array( 'label' => __( 'Location (detail)', 'jobscout' ), 'type' => 'editor', 'group' => 'content' ),
-        '_nhomg_highlights'      => array( 'label' => __( 'Highlights (one per line, shown on job cards)', 'jobscout' ), 'type' => 'textarea', 'group' => 'content' ),
-        '_nhomg_rating'          => array( 'label' => __( 'Staff rating (0 - 5)', 'jobscout' ), 'type' => 'number', 'group' => 'sidebar' ),
-        '_nhomg_photos'          => array( 'label' => __( 'Company photos', 'jobscout' ), 'type' => 'gallery', 'group' => 'sidebar' ),
+        '_company_name'          => array( 'label' => __( 'Company name', 'jobscout' ), 'type' => 'text', 'wpjm' => true ),
+        '_job_location'          => array( 'label' => __( 'Location (short, e.g. Ho Chi Minh City)', 'jobscout' ), 'type' => 'text', 'wpjm' => true ),
+        '_application'           => array( 'label' => __( 'Application email or URL', 'jobscout' ), 'type' => 'text', 'wpjm' => true ),
+        '_company_website'       => array( 'label' => __( 'Company website', 'jobscout' ), 'type' => 'url', 'wpjm' => true ),
+        '_nhomg_overview'        => array( 'label' => __( 'Overview about Company', 'jobscout' ), 'type' => 'editor' ),
+        '_nhomg_key_skills'      => array( 'label' => __( 'Our Key Skills', 'jobscout' ), 'type' => 'editor' ),
+        '_nhomg_why_love'        => array( 'label' => __( 'Why You\'ll Love Working Here', 'jobscout' ), 'type' => 'editor' ),
+        '_nhomg_location_detail' => array( 'label' => __( 'Location (detail)', 'jobscout' ), 'type' => 'editor' ),
+        '_nhomg_highlights'      => array( 'label' => __( 'Highlights (one per line, shown on job cards)', 'jobscout' ), 'type' => 'textarea' ),
+        '_nhomg_rating'          => array( 'label' => __( 'Staff rating (0 - 5)', 'jobscout' ), 'type' => 'number' ),
+        '_nhomg_photos'          => array( 'label' => __( 'Company photos', 'jobscout' ), 'type' => 'gallery' ),
     );
 }
 
@@ -279,30 +251,17 @@ function nhomg_related_jobs( $post_id, $count = 6 ) {
 # Meta box
 --------------------------------------------------------------*/
 function nhomg_add_job_metabox() {
-    add_meta_box( 'nhomg-job-detail', __( 'Job Detail', 'jobscout' ), 'nhomg_render_job_metabox', 'job_listing', 'normal', 'high' );
+    add_meta_box( 'nhomg-job-detail', __( 'Job Detail (NhomG)', 'jobscout' ), 'nhomg_render_job_metabox', 'job_listing', 'normal', 'high' );
 }
 add_action( 'add_meta_boxes', 'nhomg_add_job_metabox' );
 
 function nhomg_render_job_metabox( $post ) {
     wp_nonce_field( 'nhomg_save_job', 'nhomg_job_nonce' );
-    $wpjm   = jobscout_is_wp_job_manager_activated();
-    $groups = array(
-        'company' => __( 'Company & application', 'jobscout' ),
-        'content' => __( 'Job detail page sections', 'jobscout' ),
-        'sidebar' => __( 'Staff rating & company photos', 'jobscout' ),
-    );
-    $current = '';
+    $wpjm = jobscout_is_wp_job_manager_activated();
 
     echo '<div class="nhomg-metabox">';
     foreach ( nhomg_job_fields() as $key => $field ) {
         if ( $wpjm && ! empty( $field['wpjm'] ) ) continue;
-
-        // Tiêu đề nhóm khi sang nhóm field mới.
-        $group = isset( $field['group'] ) ? $field['group'] : '';
-        if ( $group && $group !== $current && isset( $groups[ $group ] ) ) {
-            echo '<h3 class="nhomg-metabox__group">' . esc_html( $groups[ $group ] ) . '</h3>';
-            $current = $group;
-        }
 
         $value = get_post_meta( $post->ID, $key, true );
         $id    = 'nhomg' . $key;
@@ -365,9 +324,6 @@ function nhomg_admin_scripts( $hook ) {
     wp_enqueue_script( 'nhomg-admin-job', get_template_directory_uri() . '/js/nhomg-admin-job.js', array( 'jquery' ), NHOMG_JOBS_VERSION, true );
 }
 add_action( 'admin_enqueue_scripts', 'nhomg_admin_scripts' );
-
-/** Trang quản lý việc làm trong WP Admin (cột, bộ lọc, dashboard). */
-require get_template_directory() . '/inc/jobs-admin.php';
 
 /*--------------------------------------------------------------
 # Front-end assets & body class
