@@ -51,12 +51,66 @@ get_header(); ?>
             ?>
         </div>
 
-        <!-- NÚT LOAD MORE JOBS -->
-        <div style="text-align: center; margin-top: 50px;">
-            <button style="background: transparent; border: 1px solid #f26522; color: #f26522; padding: 12px 35px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 3px; cursor: pointer; transition: all 0.3s ease;">
-                LOAD MORE JOBS
-            </button>
-        </div>
+        <!-- NÚT LOAD MORE JOBS (CÓ SCRIPT TỰ ĐỘNG TẢI AJAX) -->
+        <?php global $wp_query; ?>
+        <?php if ( $wp_query->max_num_pages > 1 ) : ?>
+            <div style="text-align: center; margin-top: 50px;">
+                <button id="load-more-jobs-btn" 
+                        data-page="1" 
+                        data-max="<?php echo $wp_query->max_num_pages; ?>"
+                        style="background: transparent; border: 1px solid #f26522; color: #f26522; padding: 12px 35px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 3px; cursor: pointer; transition: all 0.3s ease;">
+                    LOAD MORE JOBS
+                </button>
+            </div>
+
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const btn = document.getElementById('load-more-jobs-btn');
+                if (!btn) return;
+
+                btn.addEventListener('click', function() {
+                    let currentPage = parseInt(btn.getAttribute('data-page'));
+                    let maxPage = parseInt(btn.getAttribute('data-max'));
+                    let nextPage = currentPage + 1;
+
+                    btn.innerText = 'LOADING...';
+                    btn.style.opacity = '0.6';
+
+                    // Tạo URL fetch trang tiếp theo
+                    let baseUrl = window.location.href.split('?')[0];
+                    if (!baseUrl.endsWith('/')) baseUrl += '/';
+                    let nextUrl = baseUrl + 'page/' + nextPage + '/';
+
+                    fetch(nextUrl)
+                        .then(response => response.text())
+                        .then(html => {
+                            const parser = new DOMParser();
+                            const doc = parser.parseFromString(html, 'text/html');
+                            const newJobs = doc.querySelectorAll('.custom-job-grid > *');
+                            const grid = document.querySelector('.custom-job-grid');
+
+                            if (newJobs.length > 0 && grid) {
+                                newJobs.forEach(job => grid.appendChild(job));
+                                btn.setAttribute('data-page', nextPage);
+                                btn.innerText = 'LOAD MORE JOBS';
+                                btn.style.opacity = '1';
+
+                                if (nextPage >= maxPage) {
+                                    btn.style.display = 'none'; // Ẩn nút khi đã tải hết trang
+                                }
+                            } else {
+                                btn.style.display = 'none';
+                            }
+                        })
+                        .catch(err => {
+                            console.error('Error loading jobs:', err);
+                            btn.innerText = 'LOAD MORE JOBS';
+                            btn.style.opacity = '1';
+                        });
+                });
+            });
+            </script>
+        <?php endif; ?>
 
     <?php else : ?>
 
