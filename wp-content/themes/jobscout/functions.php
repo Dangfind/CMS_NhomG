@@ -135,6 +135,17 @@ add_filter('body_class', function ($classes) {
 	return $classes;
 });
 
+add_action('widgets_init', function () {
+    register_sidebar([
+        'name'          => 'Trang chủ - Career With Us',
+        'id'            => 'nhomg-career',
+        'description'   => 'Chỉnh sửa ảnh nền và nội dung Career With Us.',
+        'before_widget' => '<div class="nhomg-career-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>',
+    ]);
+});
 // Đăng ký Widget area cho Jobs Hero Banner
 function jobscout_register_custom_banner_widget() {
     register_sidebar( array(
