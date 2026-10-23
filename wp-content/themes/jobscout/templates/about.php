@@ -32,6 +32,9 @@ $columns    = array(
 				<h1 class="nhomg-about-hero__title"><?php echo nl2br(esc_html(nhomg_about_mod('nhomg_about_title'))); ?></h1>
 			</section>
 
+			<!-- Khoảng trắng ngăn cách giữa banner và khối "About Us". -->
+			<div class="nhomg-about-gap" aria-hidden="true"></div>
+
 			<?php if (nhomg_about_mod('nhomg_about_heading') || array_filter(wp_list_pluck($columns, 0))) : ?>
 				<section class="nhomg-about-intro">
 					<div class="nhomg-about-intro__inner">

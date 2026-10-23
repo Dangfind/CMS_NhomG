@@ -163,6 +163,10 @@ function nhomg_about_enqueue()
     $file = '/css/nhomg-about.css';
     $ver  = file_exists($dir . $file) ? filemtime($dir . $file) : NHOMG_JOBS_VERSION;
     wp_enqueue_style('nhomg-about', $uri . $file, array('nhomg-job-contact'), $ver);
+
+    // Co khoảng trắng giữa banner và khối About Us theo phần hero còn trống.
+    $js = '/js/nhomg-about.js';
+    wp_enqueue_script('nhomg-about', $uri . $js, array(), file_exists($dir . $js) ? filemtime($dir . $js) : NHOMG_JOBS_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'nhomg_about_enqueue', 25);
 

@@ -54,6 +54,26 @@
 	text-shadow: 0 2px 14px rgba(0, 0, 0, .65);
 }
 
+/* ---------- Gap giữa banner và khối About Us ---------- */
+/* Ban đầu là khoảng trắng; script bên dưới tự thu nhỏ lại theo phần hero
+   còn trống sau tiêu đề, để không bị cộng dồn thành khoảng trống quá lớn. */
+.nhomg-about-gap {
+	height: 72px;
+	background: var(--nhomg-bg);
+}
+
+@media (max-width: 900px) {
+	.nhomg-about-gap {
+		height: 48px;
+	}
+}
+
+@media (max-width: 480px) {
+	.nhomg-about-gap {
+		height: 36px;
+	}
+}
+
 /* ---------- Shared heading ---------- */
 .nhomg-about-heading {
 	margin: 0 0 40px;
@@ -70,9 +90,11 @@
 }
 
 /* ---------- About Us (image left, text right) ---------- */
+/* Khoảng cách với banner do .nhomg-about-gap đảm nhận, nên phần trên của
+   khối này chỉ cần một khoảng nhỏ để tiêu đề không dính sát mép xám. */
 .nhomg-about-intro {
 	background: var(--nhomg-bg);
-	padding: 80px 0;
+	padding: 20px 0 88px;
 }
 
 .nhomg-about-intro__inner,
@@ -236,10 +258,13 @@
 		font-size: 25px;
 	}
 
-	.nhomg-about-intro,
 	.nhomg-about-body,
 	.nhomg-about-info {
 		padding: 56px 0;
+	}
+
+	.nhomg-about-intro {
+		padding: 16px 0 56px;
 	}
 
 	.nhomg-about-intro__grid,
@@ -257,6 +282,10 @@
 }
 
 @media (max-width: 480px) {
+	.nhomg-about-intro {
+		padding-bottom: 48px;
+	}
+
 	.nhomg-about-hero {
 		min-height: 220px;
 		padding: 44px 18px;
@@ -277,4 +306,9 @@
 	.nhomg-about-item h3 {
 		font-size: 17px;
 	}
+}
+/* ---------- JS hỗ trợ: co khoảng trắng theo phần hero còn trống ----------
+   .nhomg-about-gap bên trên là giá trị mặc định khi chưa có JS. */
+.nhomg-about[data-gap-ready] .nhomg-about-gap {
+	transition: height .2s ease;
 }
