@@ -15,12 +15,19 @@
 .nhomg-job-detail h1, .nhomg-job-detail h2, .nhomg-job-detail h3,
 .nhomg-contact,
 .nhomg-contact h1, .nhomg-contact h2, .nhomg-contact h3,
-.nhomg-btn, .nhomg-lightbox { font-family: var(--nhomg-font); }
+.nhomg-btn, .nhomg-lightbox,
+.nhomg-job-card, .nhomg-job-card h3 { font-family: var(--nhomg-font); }
 
 body.nhomg-job-detail-page,
 body.nhomg-contact-page {
 	background: var(--nhomg-bg);
 	color: var(--nhomg-text);
+	overflow-x: hidden;
+}
+
+/* Trang About cũng dùng .nhomg-fullbleed; phải chặn tràn ngang ở đây nếu không
+   thanh navbar sẽ bị kéo rộng bằng chiều rộng thanh cuộn dọc. */
+body.nhomg-about-page {
 	overflow-x: hidden;
 }
 
@@ -32,10 +39,15 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 .nhomg-job-detail-page .content-area,
 .nhomg-contact-page .content-area { width: 100%; float: none; padding: 0; }
 
-/* Phần tử tràn toàn màn hình dù nằm trong .container */
+/* Phần tử tràn toàn màn hình dù nằm trong .container.
+   Không dùng 100vw: 100vw tính cả thanh cuộn dọc (~15px) nên phần tử tràn sang
+   phải -> xuất hiện scrollbar ngang -> navbar bị kéo rộng ra.
+   100% ở đây bám theo khung chứa đã tràn sẵn, không vượt viewport khả dụng. */
 .nhomg-fullbleed {
-	width: 100vw;
+	width: auto;
 	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	box-sizing: border-box;
 }
 
 /* ---------- Buttons & tags ---------- */
@@ -335,9 +347,8 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 50%;
-	width: 100vw;
-	margin-left: -50vw;
+	left: 0;
+	right: 0;
 	background: #fff;
 	z-index: -1;
 }
@@ -361,7 +372,6 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 .nhomg-contact-col .nhomg-phone a { color: var(--nhomg-text); text-decoration: none; font-weight: 500; }
 .nhomg-contact-col .nhomg-phone a:hover { color: var(--nhomg-orange); }
 .nhomg-contact-note { margin-top: 35px !important; }
-.nhomg-contact-extra { max-width: 800px; margin: 0 auto; padding: 50px 16px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
@@ -388,4 +398,74 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 	.nhomg-contact-hero { min-height: 220px; }
 	.nhomg-contact-hero__title { font-size: 28px; }
 	.nhomg-contact-info__inner { grid-template-columns: 1fr; gap: 50px; }
+}
+
+/* Thẻ việc làm trong lưới: bỏ lề dưới 40px theme gắn cho <article> để các hàng cách đều như cột */
+.nhomg-job-grid > .nhomg-job-card,
+.site-main .nhomg-job-grid > .nhomg-job-card { display: block; margin: 0; border-radius: 0; box-shadow: none; }
+
+/* ---------- Contact Form 7 trên trang Contact (nội dung page Contact) ---------- */
+.nhomg-contact-extra {
+	max-width: 760px;
+	margin: 0 auto 80px;
+	padding: 40px 45px;
+	background: #fff;
+	font-family: var(--nhomg-font);
+}
+.nhomg-contact-extra h2 {
+	margin: 0 0 25px;
+	font-family: var(--nhomg-font);
+	font-size: 20px;
+	font-weight: 500;
+	text-align: center;
+	color: var(--nhomg-text);
+}
+.nhomg-contact-extra .nhomg-cf7-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0 20px;
+}
+.nhomg-contact-extra .nhomg-cf7-field { margin: 0 0 18px; }
+.nhomg-contact-extra label { display: block; font-size: 14px; color: var(--nhomg-text); }
+.nhomg-contact-extra .wpcf7-form-control-wrap { display: block; margin-top: 6px; }
+.nhomg-contact-extra input[type="text"],
+.nhomg-contact-extra input[type="email"],
+.nhomg-contact-extra input[type="tel"],
+.nhomg-contact-extra select,
+.nhomg-contact-extra textarea {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid var(--nhomg-border);
+	border-radius: 0;
+	background: #fff;
+	font: inherit;
+	font-size: 14px;
+	color: var(--nhomg-text);
+}
+.nhomg-contact-extra textarea { height: 140px; resize: vertical; }
+.nhomg-contact-extra input:focus,
+.nhomg-contact-extra select:focus,
+.nhomg-contact-extra textarea:focus { outline: none; border-color: var(--nhomg-orange); }
+.nhomg-contact-extra .nhomg-cf7-submit { margin: 10px 0 0; text-align: center; }
+.nhomg-contact-extra .wpcf7-submit {
+	min-width: 200px;
+	padding: 12px 30px;
+	border: 1px solid var(--nhomg-orange);
+	border-radius: 0;
+	background: var(--nhomg-orange);
+	color: #fff;
+	font-family: var(--nhomg-font);
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: .05em;
+	cursor: pointer;
+	transition: background .2s, color .2s;
+}
+.nhomg-contact-extra .wpcf7-submit:hover { background: #fff; color: var(--nhomg-orange); }
+.nhomg-contact-extra .wpcf7-not-valid-tip { margin-top: 4px; font-size: 12px; }
+.nhomg-contact-extra .wpcf7-response-output { margin: 20px 0 0 !important; padding: 10px 14px !important; font-size: 14px; text-align: center; }
+.nhomg-contact-extra .wpcf7-spinner { display: block; margin: 10px auto 0; }
+@media (max-width: 767px) {
+	.nhomg-contact-extra { margin-bottom: 50px; padding: 30px 18px; }
+	.nhomg-contact-extra .nhomg-cf7-grid { grid-template-columns: 1fr; }
 }

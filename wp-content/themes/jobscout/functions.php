@@ -146,3 +146,16 @@ add_action('widgets_init', function () {
         'after_title'   => '</h2>',
     ]);
 });
+// Đăng ký Widget area cho Jobs Hero Banner
+function jobscout_register_custom_banner_widget() {
+    register_sidebar( array(
+        'name'          => __( 'Jobs Hero Banner Widget', 'jobscout' ),
+        'id'            => 'jobs-hero-banner-widget',
+        'description'   => __( 'Khu vực hiển thị banner Career With Us (Dùng Custom HTML Widget)', 'jobscout' ),
+        'before_widget' => '<div class="custom-hero-banner-wrapper">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h2 class="widget-title" style="display:none;">',
+        'after_title'   => '</h2>',
+    ) );
+}
+add_action( 'widgets_init', 'jobscout_register_custom_banner_widget' );
