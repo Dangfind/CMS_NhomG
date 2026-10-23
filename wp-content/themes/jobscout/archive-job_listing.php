@@ -3,7 +3,12 @@
  * Template Name: Custom All Jobs Archive
  */
 
-get_header(); ?>
+get_header(); 
+
+// Lấy giá trị sort từ URL (mặc định là 'date_desc' - Mới nhất)
+$sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
+
+?>
 
 <!-- CSS bổ sung để ẩn tiêu đề Archives: Jobs mặc định của theme và xử lý overflow -->
 <style>
@@ -30,20 +35,61 @@ get_header(); ?>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px;">
         <h2 style="font-size: 24px; font-weight: 800; text-transform: uppercase; margin: 0; color: #2d3748; letter-spacing: 1px;">ALL JOBS</h2>
         <div>
-            <select style="padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 4px; color: #718096; font-size: 14px; background-color: #fff; cursor: pointer;">
-                <option>Latest Jobs</option>
+            <!-- BỘ LỌC SẮP XẾP LATEST JOBS -->
+            <select id="job-sort-select" style="padding: 8px 16px; border: 1px solid #e2e8f0; border-radius: 4px; color: #718096; font-size: 14px; background-color: #fff; cursor: pointer;">
+                <option value="date_desc" <?php selected($sort, 'date_desc'); ?>>Latest Jobs</option>
+                <option value="date_asc" <?php selected($sort, 'date_asc'); ?>>Oldest Jobs</option>
+                <option value="title_asc" <?php selected($sort, 'title_asc'); ?>>Title (A-Z)</option>
             </select>
         </div>
     </div>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sortSelect = document.getElementById('job-sort-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', function() {
+                const currentUrl = new URL(window.location.href);
+                currentUrl.searchParams.set('sort', this.value);
+                // Reset về trang 1 khi đổi cách sắp xếp
+                window.location.href = currentUrl.pathname + '?sort=' + this.value;
+            });
+        }
+    });
+    </script>
+
     <main id="main" class="site-main">
 
-    <?php if ( have_posts() ) : ?>
+    <?php 
+    // Xử lý query bài viết theo lựa chọn sắp xếp
+    $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+    $args = array(
+        'post_type'      => 'job_listing',
+        'post_status'    => 'publish',
+        'posts_per_page' => get_option( 'posts_per_page', 10 ),
+        'paged'          => $paged
+    );
+
+    if ($sort === 'date_asc') {
+        $args['orderby'] = 'date';
+        $args['order']   = 'ASC';
+    } elseif ($sort === 'title_asc') {
+        $args['orderby'] = 'title';
+        $args['order']   = 'ASC';
+    } else { // date_desc mặc định
+        $args['orderby'] = 'date';
+        $args['order']   = 'DESC';
+    }
+
+    $job_query = new WP_Query( $args );
+    ?>
+
+    <?php if ( $job_query->have_posts() ) : ?>
 
         <!-- GRID 2 CỘT HIỂN THỊ CÁC THẺ JOBS -->
         <div class="custom-job-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
             <?php
-            while ( have_posts() ) : the_post();
+            while ( $job_query->have_posts() ) : $job_query->the_post();
 
                 get_template_part( 'job_manager/content', 'job_listing' );
 
@@ -51,13 +97,12 @@ get_header(); ?>
             ?>
         </div>
 
-        <!-- NÚT LOAD MORE JOBS (CÓ SCRIPT TỰ ĐỘNG TẢI AJAX) -->
-        <?php global $wp_query; ?>
-        <?php if ( $wp_query->max_num_pages > 1 ) : ?>
+        <!-- NÚT LOAD MORE JOBS -->
+        <?php if ( $job_query->max_num_pages > 1 ) : ?>
             <div style="text-align: center; margin-top: 50px;">
                 <button id="load-more-jobs-btn" 
-                        data-page="1" 
-                        data-max="<?php echo $wp_query->max_num_pages; ?>"
+                        data-page="<?php echo $paged; ?>" 
+                        data-max="<?php echo $job_query->max_num_pages; ?>"
                         style="background: transparent; border: 1px solid #f26522; color: #f26522; padding: 12px 35px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 3px; cursor: pointer; transition: all 0.3s ease;">
                     LOAD MORE JOBS
                 </button>
@@ -76,10 +121,12 @@ get_header(); ?>
                     btn.innerText = 'LOADING...';
                     btn.style.opacity = '0.6';
 
-                    // Tạo URL fetch trang tiếp theo
-                    let baseUrl = window.location.href.split('?')[0];
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let sortVal = urlParams.get('sort') || 'date_desc';
+
+                    let baseUrl = window.location.pathname;
                     if (!baseUrl.endsWith('/')) baseUrl += '/';
-                    let nextUrl = baseUrl + 'page/' + nextPage + '/';
+                    let nextUrl = baseUrl + 'page/' + nextPage + '/?sort=' + sortVal;
 
                     fetch(nextUrl)
                         .then(response => response.text())
@@ -96,7 +143,7 @@ get_header(); ?>
                                 btn.style.opacity = '1';
 
                                 if (nextPage >= maxPage) {
-                                    btn.style.display = 'none'; // Ẩn nút khi đã tải hết trang
+                                    btn.style.display = 'none';
                                 }
                             } else {
                                 btn.style.display = 'none';
@@ -112,6 +159,8 @@ get_header(); ?>
             </script>
         <?php endif; ?>
 
+        <?php wp_reset_postdata(); ?>
+
     <?php else : ?>
 
         <p style="text-align: center; color: #718096; padding: 40px 0;"><?php esc_html_e( 'No jobs found.', 'jobscout' ); ?></p>
@@ -123,5 +172,4 @@ get_header(); ?>
 </div>
 
 <?php
-// Gọi Footer mặc định của theme (đã có sẵn thanh Subscribe Newsletter)
 get_footer();
