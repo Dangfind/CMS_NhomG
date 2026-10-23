@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'NHOMG_JOBS_VERSION', '1.0.4' );
+define( 'NHOMG_JOBS_VERSION', '1.0.5' );
 
 /*--------------------------------------------------------------
 # Post type & taxonomy (fallback khi chưa có WP Job Manager)
