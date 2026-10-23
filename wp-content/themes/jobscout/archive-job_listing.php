@@ -41,11 +41,17 @@ $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
     }
 </style>
 
-<!-- 1. BANNER CAREER WITH US (TRÀN FULL 100% CHIỀU NGANG MÀN HÌNH)
-     Ảnh + chữ đổi trong Appearance > Customize > All Jobs Page -->
-<div class="jobs-hero-banner" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo esc_url( nhomg_jobs_banner_image() ); ?>') center/cover no-repeat; padding: 40px 20px; text-align: center; color: #fff;">
-    <h1 style="color: #ffffff; font-size: 38px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin: 0;"><?php echo esc_html( nhomg_jobs_banner_title() ); ?></h1>
-</div>
+<!-- 1. BANNER CAREER WITH US (GỌI TỪ WIDGET) -->
+<?php if ( is_active_sidebar( 'jobs-hero-banner-widget' ) ) : ?>
+    <div class="jobs-hero-banner-widget-area" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; overflow: hidden;">
+        <?php dynamic_sidebar( 'jobs-hero-banner-widget' ); ?>
+    </div>
+<?php else : ?>
+    <!-- Mặc định nếu khách hàng chưa dán code vào Widget -->
+    <div class="jobs-hero-banner" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo get_template_directory_uri(); ?>/images/hinh_co_gai_cam_o.png') center/cover no-repeat; padding: 120px 20px; text-align: center; color: #fff;">
+        <h1 style="color: #ffffff; font-size: 38px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin: 0;">CAREER WITH US</h1>
+    </div>
+<?php endif; ?>
 
 <!-- 2. KHUNG NỘI DUNG CHÍNH (ALL JOBS & LISTING) -->
 <div class="jobs-page-container" style="max-width: 1140px; margin: 0 auto; padding: 50px 20px;">
