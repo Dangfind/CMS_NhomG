@@ -35,6 +35,9 @@ require get_template_directory() . '/inc/template-functions.php';
 /** Shared CMS_NhomG header, footer, navigation and settings. */
 require get_template_directory() . '/inc/cmsng-chrome.php';
 
+/** Home content only; shared header/footer remain unchanged. */
+require get_template_directory() . '/sections/home/functions.php';
+
 /**
  * Custom functions for selective refresh.
  */
@@ -94,7 +97,17 @@ endif;
 /**
  * NhomG - Job Detail & Contact page.
  */
-require get_template_directory() . '/inc/nhomg-jobs.php';
+require get_template_directory() . '/inc/jobs.php';
+
+/**
+ * NhomG - About Us page (middle content area only).
+ */
+require get_template_directory() . '/inc/about.php';
+
+/**
+ * NhomG - News Detail page module.
+ */
+require get_template_directory() . '/news-detail/news-detail.php';
 
 function nhomg_is_news_page() {
 	return is_page_template('page-news.php') || is_page_template('news.php') || is_page('news');

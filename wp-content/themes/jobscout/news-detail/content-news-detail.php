@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * News Detail Content Template Part
+ * Chỉ hiển thị dữ liệu thật từ database (không có dữ liệu giả).
+ *
+ * @package JobScout
+ */
+
+if (! defined('ABSPATH')) exit;
+
+$post_id    = get_the_ID();
+$post_thumb = has_post_thumbnail($post_id) ? get_the_post_thumbnail_url($post_id, 'medium') : '';
+
+$categories = get_the_category($post_id);
+$location   = get_post_meta($post_id, '_location', true);
+
+$news_url = function_exists('cmsng_section_url') ? cmsng_section_url('news') : home_url('/news/');
+if (! $news_url) {
+    $news_url = home_url('/news/');
+}
+?>
+
+<div class="news-detail-wrapper">
+    <div class="news-detail-container">
+
+        <!-- Breadcrumb -->
+        <nav class="news-detail-breadcrumb" aria-label="<?php esc_attr_e('Breadcrumb', 'jobscout'); ?>">
+            <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'jobscout'); ?></a>
+            <span class="separator">/</span>
+            <a href="<?php echo esc_url($news_url); ?>"><?php esc_html_e('All News', 'jobscout'); ?></a>
+            <span class="separator">/</span>
+            <span class="current"><?php esc_html_e('News Detail', 'jobscout'); ?></span>
+        </nav>
+
+        <!-- Post Header Card -->
+        <header class="news-detail-header-card">
+            <div class="news-detail-header-left">
+                <?php if ($post_thumb) : ?>
+                    <div class="news-detail-header-thumb">
+                        <img src="<?php echo esc_url($post_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
+                    </div>
+                <?php endif; ?>
+                <div class="news-detail-header-info">
+                    <h1 class="news-detail-title"><?php the_title(); ?></h1>
+                    <p class="news-detail-date">
+                        <?php echo esc_html(sprintf(__('Posted: %s', 'jobscout'), get_the_date('M j, Y'))); ?>
+                    </p>
+
+                    <?php if (! empty($categories) || $location) : ?>
+                        <div class="news-detail-pills">
+                            <?php foreach ($categories as $cat) : ?>
+                                <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>" class="news-detail-pill">
+                                    <?php echo esc_html($cat->name); ?>
+                                </a>
+                            <?php endforeach; ?>
+
+                            <?php if ($location) : ?>
+                                <span class="news-detail-pill"><?php echo esc_html($location); ?></span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="news-detail-header-right">
+                <button type="button" class="news-detail-share-btn">
+                    <i class="fas fa-share-alt" aria-hidden="true"></i>
+                    <span><?php esc_html_e('SHARE', 'jobscout'); ?></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Post Content Card -->
+        <article id="post-<?php the_ID(); ?>" class="news-detail-content-box entry-content">
+            <?php the_content(); ?>
+        </article>
+
+    </div><!-- .news-detail-container -->
+
+    <!-- NEWEST BLOG ENTRIES (Recent Posts Grid) -->
+    <?php
+    $recent_query = new WP_Query(array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 6,
+        'post__not_in'   => array($post_id),
+    ));
+
+    if ($recent_query->have_posts()) :
+    ?>
+        <section class="news-detail-recent-section">
+            <h2 class="news-detail-recent-title"><?php esc_html_e('NEWEST BLOG ENTRIES', 'jobscout'); ?></h2>
+
+            <div class="news-detail-recent-grid">
+                <?php
+                while ($recent_query->have_posts()) : $recent_query->the_post();
+                    $r_thumb   = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : '';
+                    $r_excerpt = trim(strip_tags((string) get_the_excerpt()));
+                ?>
+                    <article class="news-card">
+                        <?php if ($r_thumb) : ?>
+                            <div class="news-card-thumb">
+                                <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+                                    <img src="<?php echo esc_url($r_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                        <div class="news-card-body">
+                            <div class="news-card-content">
+                                <h3 class="news-card-title">
+                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                                </h3>
+                                <?php if ($r_excerpt) : ?>
+                                    <p class="news-card-excerpt">
+                                        <?php echo esc_html(wp_trim_words($r_excerpt, 16, '...')); ?>
+                                    </p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="news-card-footer">
+                                <a href="<?php the_permalink(); ?>" class="news-read-more"><?php esc_html_e('Read More', 'jobscout'); ?></a>
+                            </div>
+                        </div>
+                    </article>
+                <?php
+                endwhile;
+                wp_reset_postdata();
+                ?>
+            </div>
+        </section>
+    <?php endif; ?>
+
+</div>
