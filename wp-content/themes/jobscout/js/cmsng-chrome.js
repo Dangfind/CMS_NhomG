@@ -43,6 +43,8 @@
         var status = form.querySelector('[role="status"]');
         var email = form.querySelector('input[type="email"]');
         form.addEventListener('submit', function (event) {
+            // Plugin Newsletter đang bật: form có action, email hợp lệ thì gửi bình thường.
+            if (form.getAttribute('action') && form.reportValidity()) return;
             event.preventDefault();
             if (!form.reportValidity()) return;
             status.textContent = status.getAttribute('data-unavailable');
