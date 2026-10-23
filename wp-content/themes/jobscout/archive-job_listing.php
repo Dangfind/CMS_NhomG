@@ -21,11 +21,30 @@ $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
     body {
         overflow-x: hidden; /* Tránh xuất hiện thanh cuộn ngang khi dùng 100vw */
     }
+    /* Banner sát header như trang Home (bỏ lề trên 50px mặc định của theme) */
+    .post-type-archive-job_listing .site-content {
+        margin-top: 0;
+    }
+    /* Nền xám, thẻ trắng như ảnh thiết kế */
+    body.post-type-archive-job_listing {
+        background: #f2f2f2;
+    }
+    .jobs-hero-banner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 360px;
+    }
+    @media (max-width: 767px) {
+        .jobs-hero-banner { min-height: 220px; }
+        .jobs-hero-banner h1 { font-size: 28px !important; }
+    }
 </style>
 
-<!-- 1. BANNER CAREER WITH US (TRÀN FULL 100% CHIỀU NGANG MÀN HÌNH) -->
-<div class="jobs-hero-banner" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo get_template_directory_uri(); ?>/images/hinh_co_gai_cam_o.png') center/cover no-repeat; padding: 120px 20px; text-align: center; color: #fff;">
-    <h1 style="color: #ffffff; font-size: 38px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin: 0;">CAREER WITH US</h1>
+<!-- 1. BANNER CAREER WITH US (TRÀN FULL 100% CHIỀU NGANG MÀN HÌNH)
+     Ảnh + chữ đổi trong Appearance > Customize > All Jobs Page -->
+<div class="jobs-hero-banner" style="width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?php echo esc_url( nhomg_jobs_banner_image() ); ?>') center/cover no-repeat; padding: 40px 20px; text-align: center; color: #fff;">
+    <h1 style="color: #ffffff; font-size: 38px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; margin: 0;"><?php echo esc_html( nhomg_jobs_banner_title() ); ?></h1>
 </div>
 
 <!-- 2. KHUNG NỘI DUNG CHÍNH (ALL JOBS & LISTING) -->
@@ -87,11 +106,12 @@ $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
     <?php if ( $job_query->have_posts() ) : ?>
 
         <!-- GRID 2 CỘT HIỂN THỊ CÁC THẺ JOBS -->
-        <div class="custom-job-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+        <div class="custom-job-grid nhomg-job-grid">
             <?php
             while ( $job_query->have_posts() ) : $job_query->the_post();
 
-                get_template_part( 'job_manager/content', 'job_listing' );
+                // Dùng chung thẻ việc làm với mục OTHER JOBS (trang Job Detail) cho giống thiết kế.
+                get_template_part( 'template-parts/content', 'job-card' );
 
             endwhile;
             ?>
