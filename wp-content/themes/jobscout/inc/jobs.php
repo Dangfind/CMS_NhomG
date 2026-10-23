@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'NHOMG_JOBS_VERSION', '1.0.1' );
+define( 'NHOMG_JOBS_VERSION', '1.0.4' );
 
 /*--------------------------------------------------------------
 # Post type & taxonomy (fallback khi chưa có WP Job Manager)
@@ -333,7 +333,8 @@ function nhomg_is_part5_page() {
 }
 
 function nhomg_enqueue_scripts() {
-    if ( ! nhomg_is_part5_page() ) return;
+    // Trang All Jobs dùng chung thẻ việc làm nên cũng cần CSS này.
+    if ( ! nhomg_is_part5_page() && ! is_post_type_archive( 'job_listing' ) ) return;
     wp_enqueue_style( 'nhomg-font', 'https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap', array(), null );
     wp_enqueue_style( 'nhomg-job-contact', get_template_directory_uri() . '/css/nhomg-job-contact.css', array( 'nhomg-font' ), NHOMG_JOBS_VERSION );
     if ( is_singular( 'job_listing' ) ) {
@@ -439,3 +440,77 @@ function nhomg_contact_blog_url() {
     $posts_page = (int) get_option( 'page_for_posts' );
     return $posts_page ? get_permalink( $posts_page ) : home_url( '/' );
 }
+
+/*--------------------------------------------------------------
+# Customizer: banner trang All Jobs
+--------------------------------------------------------------*/
+
+/** Ảnh banner All Jobs: ảnh chọn trong Customizer, mặc định là ảnh có sẵn trong theme. */
+function nhomg_jobs_banner_image() {
+    $image_id = absint( get_theme_mod( 'nhomg_jobs_banner_image', 0 ) );
+    $url      = $image_id ? wp_get_attachment_image_url( $image_id, 'full' ) : '';
+    return $url ? $url : get_template_directory_uri() . '/images/hinh_co_gai_cam_o.png';
+}
+
+/** Chữ trên banner All Jobs. */
+function nhomg_jobs_banner_title() {
+    $title = trim( (string) get_theme_mod( 'nhomg_jobs_banner_title', '' ) );
+    return $title ? $title : __( 'CAREER WITH US', 'jobscout' );
+}
+
+function nhomg_jobs_customize_register( $wp_customize ) {
+    $wp_customize->add_section( 'nhomg_jobs_page', array(
+        'title'       => __( 'All Jobs Page', 'jobscout' ),
+        'description' => __( 'Banner at the top of the All Jobs page.', 'jobscout' ),
+        'priority'    => 159,
+    ) );
+
+    $wp_customize->add_setting( 'nhomg_jobs_banner_image', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Media_Control( $wp_customize, 'nhomg_jobs_banner_image', array(
+        'label'       => __( 'Banner image', 'jobscout' ),
+        'description' => __( 'Leave empty to use the default image.', 'jobscout' ),
+        'section'     => 'nhomg_jobs_page',
+        'mime_type'   => 'image',
+    ) ) );
+
+    $wp_customize->add_setting( 'nhomg_jobs_banner_title', array(
+        'default'           => '',
+        'sanitize_callback' => 'sanitize_text_field',
+    ) );
+    $wp_customize->add_control( 'nhomg_jobs_banner_title', array(
+        'label'       => __( 'Banner title', 'jobscout' ),
+        'description' => __( 'Leave empty to use "CAREER WITH US".', 'jobscout' ),
+        'section'     => 'nhomg_jobs_page',
+        'type'        => 'text',
+    ) );
+}
+add_action( 'customize_register', 'nhomg_jobs_customize_register' );
+
+/** Link mở thẳng phần đổi banner All Jobs trong Customizer (kèm xem trước trang All Jobs). */
+function nhomg_jobs_banner_customize_url() {
+    return add_query_arg( array(
+        'autofocus[section]' => 'nhomg_jobs_page',
+        'url'                => rawurlencode( nhomg_all_jobs_url() ),
+    ), admin_url( 'customize.php' ) );
+}
+
+/** Menu admin: Jobs > Banner. */
+function nhomg_jobs_banner_admin_menu() {
+    if ( ! post_type_exists( 'job_listing' ) ) return;
+    add_submenu_page( 'edit.php?post_type=job_listing', __( 'All Jobs banner', 'jobscout' ), __( 'Banner', 'jobscout' ), 'edit_theme_options', nhomg_jobs_banner_customize_url() );
+}
+add_action( 'admin_menu', 'nhomg_jobs_banner_admin_menu' );
+
+/** Thanh admin: nút "Đổi banner" khi đang xem trang All Jobs. */
+function nhomg_jobs_banner_admin_bar( $wp_admin_bar ) {
+    if ( is_admin() || ! current_user_can( 'edit_theme_options' ) || ! is_post_type_archive( 'job_listing' ) ) return;
+    $wp_admin_bar->add_node( array(
+        'id'    => 'nhomg-jobs-banner',
+        'title' => '<span class="ab-icon dashicons dashicons-format-image" style="top:2px"></span>' . esc_html__( 'Đổi banner', 'jobscout' ),
+        'href'  => nhomg_jobs_banner_customize_url(),
+    ) );
+}
+add_action( 'admin_bar_menu', 'nhomg_jobs_banner_admin_bar', 80 );

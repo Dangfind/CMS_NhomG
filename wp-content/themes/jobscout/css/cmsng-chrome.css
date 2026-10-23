@@ -1,4 +1,17 @@
 /* Shared header/footer only. Do not inherit JobScout's .container clearfix. */
+
+/* JobScout thêm .site-content { margin-top: 50px } (style.css) tạo khoảng trống
+   lớn ngay dưới header. Home không có .site-content nên không bị; About và
+   archive Jobs thì bị. Reset chỉ ở hai ngữ cảnh này, giữ nguyên trang khác. */
+body.nhomg-about-page .site-content,
+body.post-type-archive-job_listing .site-content {
+    margin-top: 0;
+}
+body.post-type-archive-job_listing .site-content > .container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .cmsng-header,
 .cmsng-footer {
     --cmsng-orange: #f47714;

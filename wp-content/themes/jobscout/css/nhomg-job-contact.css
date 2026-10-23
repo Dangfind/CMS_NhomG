@@ -15,12 +15,19 @@
 .nhomg-job-detail h1, .nhomg-job-detail h2, .nhomg-job-detail h3,
 .nhomg-contact,
 .nhomg-contact h1, .nhomg-contact h2, .nhomg-contact h3,
-.nhomg-btn, .nhomg-lightbox { font-family: var(--nhomg-font); }
+.nhomg-btn, .nhomg-lightbox,
+.nhomg-job-card, .nhomg-job-card h3 { font-family: var(--nhomg-font); }
 
 body.nhomg-job-detail-page,
 body.nhomg-contact-page {
 	background: var(--nhomg-bg);
 	color: var(--nhomg-text);
+	overflow-x: hidden;
+}
+
+/* Trang About cũng dùng .nhomg-fullbleed; phải chặn tràn ngang ở đây nếu không
+   thanh navbar sẽ bị kéo rộng bằng chiều rộng thanh cuộn dọc. */
+body.nhomg-about-page {
 	overflow-x: hidden;
 }
 
@@ -32,10 +39,15 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 .nhomg-job-detail-page .content-area,
 .nhomg-contact-page .content-area { width: 100%; float: none; padding: 0; }
 
-/* Phần tử tràn toàn màn hình dù nằm trong .container */
+/* Phần tử tràn toàn màn hình dù nằm trong .container.
+   Không dùng 100vw: 100vw tính cả thanh cuộn dọc (~15px) nên phần tử tràn sang
+   phải -> xuất hiện scrollbar ngang -> navbar bị kéo rộng ra.
+   100% ở đây bám theo khung chứa đã tràn sẵn, không vượt viewport khả dụng. */
 .nhomg-fullbleed {
-	width: 100vw;
+	width: auto;
 	margin-left: calc(50% - 50vw);
+	margin-right: calc(50% - 50vw);
+	box-sizing: border-box;
 }
 
 /* ---------- Buttons & tags ---------- */
@@ -335,9 +347,8 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 	position: absolute;
 	top: 0;
 	bottom: 0;
-	left: 50%;
-	width: 100vw;
-	margin-left: -50vw;
+	left: 0;
+	right: 0;
 	background: #fff;
 	z-index: -1;
 }
@@ -389,3 +400,7 @@ body.nhomg-contact-page .site-content { margin-top: 0; margin-bottom: 0; }
 	.nhomg-contact-hero__title { font-size: 28px; }
 	.nhomg-contact-info__inner { grid-template-columns: 1fr; gap: 50px; }
 }
+
+/* Thẻ việc làm trong lưới: bỏ lề dưới 40px theme gắn cho <article> để các hàng cách đều như cột */
+.nhomg-job-grid > .nhomg-job-card,
+.site-main .nhomg-job-grid > .nhomg-job-card { display: block; margin: 0; border-radius: 0; box-shadow: none; }
