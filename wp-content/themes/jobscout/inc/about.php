@@ -22,15 +22,16 @@ function nhomg_about_defaults()
 {
     return array(
         // Hero banner
-        'nhomg_about_title'        => __("SHARE \"OMOTENASHI\"\nWITH THE WORLD", 'jobscout'),
+        'nhomg_about_title'        => __("SHARING \"OMOTENASHI\"\nWITH THE WORLD", 'jobscout'),
+        'nhomg_about_hero_subtitle' => __('Japanese hospitality, brought to life in hotels and restaurants across the globe. Leave a field empty to hide it.', 'jobscout'),
         // About Us section
-        'nhomg_about_heading'      => __('ABOUT US', 'jobscout'),
+        'nhomg_about_heading'      => __('WHO WE ARE', 'jobscout'),
         'nhomg_about_vision_title' => __('Our Vision', 'jobscout'),
-        'nhomg_about_vision_text'  => __('Create hotels and restaurants around the world that offer memorable experiences while building a lasting, positive relationship together with our guests, partners, team members and communities.', 'jobscout'),
-        'nhomg_about_mission_title' => __('Ours Mission', 'jobscout'),
-        'nhomg_about_mission_text' => __('Share "Omotenashi" with the world', 'jobscout'),
+        'nhomg_about_vision_text'  => __('We build hotels and restaurants around the world that guests remember long after they check out, and that leave every partner, teammate and community better than we found them.', 'jobscout'),
+        'nhomg_about_mission_title' => __('Our Mission', 'jobscout'),
+        'nhomg_about_mission_text' => __('To make Japanese hospitality the standard the world measures itself against.', 'jobscout'),
         'nhomg_about_value_title'  => __('Our Core Value', 'jobscout'),
-        'nhomg_about_value_text'   => __("\"If I were the guest...\"\nTo provide guests with the hospitality you would want to receive as a guest.", 'jobscout'),
+        'nhomg_about_value_text'   => __("\"If I were the guest...\"\nWe serve the way we would want to be served, anticipating the smallest need before it is ever spoken.", 'jobscout'),
         // Company info section
         'nhomg_about_info_heading' => __('Company Info', 'jobscout'),
         'nhomg_about_established'  => __('April 1993', 'jobscout'),
@@ -39,9 +40,9 @@ function nhomg_about_defaults()
         'nhomg_about_ceo'          => __('Yutaka Noda', 'jobscout'),
         'nhomg_about_employees'    => __('Full time: 830 / Total: 1,600', 'jobscout'),
         // "What we do" block: orange heading + paragraphs.
-        'nhomg_about_what_heading' => __('Hotels, restaurants, banquets/weddings management', 'jobscout'),
-        'nhomg_about_what_text'    => __('We are experts in all stages of project development: concept, design, implementation and management. Our team of professionals seeks to create spaces and experiences that surprise and delight guests, and to understand local cultures like natives.', 'jobscout'),
-        'nhomg_about_what_text2'   => __('We love to find unique ways to deliver unforgettable and bespoke experiences, providing service that is warm but never intrusive, and foreseeing our guests\' every need at all times.', 'jobscout'),
+        'nhomg_about_what_heading' => __('Hotels, restaurants, banquets and weddings — crafted end to end', 'jobscout'),
+        'nhomg_about_what_text'    => __('We stay with a project from the first sketch to the final bell. Concept, design, build, staffing and day-to-day management all sit under one roof, so the promise made on paper is still the promise kept on opening night.', 'jobscout'),
+        'nhomg_about_what_text2'   => __('What we create is never generic. We read each city, each neighbourhood and each guest, then design the details that make a place feel like it could belong nowhere else. The result is service that feels warm rather than formal, attentive rather than intrusive — and a genuine reason to come back.', 'jobscout'),
         // Bundled reference images (Customizer can override each).
         'nhomg_about_banner_image' => '',
         'nhomg_about_intro_image'  => '',
@@ -195,6 +196,7 @@ function nhomg_about_customize_register($wp_customize)
 
     $labels = array(
         'nhomg_about_title'         => __('Banner title', 'jobscout'),
+        'nhomg_about_hero_subtitle' => __('Banner subtitle', 'jobscout'),
         'nhomg_about_heading'       => __('About Us heading', 'jobscout'),
         'nhomg_about_vision_title'  => __('Vision title', 'jobscout'),
         'nhomg_about_vision_text'   => __('Vision text', 'jobscout'),
@@ -214,6 +216,7 @@ function nhomg_about_customize_register($wp_customize)
     );
 
     $textarea = array(
+        'nhomg_about_hero_subtitle',
         'nhomg_about_vision_text',
         'nhomg_about_mission_text',
         'nhomg_about_value_text',
@@ -245,7 +248,7 @@ function nhomg_about_customize_register($wp_customize)
             'sanitize_callback' => $is_textarea ? 'sanitize_textarea_field' : 'sanitize_text_field',
         ));
         $wp_customize->add_control($key, array(
-            'label'   => $labels[$key],
+            'label'   => isset($labels[$key]) ? $labels[$key] : $key,
             'section' => 'nhomg_about',
             'type'    => $is_textarea ? 'textarea' : 'text',
         ));
