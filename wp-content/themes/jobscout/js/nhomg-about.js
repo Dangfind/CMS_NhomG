@@ -19,7 +19,8 @@
 		var hero = document.querySelector('.nhomg-about-hero');
 		var gap = document.querySelector('.nhomg-about-gap');
 		var intro = document.querySelector('.nhomg-about-intro');
-		var title = document.querySelector('.nhomg-about-hero__title');
+		// Đo cả cụm nội dung (tiêu đề + phụ đề + nút), không chỉ riêng tiêu đề.
+		var title = document.querySelector('.nhomg-about-hero__inner') || document.querySelector('.nhomg-about-hero__title');
 
 		if (!about || !gap) return;
 		// Trang không có khối intro thì khoảng trắng cũng không cần.
@@ -53,5 +54,10 @@
 	// Font web tải xong có thể làm tiêu đề đổi chiều cao -> tính lại.
 	if (document.fonts && document.fonts.ready) {
 		document.fonts.ready.then(syncGap);
+	}
+
+	// Cuộn mượt cho anchor trong trang (nút banner). CSS lo phần còn lại.
+	if (document.querySelector('.nhomg-about')) {
+		document.documentElement.classList.add('nhomg-about-smooth');
 	}
 })();
