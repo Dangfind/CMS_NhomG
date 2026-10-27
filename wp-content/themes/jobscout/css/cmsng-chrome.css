@@ -32,6 +32,37 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-brand-link:visited { display: block; color: var(--cmsng-ink); font-size: 28px; font-weight: 800; line-height: 1.1; text-decoration: none; white-space: nowrap; }
 .cmsng-header .cmsng-brand-link:hover,
 .cmsng-footer .cmsng-brand-link:hover { color: var(--cmsng-ink); }
+
+/* Logo ảnh (Appearance > Customize > Site Identity).
+   Header cao 80px, brand có padding 10px 0 => chiều cao logo tối đa 60px.
+   Giới hạn cả height lẫn max-width để ảnh dài không đẩy vỡ thanh menu. */
+.cmsng-brand .custom-logo-link,
+.cmsng-footer-brand .custom-logo-link { display: inline-block; line-height: 0; text-decoration: none; }
+
+.cmsng-brand .custom-logo,
+.cmsng-brand .custom-logo-link img {
+    display: block;
+    width: auto;
+    height: auto;
+    /* 40px = giữ nguyên chiều cao header 80px (40 logo + 2×10 padding + tagline 20). */
+    max-height: 40px;
+    max-width: min(150px, 42vw);
+    object-fit: contain;
+}
+
+/* Khi đã có logo, bỏ padding dọc của brand để header không cao hơn vốn có. */
+.cmsng-brand:has(.custom-logo) { padding: 0; }
+
+/* Footer centre column rộng tối đa 1000px -> cho logo to hơn một chút. */
+.cmsng-footer-brand .custom-logo,
+.cmsng-footer-brand .custom-logo-link img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 72px;
+    max-width: min(260px, 80vw);
+    object-fit: contain;
+}
 .cmsng-recruiting { margin-top: 4px; color: #444; font-size: 14px; font-weight: 700; letter-spacing: .5px; line-height: 1.3; }
 .cmsng-header-navigation { display: flex; align-items: center; gap: 56px; min-width: 0; }
 .cmsng-menu,
@@ -113,6 +144,8 @@ body.post-type-archive-job_listing .site-content > .container {
 @media (max-width: 1024px) {
     .cmsng-header-inner { flex-wrap: wrap; gap: 0 20px; min-height: 76px; padding-right: 24px; padding-left: 24px; }
     .cmsng-brand { max-width: calc(100% - 64px); }
+    .cmsng-brand .custom-logo,
+    .cmsng-brand .custom-logo-link img { max-height: 48px; max-width: min(180px, 55vw); }
     .cmsng-header-navigation { flex: 0 0 100%; flex-direction: column; align-items: stretch; gap: 16px; padding: 8px 0 24px; }
     .cmsng-menu { flex-direction: column; align-items: stretch; gap: 0; }
     .cmsng-menu > li > a,
@@ -122,6 +155,8 @@ body.post-type-archive-job_listing .site-content > .container {
     .cmsng-submit-job { align-self: flex-start; }
 }
 @media (max-width: 767px) {
+    .cmsng-brand .custom-logo,
+    .cmsng-brand .custom-logo-link img { max-height: 40px; max-width: min(150px, 58vw); }
     .cmsng-newsletter { padding: 24px 0; }
     .cmsng-newsletter-inner { flex-direction: column; align-items: stretch; gap: 18px; max-width: 480px; }
     .cmsng-footer .cmsng-newsletter-title { flex-basis: auto; }
