@@ -376,3 +376,33 @@ body.nhomg-news-detail-page .content-area {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
+
+/* Kéo content box sang trái đúng bằng padding trái (40px) để mép ảnh trong bài
+   thẳng hàng dọc với thumbnail của lưới "NEWEST BLOG ENTRIES" bên dưới. */
+:root {
+    --nd-img-shift: 40px;
+}
+
+.news-detail-content-box {
+    margin-left: calc(-1 * var(--nd-img-shift));
+    max-width: calc(780px + var(--nd-img-shift));
+}
+
+/* Breadcrumb + header card cũng kéo sang trái bằng đúng mức của content box,
+   để cả cụm phía trên cùng một mép trái. Header card giữ nguyên mép phải
+   (cùng mép phải với lưới bên dưới). */
+.news-detail-breadcrumb {
+    margin-left: calc(-1 * var(--nd-img-shift));
+}
+
+.news-detail-header-card {
+    width: calc(100% + var(--nd-img-shift));
+    margin-left: calc(-1 * var(--nd-img-shift));
+}
+
+/* Màn hình hẹp: tắt kéo lệch để khung không tràn ra ngoài */
+@media (max-width: 1220px) {
+    :root {
+        --nd-img-shift: 0px;
+    }
+}
