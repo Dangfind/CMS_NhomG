@@ -178,17 +178,7 @@ function cmsng_menu_fallback($args)
     echo '</ul>';
 }
 
-/**
- * Logo dùng chung cho header và footer.
- *
- * ĐÃ THAY: trước đây in chữ "Nhóm G" (nhãn tạm) khi chưa có ảnh logo:
- *     echo '<a class="cmsng-brand-link" href="' . esc_url( home_url( '/' ) ) . '">' . esc_html( 'Nhóm G' ) . '</a>';
- *
- * Bây giờ hiển thị logo thật lấy từ Appearance > Customize > Site Identity
- * (theme đã bật add_theme_support( 'custom-logo' ) với height/width 70).
- * Nếu quản trị viên chưa upload logo, giữ nguyên chữ "Nhóm G" làm fallback
- * để header không bị trống.
- */
+/** Shared uploaded logo, with the same G việc text fallback in both locations. */
 function cmsng_logo()
 {
     $home = esc_url(home_url('/'));
@@ -204,15 +194,15 @@ function cmsng_logo()
         }
     }
 
-    // Fallback: chưa upload logo -> vẫn dùng chữ như cũ.
-    echo '<a class="cmsng-brand-link" href="' . $home . '">' . esc_html('Nhóm G') . '</a>';
+    // One text source for the shared header and footer.
+    echo '<a class="cmsng-brand-link" href="' . $home . '">' . esc_html('G việc') . '</a>';
 }
 
 function cmsng_customize_chrome($wp_customize)
 {
     $wp_customize->add_section('cmsng_chrome', array(
         'title' => __('CMS_NhomG — Header & Footer', 'jobscout'),
-        'description' => __('Assign Primary and CMS_NhomG Footer menus in Menus. Upload the shared logo in Site Identity (recommended 440 × 120 px PNG/SVG). Without a logo the brand falls back to the text “Nhóm G”. Empty social URLs are displayed as inactive icons. Newsletter storage/delivery is not configured.', 'jobscout'),
+        'description' => __('Assign Primary and CMS_NhomG Footer menus in Menus. Upload the shared logo in Site Identity (recommended 440 × 120 px PNG/SVG). Without a logo the brand falls back to the text “G việc”. Empty social URLs are displayed as inactive icons. Newsletter storage/delivery is not configured.', 'jobscout'),
         'priority' => 35,
     ));
     $wp_customize->add_setting('cmsng_recruiting', array('default' => 'RECRUITING', 'sanitize_callback' => 'sanitize_text_field'));

@@ -16,6 +16,9 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-footer {
     --cmsng-orange: #f47714;
     --cmsng-ink: #222;
+    --cmsng-stack-gap: 24px;
+    --cmsng-footer-space: 64px;
+    --cmsng-control-height: 46px;
     font-family: "Nunito Sans", Arial, sans-serif;
     font-size: 14px;
     line-height: 1.5;
@@ -29,7 +32,7 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; width: 100%; max-width: none; min-height: 80px; margin: 0 auto; padding: 0 clamp(24px, 4.15vw, 60px); }
 .cmsng-brand { display: flex; flex: 0 1 auto; flex-direction: column; align-items: flex-start; min-width: 0; padding: 10px 0; }
 .cmsng-brand-link,
-.cmsng-brand-link:visited { display: block; color: var(--cmsng-ink); font-size: 28px; font-weight: 800; line-height: 1.1; text-decoration: none; white-space: nowrap; }
+.cmsng-brand-link:visited { display: block; color: var(--cmsng-ink); font-size: 32px; font-weight: 800; line-height: 1.1; text-decoration: none; white-space: nowrap; }
 .cmsng-header .cmsng-brand-link:hover,
 .cmsng-footer .cmsng-brand-link:hover { color: var(--cmsng-ink); }
 
@@ -104,26 +107,29 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-newsletter { min-height: 100px; padding: 20px 0; background: var(--cmsng-orange); color: #fff; }
 .cmsng-newsletter-inner { display: flex; align-items: center; gap: 28px; width: calc(100% - 48px); max-width: 804px; margin: 0 auto; }
 .cmsng-footer .cmsng-newsletter-title { flex: 0 0 158px; margin: 0; color: #fff; font-family: inherit; font-size: 24px; font-weight: 600; line-height: 30px; white-space: nowrap; }
-.cmsng-newsletter-form { display: grid; flex: 1; grid-template-columns: minmax(0, 1fr) 138px; gap: 18px; min-width: 0; margin: 0; }
+.cmsng-newsletter-form { display: grid; align-items: center; flex: 1; grid-template-columns: minmax(0, 1fr) 138px; gap: 18px; min-width: 0; margin: 0; }
 .cmsng-email-field { position: relative; min-width: 0; background: #fff; }
 .cmsng-email-icon { position: absolute; top: 50%; left: 16px; width: 18px; height: 18px; transform: translateY(-50%); color: var(--cmsng-orange); font-size: 18px; pointer-events: none; }
-.cmsng-footer .cmsng-email { display: block; width: 100%; min-width: 0; height: 46px; margin: 0; padding: 0 14px 0 44px; border: 1px solid #e0e0e0; border-radius: 0; background: #fff; color: var(--cmsng-ink); font-family: inherit; font-size: 14px; line-height: normal; box-shadow: none; }
+.cmsng-footer .cmsng-email { display: block; width: 100%; min-width: 0; height: var(--cmsng-control-height); margin: 0; padding: 0 14px 0 44px; border: 1px solid #e0e0e0; border-radius: 0; background: #fff; color: var(--cmsng-ink); font-family: inherit; font-size: 14px; line-height: normal; box-shadow: none; }
 .cmsng-footer .cmsng-email::placeholder { color: #aaa; opacity: 1; }
-.cmsng-footer .cmsng-subscribe { height: 46px; margin: 0; padding: 0 16px; border: 1px solid #fff; border-radius: 0; background: transparent; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; line-height: 20px; letter-spacing: 0; box-shadow: none; }
+.cmsng-footer .cmsng-subscribe { height: var(--cmsng-control-height); margin: 0; padding: 0 16px; border: 1px solid #fff; border-radius: 0; background: transparent; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; line-height: 20px; letter-spacing: 0; box-shadow: none; }
 .cmsng-footer .cmsng-subscribe:hover,
 .cmsng-footer .cmsng-subscribe:focus { border-color: #fff; background: transparent; color: #fff; }
 .cmsng-newsletter-status { grid-column: 1 / -1; margin: 0; color: #222; font-size: 13px; }
 .cmsng-newsletter-form noscript { grid-column: 1 / -1; }
 
-.cmsng-footer-main { min-height: 296px; padding: 64px 24px 80px; background: #f2f2f2; }
-.cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; max-width: 1000px; margin: 0 auto; }
+.cmsng-footer-main { display: grid; place-items: center; min-height: 296px; padding: var(--cmsng-footer-space) 24px; background: #f2f2f2; }
+.cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: var(--cmsng-stack-gap); width: 100%; max-width: 1000px; margin: 0 auto; }
 .cmsng-footer-brand { max-width: 100%; }
-.cmsng-footer-brand .cmsng-brand-link { font-size: 32px; line-height: 1.2; }
+.cmsng-footer-brand .cmsng-brand-link { font-size: 36px; line-height: 1.15; }
 .cmsng-footer-navigation { max-width: 100%; }
 .cmsng-footer-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; }
 .cmsng-footer-menu li { margin: 0; }
 .cmsng-footer-menu a,
 .cmsng-footer-menu .cmsng-unconfigured { color: var(--cmsng-ink); font-size: 14px; font-weight: 700; line-height: 22px; text-decoration: none; text-transform: uppercase; }
+.cmsng-footer-inner > .heateor_sss_sharing_container { max-width: 100%; margin: 0; padding: 0; }
+.cmsng-footer-inner .heateor_sss_sharing_ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+.cmsng-footer-inner .heateor_sss_sharing_ul > a { flex: 0 0 auto; margin: 0; padding: 0; line-height: 0; }
 .cmsng-socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 19px; }
 .cmsng-socials li { margin: 0; }
 .cmsng-social { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; color: #fff; font-size: 23px; line-height: 1; text-decoration: none; }
@@ -161,8 +167,8 @@ body.post-type-archive-job_listing .site-content > .container {
     .cmsng-newsletter-inner { flex-direction: column; align-items: stretch; gap: 18px; max-width: 480px; }
     .cmsng-footer .cmsng-newsletter-title { flex-basis: auto; }
     .cmsng-newsletter-form { flex: auto; }
-    .cmsng-footer-main { min-height: 0; padding: 48px 24px 56px; }
-    .cmsng-footer-inner { gap: 24px; }
+    .cmsng-footer-main { --cmsng-footer-space: 48px; min-height: 0; }
+    .cmsng-footer-inner { gap: var(--cmsng-stack-gap); }
     .cmsng-footer-menu { gap: 12px 22px; }
 }
 @media (max-width: 479px) {

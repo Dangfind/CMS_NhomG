@@ -1,0 +1,1150 @@
+[
+  {
+    "width": 1440,
+    "metrics": {
+      "viewport": 1440,
+      "pageWidth": 1440,
+      "zoom": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 80,
+        "right": 1440,
+        "bottom": 80
+      },
+      "brands": [
+        {
+          "text": "Nhóm G",
+          "fontSize": "28px"
+        },
+        {
+          "text": "Nhóm G",
+          "fontSize": "32px"
+        }
+      ],
+      "jobs": {
+        "padding": {
+          "top": 60,
+          "bottom": 70
+        },
+        "titleGap": 36,
+        "actionGap": 48,
+        "outerTop": 60,
+        "outerBottom": 70,
+        "rowGap": 28,
+        "columnGap": 30,
+        "cards": [
+          {
+            "x": 195,
+            "y": 762.796875,
+            "width": 510,
+            "height": 242.28125,
+            "right": 705,
+            "bottom": 1005.078125
+          },
+          {
+            "x": 735,
+            "y": 762.796875,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1245,
+            "bottom": 1005.078125
+          },
+          {
+            "x": 195,
+            "y": 1033.078125,
+            "width": 510,
+            "height": 242.28125,
+            "right": 705,
+            "bottom": 1275.359375
+          },
+          {
+            "x": 735,
+            "y": 1033.078125,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1245,
+            "bottom": 1275.359375
+          },
+          {
+            "x": 195,
+            "y": 1303.359375,
+            "width": 510,
+            "height": 242.28125,
+            "right": 705,
+            "bottom": 1545.640625
+          },
+          {
+            "x": 735,
+            "y": 1303.359375,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1245,
+            "bottom": 1545.640625
+          }
+        ],
+        "images": [
+          {
+            "x": 219,
+            "y": 784.796875,
+            "width": 120,
+            "height": 120,
+            "right": 339,
+            "bottom": 904.796875
+          },
+          {
+            "x": 759,
+            "y": 784.796875,
+            "width": 120,
+            "height": 120,
+            "right": 879,
+            "bottom": 904.796875
+          },
+          {
+            "x": 219,
+            "y": 1055.078125,
+            "width": 120,
+            "height": 120,
+            "right": 339,
+            "bottom": 1175.078125
+          },
+          {
+            "x": 759,
+            "y": 1055.078125,
+            "width": 120,
+            "height": 120,
+            "right": 879,
+            "bottom": 1175.078125
+          },
+          {
+            "x": 219,
+            "y": 1325.359375,
+            "width": 120,
+            "height": 120,
+            "right": 339,
+            "bottom": 1445.359375
+          },
+          {
+            "x": 759,
+            "y": 1325.359375,
+            "width": 120,
+            "height": 120,
+            "right": 879,
+            "bottom": 1445.359375
+          }
+        ]
+      },
+      "career": {
+        "padding": {
+          "top": 70,
+          "bottom": 78
+        },
+        "topSpace": 70,
+        "bottomSpace": 111.234375
+      },
+      "news": {
+        "padding": {
+          "top": 60,
+          "bottom": 80
+        },
+        "titleGap": 36,
+        "outerTop": 60,
+        "outerBottom": 80,
+        "rowGap": 50,
+        "columnGap": 30,
+        "cards": [
+          {
+            "x": 195,
+            "y": 2358.4375,
+            "width": 510,
+            "height": 266.75,
+            "right": 705,
+            "bottom": 2625.1875
+          },
+          {
+            "x": 735,
+            "y": 2358.4375,
+            "width": 510,
+            "height": 266.75,
+            "right": 1245,
+            "bottom": 2625.1875
+          },
+          {
+            "x": 195,
+            "y": 2675.1875,
+            "width": 510,
+            "height": 266.75,
+            "right": 705,
+            "bottom": 2941.9375
+          },
+          {
+            "x": 735,
+            "y": 2675.1875,
+            "width": 510,
+            "height": 266.75,
+            "right": 1245,
+            "bottom": 2941.9375
+          }
+        ],
+        "images": [
+          {
+            "x": 215,
+            "y": 2391.8125,
+            "width": 200,
+            "height": 200,
+            "right": 415,
+            "bottom": 2591.8125
+          },
+          {
+            "x": 755,
+            "y": 2391.8125,
+            "width": 200,
+            "height": 200,
+            "right": 955,
+            "bottom": 2591.8125
+          },
+          {
+            "x": 215,
+            "y": 2708.5625,
+            "width": 200,
+            "height": 200,
+            "right": 415,
+            "bottom": 2908.5625
+          },
+          {
+            "x": 755,
+            "y": 2708.5625,
+            "width": 200,
+            "height": 200,
+            "right": 955,
+            "bottom": 2908.5625
+          }
+        ]
+      },
+      "newsletter": {
+        "boxes": [
+          {
+            "x": 318,
+            "y": 3041.9375,
+            "width": 170.71875,
+            "height": 60,
+            "right": 488.71875,
+            "bottom": 3101.9375
+          },
+          {
+            "x": 516.71875,
+            "y": 3048.9375,
+            "width": 449.28125,
+            "height": 46,
+            "right": 966,
+            "bottom": 3094.9375
+          },
+          {
+            "x": 984,
+            "y": 3048.9375,
+            "width": 138,
+            "height": 46,
+            "right": 1122,
+            "bottom": 3094.9375
+          }
+        ],
+        "centers": [
+          3071.9375,
+          3071.9375,
+          3071.9375
+        ]
+      },
+      "footer": {
+        "padding": {
+          "top": 64,
+          "bottom": 80
+        },
+        "topSpace": 64,
+        "bottomSpace": 80
+      },
+      "newsletterReady": false,
+      "socialCount": 4
+    },
+    "checks": {
+      "zoom100": true,
+      "noHorizontalOverflow": true,
+      "jobsOuterBalanced": false,
+      "careerCentered": false,
+      "newsOuterBalanced": false,
+      "headingsSameGap": true,
+      "jobsGapsEqual": false,
+      "newsGapsEqual": false,
+      "jobRowsEqual": true,
+      "newsRowsEqual": true,
+      "logoFramesUniform": true,
+      "newsFramesUniform": true,
+      "footerCentered": false,
+      "newsletterControlsSameHeight": true,
+      "newsletterDesktopCentered": true,
+      "jobDateDoesNotOverlapTitle": true
+    },
+    "pageErrors": []
+  },
+  {
+    "width": 1920,
+    "metrics": {
+      "viewport": 1920,
+      "pageWidth": 1920,
+      "zoom": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 80,
+        "right": 1920,
+        "bottom": 80
+      },
+      "brands": [
+        {
+          "text": "Nhóm G",
+          "fontSize": "28px"
+        },
+        {
+          "text": "Nhóm G",
+          "fontSize": "32px"
+        }
+      ],
+      "jobs": {
+        "padding": {
+          "top": 60,
+          "bottom": 70
+        },
+        "titleGap": 36,
+        "actionGap": 48,
+        "outerTop": 60,
+        "outerBottom": 70,
+        "rowGap": 28,
+        "columnGap": 30,
+        "cards": [
+          {
+            "x": 435,
+            "y": 762.796875,
+            "width": 510,
+            "height": 242.28125,
+            "right": 945,
+            "bottom": 1005.078125
+          },
+          {
+            "x": 975,
+            "y": 762.796875,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1485,
+            "bottom": 1005.078125
+          },
+          {
+            "x": 435,
+            "y": 1033.078125,
+            "width": 510,
+            "height": 242.28125,
+            "right": 945,
+            "bottom": 1275.359375
+          },
+          {
+            "x": 975,
+            "y": 1033.078125,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1485,
+            "bottom": 1275.359375
+          },
+          {
+            "x": 435,
+            "y": 1303.359375,
+            "width": 510,
+            "height": 242.28125,
+            "right": 945,
+            "bottom": 1545.640625
+          },
+          {
+            "x": 975,
+            "y": 1303.359375,
+            "width": 510,
+            "height": 242.28125,
+            "right": 1485,
+            "bottom": 1545.640625
+          }
+        ],
+        "images": [
+          {
+            "x": 459,
+            "y": 784.796875,
+            "width": 120,
+            "height": 120,
+            "right": 579,
+            "bottom": 904.796875
+          },
+          {
+            "x": 999,
+            "y": 784.796875,
+            "width": 120,
+            "height": 120,
+            "right": 1119,
+            "bottom": 904.796875
+          },
+          {
+            "x": 459,
+            "y": 1055.078125,
+            "width": 120,
+            "height": 120,
+            "right": 579,
+            "bottom": 1175.078125
+          },
+          {
+            "x": 999,
+            "y": 1055.078125,
+            "width": 120,
+            "height": 120,
+            "right": 1119,
+            "bottom": 1175.078125
+          },
+          {
+            "x": 459,
+            "y": 1325.359375,
+            "width": 120,
+            "height": 120,
+            "right": 579,
+            "bottom": 1445.359375
+          },
+          {
+            "x": 999,
+            "y": 1325.359375,
+            "width": 120,
+            "height": 120,
+            "right": 1119,
+            "bottom": 1445.359375
+          }
+        ]
+      },
+      "career": {
+        "padding": {
+          "top": 70,
+          "bottom": 78
+        },
+        "topSpace": 70,
+        "bottomSpace": 111.234375
+      },
+      "news": {
+        "padding": {
+          "top": 60,
+          "bottom": 80
+        },
+        "titleGap": 36,
+        "outerTop": 60,
+        "outerBottom": 80,
+        "rowGap": 50,
+        "columnGap": 30,
+        "cards": [
+          {
+            "x": 435,
+            "y": 2358.4375,
+            "width": 510,
+            "height": 266.75,
+            "right": 945,
+            "bottom": 2625.1875
+          },
+          {
+            "x": 975,
+            "y": 2358.4375,
+            "width": 510,
+            "height": 266.75,
+            "right": 1485,
+            "bottom": 2625.1875
+          },
+          {
+            "x": 435,
+            "y": 2675.1875,
+            "width": 510,
+            "height": 266.75,
+            "right": 945,
+            "bottom": 2941.9375
+          },
+          {
+            "x": 975,
+            "y": 2675.1875,
+            "width": 510,
+            "height": 266.75,
+            "right": 1485,
+            "bottom": 2941.9375
+          }
+        ],
+        "images": [
+          {
+            "x": 455,
+            "y": 2391.8125,
+            "width": 200,
+            "height": 200,
+            "right": 655,
+            "bottom": 2591.8125
+          },
+          {
+            "x": 995,
+            "y": 2391.8125,
+            "width": 200,
+            "height": 200,
+            "right": 1195,
+            "bottom": 2591.8125
+          },
+          {
+            "x": 455,
+            "y": 2708.5625,
+            "width": 200,
+            "height": 200,
+            "right": 655,
+            "bottom": 2908.5625
+          },
+          {
+            "x": 995,
+            "y": 2708.5625,
+            "width": 200,
+            "height": 200,
+            "right": 1195,
+            "bottom": 2908.5625
+          }
+        ]
+      },
+      "newsletter": {
+        "boxes": [
+          {
+            "x": 558,
+            "y": 3041.9375,
+            "width": 170.71875,
+            "height": 60,
+            "right": 728.71875,
+            "bottom": 3101.9375
+          },
+          {
+            "x": 756.71875,
+            "y": 3048.9375,
+            "width": 449.28125,
+            "height": 46,
+            "right": 1206,
+            "bottom": 3094.9375
+          },
+          {
+            "x": 1224,
+            "y": 3048.9375,
+            "width": 138,
+            "height": 46,
+            "right": 1362,
+            "bottom": 3094.9375
+          }
+        ],
+        "centers": [
+          3071.9375,
+          3071.9375,
+          3071.9375
+        ]
+      },
+      "footer": {
+        "padding": {
+          "top": 64,
+          "bottom": 80
+        },
+        "topSpace": 64,
+        "bottomSpace": 80
+      },
+      "newsletterReady": false,
+      "socialCount": 4
+    },
+    "checks": {
+      "zoom100": true,
+      "noHorizontalOverflow": true,
+      "jobsOuterBalanced": false,
+      "careerCentered": false,
+      "newsOuterBalanced": false,
+      "headingsSameGap": true,
+      "jobsGapsEqual": false,
+      "newsGapsEqual": false,
+      "jobRowsEqual": true,
+      "newsRowsEqual": true,
+      "logoFramesUniform": true,
+      "newsFramesUniform": true,
+      "footerCentered": false,
+      "newsletterControlsSameHeight": true,
+      "newsletterDesktopCentered": true,
+      "jobDateDoesNotOverlapTitle": true
+    },
+    "pageErrors": []
+  },
+  {
+    "width": 768,
+    "metrics": {
+      "viewport": 768,
+      "pageWidth": 768,
+      "zoom": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 76,
+        "right": 768,
+        "bottom": 76
+      },
+      "brands": [
+        {
+          "text": "Nhóm G",
+          "fontSize": "28px"
+        },
+        {
+          "text": "Nhóm G",
+          "fontSize": "32px"
+        }
+      ],
+      "jobs": {
+        "padding": {
+          "top": 60,
+          "bottom": 70
+        },
+        "titleGap": 36,
+        "actionGap": 48,
+        "outerTop": 60,
+        "outerBottom": 70,
+        "rowGap": 24,
+        "columnGap": 24,
+        "cards": [
+          {
+            "x": 24,
+            "y": 758.796875,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 1001.078125
+          },
+          {
+            "x": 24,
+            "y": 1025.078125,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 1267.359375
+          },
+          {
+            "x": 24,
+            "y": 1291.359375,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 1533.640625
+          },
+          {
+            "x": 24,
+            "y": 1557.640625,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 1799.921875
+          },
+          {
+            "x": 24,
+            "y": 1823.921875,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 2066.203125
+          },
+          {
+            "x": 24,
+            "y": 2090.203125,
+            "width": 720,
+            "height": 242.28125,
+            "right": 744,
+            "bottom": 2332.484375
+          }
+        ],
+        "images": [
+          {
+            "x": 48,
+            "y": 780.796875,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 900.796875
+          },
+          {
+            "x": 48,
+            "y": 1047.078125,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 1167.078125
+          },
+          {
+            "x": 48,
+            "y": 1313.359375,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 1433.359375
+          },
+          {
+            "x": 48,
+            "y": 1579.640625,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 1699.640625
+          },
+          {
+            "x": 48,
+            "y": 1845.921875,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 1965.921875
+          },
+          {
+            "x": 48,
+            "y": 2112.203125,
+            "width": 120,
+            "height": 120,
+            "right": 168,
+            "bottom": 2232.203125
+          }
+        ]
+      },
+      "career": {
+        "padding": {
+          "top": 60,
+          "bottom": 60
+        },
+        "topSpace": 60,
+        "bottomSpace": 70.046875
+      },
+      "news": {
+        "padding": {
+          "top": 60,
+          "bottom": 80
+        },
+        "titleGap": 36,
+        "outerTop": 60,
+        "outerBottom": 80,
+        "rowGap": 24,
+        "columnGap": 24,
+        "cards": [
+          {
+            "x": 24,
+            "y": 3145.28125,
+            "width": 720,
+            "height": 240,
+            "right": 744,
+            "bottom": 3385.28125
+          },
+          {
+            "x": 24,
+            "y": 3409.28125,
+            "width": 720,
+            "height": 240,
+            "right": 744,
+            "bottom": 3649.28125
+          },
+          {
+            "x": 24,
+            "y": 3673.28125,
+            "width": 720,
+            "height": 240,
+            "right": 744,
+            "bottom": 3913.28125
+          },
+          {
+            "x": 24,
+            "y": 3937.28125,
+            "width": 720,
+            "height": 240,
+            "right": 744,
+            "bottom": 4177.28125
+          }
+        ],
+        "images": [
+          {
+            "x": 44,
+            "y": 3165.28125,
+            "width": 200,
+            "height": 200,
+            "right": 244,
+            "bottom": 3365.28125
+          },
+          {
+            "x": 44,
+            "y": 3429.28125,
+            "width": 200,
+            "height": 200,
+            "right": 244,
+            "bottom": 3629.28125
+          },
+          {
+            "x": 44,
+            "y": 3693.28125,
+            "width": 200,
+            "height": 200,
+            "right": 244,
+            "bottom": 3893.28125
+          },
+          {
+            "x": 44,
+            "y": 3957.28125,
+            "width": 200,
+            "height": 200,
+            "right": 244,
+            "bottom": 4157.28125
+          }
+        ]
+      },
+      "newsletter": {
+        "boxes": [
+          {
+            "x": 24,
+            "y": 4277.28125,
+            "width": 170.71875,
+            "height": 60,
+            "right": 194.71875,
+            "bottom": 4337.28125
+          },
+          {
+            "x": 222.71875,
+            "y": 4284.28125,
+            "width": 365.28125,
+            "height": 46,
+            "right": 588,
+            "bottom": 4330.28125
+          },
+          {
+            "x": 606,
+            "y": 4284.28125,
+            "width": 138,
+            "height": 46,
+            "right": 744,
+            "bottom": 4330.28125
+          }
+        ],
+        "centers": [
+          4307.28125,
+          4307.28125,
+          4307.28125
+        ]
+      },
+      "footer": {
+        "padding": {
+          "top": 64,
+          "bottom": 80
+        },
+        "topSpace": 64,
+        "bottomSpace": 80
+      },
+      "newsletterReady": false,
+      "socialCount": 4
+    },
+    "checks": {
+      "zoom100": true,
+      "noHorizontalOverflow": true,
+      "jobsOuterBalanced": false,
+      "careerCentered": false,
+      "newsOuterBalanced": false,
+      "headingsSameGap": true,
+      "jobsGapsEqual": true,
+      "newsGapsEqual": true,
+      "jobRowsEqual": true,
+      "newsRowsEqual": true,
+      "logoFramesUniform": true,
+      "newsFramesUniform": true,
+      "footerCentered": false,
+      "newsletterControlsSameHeight": true,
+      "newsletterDesktopCentered": true,
+      "jobDateDoesNotOverlapTitle": true
+    },
+    "pageErrors": []
+  },
+  {
+    "width": 375,
+    "metrics": {
+      "viewport": 375,
+      "pageWidth": 375,
+      "zoom": 1,
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 76,
+        "right": 375,
+        "bottom": 76
+      },
+      "brands": [
+        {
+          "text": "Nhóm G",
+          "fontSize": "28px"
+        },
+        {
+          "text": "Nhóm G",
+          "fontSize": "32px"
+        }
+      ],
+      "jobs": {
+        "padding": {
+          "top": 45,
+          "bottom": 45
+        },
+        "titleGap": 36,
+        "actionGap": 48,
+        "outerTop": 45,
+        "outerBottom": 45,
+        "rowGap": 24,
+        "columnGap": 24,
+        "cards": [
+          {
+            "x": 16,
+            "y": 733.390625,
+            "width": 343,
+            "height": 263.96875,
+            "right": 359,
+            "bottom": 997.359375
+          },
+          {
+            "x": 16,
+            "y": 1021.359375,
+            "width": 343,
+            "height": 220,
+            "right": 359,
+            "bottom": 1241.359375
+          },
+          {
+            "x": 16,
+            "y": 1265.359375,
+            "width": 343,
+            "height": 220.375,
+            "right": 359,
+            "bottom": 1485.734375
+          },
+          {
+            "x": 16,
+            "y": 1509.734375,
+            "width": 343,
+            "height": 220,
+            "right": 359,
+            "bottom": 1729.734375
+          },
+          {
+            "x": 16,
+            "y": 1753.734375,
+            "width": 343,
+            "height": 220.375,
+            "right": 359,
+            "bottom": 1974.109375
+          },
+          {
+            "x": 16,
+            "y": 1998.109375,
+            "width": 343,
+            "height": 220.375,
+            "right": 359,
+            "bottom": 2218.484375
+          }
+        ],
+        "images": [
+          {
+            "x": 34,
+            "y": 751.390625,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 833.390625
+          },
+          {
+            "x": 34,
+            "y": 1039.359375,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 1121.359375
+          },
+          {
+            "x": 34,
+            "y": 1283.359375,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 1365.359375
+          },
+          {
+            "x": 34,
+            "y": 1527.734375,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 1609.734375
+          },
+          {
+            "x": 34,
+            "y": 1771.734375,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 1853.734375
+          },
+          {
+            "x": 34,
+            "y": 2016.109375,
+            "width": 82,
+            "height": 82,
+            "right": 116,
+            "bottom": 2098.109375
+          }
+        ]
+      },
+      "career": {
+        "padding": {
+          "top": 45,
+          "bottom": 45
+        },
+        "topSpace": 45,
+        "bottomSpace": 45
+      },
+      "news": {
+        "padding": {
+          "top": 45,
+          "bottom": 45
+        },
+        "titleGap": 36,
+        "outerTop": 45,
+        "outerBottom": 45,
+        "rowGap": 24,
+        "columnGap": 24,
+        "cards": [
+          {
+            "x": 16,
+            "y": 3019.953125,
+            "width": 343,
+            "height": 267.953125,
+            "right": 359,
+            "bottom": 3287.90625
+          },
+          {
+            "x": 16,
+            "y": 3311.90625,
+            "width": 343,
+            "height": 245.5625,
+            "right": 359,
+            "bottom": 3557.46875
+          },
+          {
+            "x": 16,
+            "y": 3581.46875,
+            "width": 343,
+            "height": 245.5625,
+            "right": 359,
+            "bottom": 3827.03125
+          },
+          {
+            "x": 16,
+            "y": 3851.03125,
+            "width": 343,
+            "height": 267.953125,
+            "right": 359,
+            "bottom": 4118.984375
+          }
+        ],
+        "images": [
+          {
+            "x": 34,
+            "y": 3037.953125,
+            "width": 112,
+            "height": 160,
+            "right": 146,
+            "bottom": 3197.953125
+          },
+          {
+            "x": 34,
+            "y": 3329.90625,
+            "width": 112,
+            "height": 160,
+            "right": 146,
+            "bottom": 3489.90625
+          },
+          {
+            "x": 34,
+            "y": 3599.46875,
+            "width": 112,
+            "height": 160,
+            "right": 146,
+            "bottom": 3759.46875
+          },
+          {
+            "x": 34,
+            "y": 3869.03125,
+            "width": 112,
+            "height": 160,
+            "right": 146,
+            "bottom": 4029.03125
+          }
+        ]
+      },
+      "newsletter": {
+        "boxes": [
+          {
+            "x": 24,
+            "y": 4187.984375,
+            "width": 327,
+            "height": 60,
+            "right": 351,
+            "bottom": 4247.984375
+          },
+          {
+            "x": 24,
+            "y": 4265.984375,
+            "width": 327,
+            "height": 46,
+            "right": 351,
+            "bottom": 4311.984375
+          },
+          {
+            "x": 24,
+            "y": 4323.984375,
+            "width": 327,
+            "height": 46,
+            "right": 351,
+            "bottom": 4369.984375
+          }
+        ],
+        "centers": [
+          4217.984375,
+          4288.984375,
+          4346.984375
+        ]
+      },
+      "footer": {
+        "padding": {
+          "top": 48,
+          "bottom": 56
+        },
+        "topSpace": 48,
+        "bottomSpace": 56
+      },
+      "newsletterReady": false,
+      "socialCount": 4
+    },
+    "checks": {
+      "zoom100": true,
+      "noHorizontalOverflow": true,
+      "jobsOuterBalanced": true,
+      "careerCentered": true,
+      "newsOuterBalanced": true,
+      "headingsSameGap": true,
+      "jobsGapsEqual": true,
+      "newsGapsEqual": true,
+      "jobRowsEqual": true,
+      "newsRowsEqual": true,
+      "logoFramesUniform": true,
+      "newsFramesUniform": true,
+      "footerCentered": false,
+      "newsletterControlsSameHeight": true,
+      "newsletterDesktopCentered": true,
+      "jobDateDoesNotOverlapTitle": true
+    },
+    "pageErrors": []
+  }
+]
