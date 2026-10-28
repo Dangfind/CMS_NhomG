@@ -1,0 +1,702 @@
+{
+  "restored": true,
+  "backup": "C:\\Users\\LAM\\AppData\\Local\\Temp\\cmsng-hero-widget-QUIkfa\\before.json",
+  "cases": [
+    {
+      "label": "empty-widget-fallback",
+      "width": 1440,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "titleBox": [
+        250,
+        242.90625,
+        940,
+        45
+      ],
+      "introBox": [
+        250,
+        295.90625,
+        940,
+        51.1875
+      ],
+      "imageBox": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "formBox": [
+        250,
+        365.09375,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 0,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "empty-widget-fallback",
+      "width": 1920,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "titleBox": [
+        490,
+        242.90625,
+        940,
+        45
+      ],
+      "introBox": [
+        490,
+        295.90625,
+        940,
+        51.1875
+      ],
+      "imageBox": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "formBox": [
+        490,
+        365.09375,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 0,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "empty-widget-fallback",
+      "width": 768,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        768,
+        540
+      ],
+      "titleBox": [
+        24,
+        193.484375,
+        720,
+        45
+      ],
+      "introBox": [
+        24,
+        246.484375,
+        720,
+        76.78125
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        768,
+        540
+      ],
+      "formBox": [
+        24,
+        341.265625,
+        720,
+        160
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 0,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "empty-widget-fallback",
+      "width": 375,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        375,
+        540
+      ],
+      "titleBox": [
+        16,
+        139.390625,
+        343,
+        70
+      ],
+      "introBox": [
+        16,
+        217.390625,
+        343,
+        111.953125
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        375,
+        540
+      ],
+      "formBox": [
+        16,
+        347.34375,
+        343,
+        208
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 0,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-equivalent",
+      "width": 1440,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "titleBox": [
+        250,
+        242.90625,
+        940,
+        45
+      ],
+      "introBox": [
+        250,
+        295.90625,
+        940,
+        51.1875
+      ],
+      "imageBox": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "formBox": [
+        250,
+        365.09375,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-equivalent",
+      "width": 1920,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "titleBox": [
+        490,
+        242.90625,
+        940,
+        45
+      ],
+      "introBox": [
+        490,
+        295.90625,
+        940,
+        51.1875
+      ],
+      "imageBox": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "formBox": [
+        490,
+        365.09375,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-equivalent",
+      "width": 768,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        768,
+        540
+      ],
+      "titleBox": [
+        24,
+        193.484375,
+        720,
+        45
+      ],
+      "introBox": [
+        24,
+        246.484375,
+        720,
+        76.78125
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        768,
+        540
+      ],
+      "formBox": [
+        24,
+        341.265625,
+        720,
+        160
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-equivalent",
+      "width": 375,
+      "title": "FIND YOUR DREAM JOBS",
+      "description": "The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.",
+      "image": "http://wordpress.local:8080/wp-content/themes/jobscout/images/anh%20den%205%20tang.jpg",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        375,
+        540
+      ],
+      "titleBox": [
+        16,
+        139.390625,
+        343,
+        70
+      ],
+      "introBox": [
+        16,
+        217.390625,
+        343,
+        111.953125
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        375,
+        540
+      ],
+      "formBox": [
+        16,
+        347.34375,
+        343,
+        208
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-edited",
+      "width": 1440,
+      "title": "TÌM CƠ HỘI VIỆC LÀM PHÙ HỢP VỚI BẠN",
+      "description": "Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới.",
+      "image": "http://wordpress.local:8080/wp-content/uploads/2026/10/hinh_co_gai_cam_o-1.png",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "titleBox": [
+        250,
+        191.71875,
+        940,
+        45
+      ],
+      "introBox": [
+        250,
+        244.71875,
+        940,
+        153.5625
+      ],
+      "imageBox": [
+        0,
+        80,
+        1440,
+        540
+      ],
+      "formBox": [
+        250,
+        416.28125,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-edited",
+      "width": 1920,
+      "title": "TÌM CƠ HỘI VIỆC LÀM PHÙ HỢP VỚI BẠN",
+      "description": "Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới.",
+      "image": "http://wordpress.local:8080/wp-content/uploads/2026/10/hinh_co_gai_cam_o-1.png",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "titleBox": [
+        490,
+        191.71875,
+        940,
+        45
+      ],
+      "introBox": [
+        490,
+        244.71875,
+        940,
+        153.5625
+      ],
+      "imageBox": [
+        0,
+        80,
+        1920,
+        540
+      ],
+      "formBox": [
+        490,
+        416.28125,
+        940,
+        92
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-edited",
+      "width": 768,
+      "title": "TÌM CƠ HỘI VIỆC LÀM PHÙ HỢP VỚI BẠN",
+      "description": "Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới.",
+      "image": "http://wordpress.local:8080/wp-content/uploads/2026/10/hinh_co_gai_cam_o-1.png",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        768,
+        576.75
+      ],
+      "titleBox": [
+        24,
+        125.375,
+        720,
+        90
+      ],
+      "introBox": [
+        24,
+        223.375,
+        720,
+        204.75
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        768,
+        576.75
+      ],
+      "formBox": [
+        24,
+        446.125,
+        720,
+        160
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    },
+    {
+      "label": "widget-edited",
+      "width": 375,
+      "title": "TÌM CƠ HỘI VIỆC LÀM PHÙ HỢP VỚI BẠN",
+      "description": "Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới. Thay đổi ảnh, tiêu đề và mô tả trực tiếp trong Custom HTML. Nội dung dài vẫn xuống dòng tự nhiên và form tìm việc ở phía dưới.",
+      "image": "http://wordpress.local:8080/wp-content/uploads/2026/10/hinh_co_gai_cam_o-1.png",
+      "imageLoaded": true,
+      "imageFit": "cover",
+      "hero": [
+        0,
+        77.375,
+        375,
+        719.859375
+      ],
+      "titleBox": [
+        16,
+        117.375,
+        343,
+        70
+      ],
+      "introBox": [
+        16,
+        195.375,
+        343,
+        335.859375
+      ],
+      "imageBox": [
+        0,
+        77.375,
+        375,
+        719.859375
+      ],
+      "formBox": [
+        16,
+        549.234375,
+        343,
+        208
+      ],
+      "overlay": "rgba(0, 0, 0, 0.48)",
+      "action": "http://wordpress.local:8080/#lam-home-jobs",
+      "method": "get",
+      "fields": [
+        {
+          "name": "search_keywords",
+          "value": ""
+        },
+        {
+          "name": "search_location",
+          "value": "Tokyo"
+        }
+      ],
+      "formCount": 1,
+      "nestedForms": 0,
+      "widgetCount": 1,
+      "noOverflow": true,
+      "formBelowCopy": true,
+      "zoom": 1
+    }
+  ]
+}

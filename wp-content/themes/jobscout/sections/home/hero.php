@@ -5,11 +5,21 @@ $locations = $args['locations'];
 $route = $args['route'];
 $selected_location = $filters['search_location'];
 if ( ! isset( $_GET['search_location'] ) && isset( $locations['Tokyo'] ) ) $selected_location = 'Tokyo';
+$hero_widget = lam_home_hero_widget_content();
 ?>
-<section class="lam-home-hero" aria-labelledby="lam-home-title" style="<?php echo esc_attr( lam_home_background( 'hero' ) ); ?>">
+<section class="lam-home-hero" aria-labelledby="lam-home-title">
     <div class="lam-home-hero-inner">
-        <h1 id="lam-home-title" class="lam-home-title">FIND YOUR DREAM JOBS</h1>
-        <p class="lam-home-intro">The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or<br class="lam-home-desktop-break"> customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.</p>
+        <div class="lam-home-hero-content">
+            <?php if ( $hero_widget ) : ?>
+                <?php echo $hero_widget; // Native WordPress widget output, including Custom HTML. ?>
+            <?php else : $hero_image = lam_home_background_url( 'hero' ); ?>
+                <?php if ( $hero_image ) : ?><img class="lam-home-hero-image" src="<?php echo esc_url( $hero_image ); ?>" alt="" decoding="async" fetchpriority="high"><?php endif; ?>
+                <div class="lam-home-hero-copy">
+                    <h1 id="lam-home-title" class="lam-home-title">FIND YOUR DREAM JOBS</h1>
+                    <p class="lam-home-intro">The secret behind our company is simple: to always put ourselves in the other person’s shoes-employee, guest or<br class="lam-home-desktop-break"> customer. This allows us to see the world through their eyes, anticipate their needs and better understand their feelings.</p>
+                </div>
+            <?php endif; ?>
+        </div>
         <form class="lam-home-search" method="get" action="<?php echo esc_url( $route['url'] ); ?>" role="search" aria-label="<?php esc_attr_e( 'Search jobs', 'jobscout' ); ?>">
             <?php foreach ( $route['hidden'] as $key => $value ) : if ( is_scalar( $value ) ) : ?>
                 <input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $value ); ?>">
