@@ -348,3 +348,31 @@ body.nhomg-news-detail-page .content-area {
         padding: 24px 20px;
     }
 }
+
+/* Ảnh trong bài viết: phóng to full bằng chiều rộng chữ (vùng nội dung) */
+.news-detail-content-box img,
+.news-detail-content-box figure,
+.news-detail-content-box figure img,
+.news-detail-content-box .wp-caption,
+.news-detail-content-box .wp-caption img,
+.news-detail-content-box .wp-block-image,
+.news-detail-content-box .wp-block-image img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
+}
+
+.news-detail-content-box figure,
+.news-detail-content-box .wp-caption {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.news-detail-content-box figure img,
+.news-detail-content-box .wp-caption img {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
