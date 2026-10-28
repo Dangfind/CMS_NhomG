@@ -1,0 +1,72 @@
+<?php
+/**
+ * MẪU cấu hình WordPress cho môi trường local (XAMPP).
+ *
+ * Vì sao cần file này?
+ *   `wp-config.php` bị .gitignore (mỗi máy dùng DB riêng) nên KHÔNG có trong repo.
+ *   Nếu máy bạn chưa có `wp-config.php`, WordPress sẽ tự chuyển tới
+ *   /wp-admin/setup-config.php và tạo một SITE MỚI (sai hoàn toàn với dự án này).
+ *
+ * Cách dùng (chỉ làm 1 lần trên mỗi máy):
+ *   1) Copy file này ra thư mục gốc dự án và đổi tên thành wp-config.php
+ *        PowerShell:  Copy-Item tools\wp-config.local.php.example wp-config.php
+ *   2) Import database bạn dùng chung (database/*.sql) vào MySQL qua phpMyAdmin.
+ *   3) Kiểm tra 4 giá trị DB_* bên dưới khớp với máy bạn.
+ *        - XAMPP mặc định: user `root`, mật khẩu để trống.
+ *        - Nếu MySQL của bạn đặt mật khẩu, sửa DB_PASSWORD.
+ *   4) Mở http://cms-nhomg.local/ -> phải ra trang chủ, KHÔNG ra trang setup.
+ *
+ * Lưu ý: KHÔNG commit file wp-config.php (đã được .gitignore chặn).
+ *
+ * @package WordPress
+ */
+
+/*---------- 1. Database ----------*/
+define( 'DB_NAME', 'cms_nhomg' );       // tên database bạn import vào
+define( 'DB_USER', 'root' );             // XAMPP mặc định là root
+define( 'DB_PASSWORD', '' );             // XAMPP mặc định để trống
+define( 'DB_HOST', 'localhost' );
+define( 'DB_CHARSET', 'utf8mb4' );
+define( 'DB_COLLATE', '' );
+
+/*---------- 2. Khóa bảo mật ----------*/
+/*
+ * Với môi trường local, dùng tạm giá trị dưới đây là được.
+ * Nếu site lên production, tạo bộ khóa mới tại:
+ *   https://api.wordpress.org/secret-key/1.1/salt/
+ * Lưu ý: khác khóa giữa các máy sẽ chỉ đăng xuất người dùng, không làm hỏng dữ liệu.
+ */
+define( 'AUTH_KEY',         'cmsnhomg-local-auth-key-change-me' );
+define( 'SECURE_AUTH_KEY',  'cmsnhomg-local-secure-auth-key-change-me' );
+define( 'LOGGED_IN_KEY',    'cmsnhomg-local-logged-in-key-change-me' );
+define( 'NONCE_KEY',        'cmsnhomg-local-nonce-key-change-me' );
+define( 'AUTH_SALT',        'cmsnhomg-local-auth-salt-change-me' );
+define( 'SECURE_AUTH_SALT', 'cmsnhomg-local-secure-auth-salt-change-me' );
+define( 'LOGGED_IN_SALT',   'cmsnhomg-local-logged-in-salt-change-me' );
+define( 'NONCE_SALT',       'cmsnhomg-local-nonce-salt-change-me' );
+
+/*---------- 3. Tiền tố bảng ----------*/
+$table_prefix = 'wp_';
+
+/*---------- 4. Gỡ lỗi khi phát triển ----------*/
+// Lỗi được ghi vào wp-content/debug.log thay vì in ra trang (đã gitignore).
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_LOG', true );
+define( 'WP_DEBUG_DISPLAY', false );
+@ini_set( 'display_errors', 0 );
+
+/*---------- 5. Địa chỉ site ----------*/
+// Phải khớp dòng `127.0.0.1 cms-nhomg.local` trong C:\Windows\System32\drivers\etc\hosts
+define( 'WP_HOME', 'http://cms-nhomg.local' );
+define( 'WP_SITEURL', 'http://cms-nhomg.local' );
+
+/*---------- 6. Tùy chọn cho môi trường dev ----------*/
+define( 'DISALLOW_FILE_EDIT', true ); // không cho sửa file trực tiếp trong Admin
+
+/* That's all, stop editing! Happy publishing. */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/' );
+}
+
+require_once ABSPATH . 'wp-settings.php';
