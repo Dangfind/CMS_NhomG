@@ -104,8 +104,8 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-menu li:hover > .sub-menu,
 .cmsng-menu li:focus-within > .sub-menu { display: block; }
 
-.cmsng-newsletter { min-height: 100px; padding: 20px 0; background: var(--cmsng-orange); color: #fff; }
-.cmsng-newsletter-inner { display: flex; align-items: center; gap: 28px; width: calc(100% - 48px); max-width: 804px; margin: 0 auto; }
+.cmsng-newsletter { min-height: 116px; padding: 24px 0; background: var(--cmsng-orange); color: #fff; }
+.cmsng-newsletter-inner { display: flex; align-items: center; gap: 28px; width: calc(100% - 48px); max-width: 1140px; margin: 0 auto; }
 .cmsng-footer .cmsng-newsletter-title { flex: 0 0 158px; margin: 0; color: #fff; font-family: inherit; font-size: 24px; font-weight: 600; line-height: 30px; white-space: nowrap; }
 .cmsng-newsletter-form { display: grid; align-items: center; flex: 1; grid-template-columns: minmax(0, 1fr) 138px; gap: 18px; min-width: 0; margin: 0; }
 .cmsng-email-field { position: relative; min-width: 0; background: #fff; }
@@ -117,6 +117,21 @@ body.post-type-archive-job_listing .site-content > .container {
 .cmsng-footer .cmsng-subscribe:focus { border-color: #fff; background: transparent; color: #fff; }
 .cmsng-newsletter-status { grid-column: 1 / -1; margin: 0; color: #222; font-size: 13px; }
 .cmsng-newsletter-form noscript { grid-column: 1 / -1; }
+
+/* CF7 owns validation, Turnstile and submission. Keep its controls in one row. */
+.cmsng-newsletter-cf7 { display: block; }
+.cmsng-newsletter-cf7 .wpcf7,
+.cmsng-newsletter-cf7 .wpcf7-form { width: 100%; min-width: 0; margin: 0; }
+.cmsng-newsletter-fields { display: grid; grid-template-columns: minmax(180px, 1fr) auto; align-items: center; gap: 20px; }
+.cmsng-newsletter-cf7 .cmsng-email-field { display: block; margin: 0; font-weight: inherit; }
+.cmsng-newsletter-cf7 .cmsng-email-icon { z-index: 1; }
+.cmsng-newsletter-cf7 .wpcf7-form-control-wrap { display: block; min-width: 0; }
+.cmsng-newsletter-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+.cmsng-newsletter-actions .wpcf7-turnstile { flex: 0 0 300px; min-height: 65px; }
+.cmsng-newsletter-submit { position: relative; display: inline-flex; flex: 0 0 auto; margin: 0; }
+.cmsng-newsletter-submit .wpcf7-spinner { position: absolute; top: calc(100% + 2px); left: 50%; margin: 0 0 0 -12px; }
+.cmsng-newsletter-cf7 .wpcf7-not-valid-tip { padding-top: 4px; color: #341704; font-size: 13px; line-height: 1.4; }
+.cmsng-newsletter-cf7 .wpcf7-response-output { margin: 16px 0 0; padding: 8px 12px; color: #222; background: #fff; font-size: 14px; }
 
 .cmsng-footer-main { display: grid; place-items: center; min-height: 296px; padding: var(--cmsng-footer-space) 24px; background: #f2f2f2; }
 .cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: var(--cmsng-stack-gap); width: 100%; max-width: 1000px; margin: 0 auto; }
@@ -159,6 +174,7 @@ body.post-type-archive-job_listing .site-content > .container {
     .cmsng-menu > li > a::after { right: auto; bottom: 4px; width: 30px; }
     .cmsng-menu .sub-menu { position: static; display: block; min-width: 0; max-width: none; padding: 0 0 0 20px; border: 0; }
     .cmsng-submit-job { align-self: flex-start; }
+    .cmsng-newsletter-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
 @media (max-width: 767px) {
     .cmsng-brand .custom-logo,
