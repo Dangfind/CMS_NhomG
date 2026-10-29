@@ -12,7 +12,7 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'NHOMG_JOBS_VERSION', '1.0.1' );
+define( 'NHOMG_JOBS_VERSION', '1.0.5' );
 
 /*--------------------------------------------------------------
 # Post type & taxonomy (fallback khi chưa có WP Job Manager)
@@ -333,7 +333,8 @@ function nhomg_is_part5_page() {
 }
 
 function nhomg_enqueue_scripts() {
-    if ( ! nhomg_is_part5_page() ) return;
+    // Trang All Jobs dùng chung thẻ việc làm nên cũng cần CSS này.
+    if ( ! nhomg_is_part5_page() && ! is_post_type_archive( 'job_listing' ) ) return;
     wp_enqueue_style( 'nhomg-font', 'https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap', array(), null );
     wp_enqueue_style( 'nhomg-job-contact', get_template_directory_uri() . '/css/nhomg-job-contact.css', array( 'nhomg-font' ), NHOMG_JOBS_VERSION );
     if ( is_singular( 'job_listing' ) ) {

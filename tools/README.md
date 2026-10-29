@@ -36,6 +36,17 @@ php tools/setup-pages.php --force    # gán lại template + menu cho tất cả
 
 Mở website, kiểm tra menu: HOME · JOBS · NEWS · ABOUT · CONTACT — cả 5 đều bấm được.
 
+## Máy mới: tạo `wp-config.php` trước (quan trọng)
+
+`wp-config.php` bị `.gitignore` nên **không có trong repo**. Nếu thiếu file này, WordPress sẽ chuyển tới
+`/wp-admin/setup-config.php` — **đừng điền vào đó**, vì nó sẽ tạo một site mới và ghi đè cấu hình.
+
+```powershell
+Copy-Item tools\wp-config.local.php.example wp-config.php
+```
+
+Sau đó import database dùng chung (thư mục `database/`) qua phpMyAdmin, rồi mở `http://cms-nhomg.local/`.
+
 ## Lưu ý cho nhóm
 
 - File `wp-config.php` bị `.gitignore` (mỗi máy 1 DB riêng) → **luôn phải chạy script này** trên máy mới.

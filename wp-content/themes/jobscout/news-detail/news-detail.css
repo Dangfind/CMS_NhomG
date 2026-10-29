@@ -302,9 +302,15 @@ body.nhomg-news-detail-page .content-area {
         font-size: 18px;
     }
 }
-/* Khung chung: breadcrumb, header card, content box, lưới recent */
+
+/* ============================================================
+   Căn lề trái thống nhất: breadcrumb, header card, content box
+   và lưới recent đều chung 1 mép trái (khung 1140px, padding 20px).
+   Không dùng margin âm.
+   ============================================================ */
 .news-detail-container,
 .news-detail-recent-section {
+    width: 100%;
     max-width: 1140px;
     margin-left: auto;
     margin-right: auto;
@@ -317,7 +323,7 @@ body.nhomg-news-detail-page .content-area {
     margin-top: 60px;
 }
 
-/* Header card: full chiều rộng khung */
+/* Header card: full chiều rộng khung, cùng mép trái/phải với lưới recent */
 .news-detail-header-card {
     width: 100%;
     max-width: none;
@@ -327,51 +333,76 @@ body.nhomg-news-detail-page .content-area {
     box-sizing: border-box;
 }
 
-/* Khung nội dung: 780px, canh trái theo mẫu */
+/* Content box: 780px, sát mép trái giống header card */
 .news-detail-content-box {
     width: 100%;
     max-width: 780px;
     margin-left: 0;
     margin-right: auto;
-    padding: 35px;
+    padding: 35px 40px;
     box-sizing: border-box;
 }
 
-:root {
-    --nd-card-inset: 0px; /* thumbnail card nằm sát mép khung card */
+@media (max-width: 820px) {
+    .news-detail-content-box {
+        padding: 24px 20px;
+    }
 }
 
-.news-detail-header-card {
-    padding: 24px 28px;
-    margin-left: calc(-1 * (28px + 1px - var(--nd-card-inset)));
+/* Ảnh trong bài viết: phóng to full bằng chiều rộng chữ (vùng nội dung) */
+.news-detail-content-box img,
+.news-detail-content-box figure,
+.news-detail-content-box figure img,
+.news-detail-content-box .wp-caption,
+.news-detail-content-box .wp-caption img,
+.news-detail-content-box .wp-block-image,
+.news-detail-content-box .wp-block-image img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box;
+}
+
+.news-detail-content-box figure,
+.news-detail-content-box .wp-caption {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.news-detail-content-box figure img,
+.news-detail-content-box .wp-caption img {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Kéo content box sang trái đúng bằng padding trái (40px) để mép ảnh trong bài
+   thẳng hàng dọc với thumbnail của lưới "NEWEST BLOG ENTRIES" bên dưới. */
+:root {
+    --nd-img-shift: 40px;
 }
 
 .news-detail-content-box {
-    padding: 35px 40px;
-    max-width: 780px;
-    margin-left: calc(-1 * (40px + 1px - var(--nd-card-inset)));
+    margin-left: calc(-1 * var(--nd-img-shift));
+    max-width: calc(780px + var(--nd-img-shift));
 }
 
-/* Màn hình hẹp: tắt kéo lệch để khung không bị tràn ra ngoài */
-@media (max-width: 1200px) {
-    .news-detail-header-card,
-    .news-detail-content-box {
-        margin-left: 0;
-    }
+/* Breadcrumb + header card cũng kéo sang trái bằng đúng mức của content box,
+   để cả cụm phía trên cùng một mép trái. Header card giữ nguyên mép phải
+   (cùng mép phải với lưới bên dưới). */
+.news-detail-breadcrumb {
+    margin-left: calc(-1 * var(--nd-img-shift));
 }
-/* Header card: cùng mép trái khung với content box, thumbnail vẫn ở x=120 */
-/* Header card: kéo dài sang phải cho cùng mép phải với lưới news list */
+
 .news-detail-header-card {
-    width: calc(100% + 41px);   /* 41px = phần đã kéo sang trái */
-    max-width: none;
-    margin-left: -41px;
-    margin-right: 0;
-    box-sizing: border-box;
+    width: calc(100% + var(--nd-img-shift));
+    margin-left: calc(-1 * var(--nd-img-shift));
 }
 
-@media (max-width: 1200px) {
-    .news-detail-header-card {
-        width: 100%;
-        margin-left: 0;
+/* Màn hình hẹp: tắt kéo lệch để khung không tràn ra ngoài */
+@media (max-width: 1220px) {
+    :root {
+        --nd-img-shift: 0px;
     }
 }

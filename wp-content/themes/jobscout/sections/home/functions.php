@@ -20,6 +20,30 @@ function lam_home_enqueue() {
 }
 add_action( 'wp_enqueue_scripts', 'lam_home_enqueue', 30 );
 
+/** Dedicated Home hero content; the search form always stays in PHP. */
+function lam_home_register_hero_sidebar() {
+    register_sidebar( array(
+        'name' => __( 'Trang chủ - Find Your Dream Jobs', 'jobscout' ),
+        'id' => 'lam-home-find-jobs',
+        'description' => __( 'Thêm một widget Custom HTML chứa ảnh lam-home-hero-image, tiêu đề lam-home-title và mô tả lam-home-intro. Không thêm form hoặc PHP; để trống sẽ dùng banner mặc định.', 'jobscout' ),
+        'before_widget' => '<div id="%1$s" class="lam-home-hero-widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<span hidden class="lam-home-hero-widget-label">',
+        'after_title' => '</span>',
+    ) );
+}
+add_action( 'widgets_init', 'lam_home_register_hero_sidebar' );
+
+/** An assigned but empty HTML widget also falls back to the default banner. */
+function lam_home_hero_widget_content() {
+    if ( ! is_active_sidebar( 'lam-home-find-jobs' ) ) return '';
+    ob_start();
+    dynamic_sidebar( 'lam-home-find-jobs' );
+    $html = ob_get_clean();
+    $content = preg_replace( '/<span hidden class="lam-home-hero-widget-label">.*?<\/span>/is', '', $html );
+    return trim( wp_strip_all_tags( $content ) ) || preg_match( '/<img\b/i', $content ) ? $html : '';
+}
+
 function lam_home_filters() {
     $filters = array();
     foreach ( array( 'search_keywords', 'search_location' ) as $key ) {
@@ -182,12 +206,24 @@ function lam_home_taxonomy_names( $id, $taxonomy ) {
     $names = wp_get_post_terms( $id, $taxonomy, array( 'fields' => 'names' ) );
     return is_wp_error( $names ) ? '' : implode( ', ', $names );
 }
+/** Missing local uploads must not render a broken image; remote/CDN URLs stay intact. */
+function lam_home_logo_available( $url, $attachment_id = 0 ) {
+    if ( wp_parse_url( $url, PHP_URL_HOST ) !== wp_parse_url( home_url( '/' ), PHP_URL_HOST ) ) return true;
+    $uploads = wp_get_upload_dir();
+    $prefix = trailingslashit( $uploads['baseurl'] );
+    if ( 0 !== strpos( $url, $prefix ) ) return true;
+    $file = $attachment_id ? get_attached_file( $attachment_id ) : trailingslashit( $uploads['basedir'] ) . rawurldecode( substr( strtok( $url, '?' ), strlen( $prefix ) ) );
+    return $file && is_readable( $file );
+}
 function lam_home_job_logo( $id ) {
     $logo = get_post_meta( $id, '_company_logo', true );
-    if ( is_numeric( $logo ) ) return wp_get_attachment_image( absint( $logo ), 'thumbnail', false, array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
-    if ( is_string( $logo ) && esc_url( $logo ) ) return '<img class="lam-home-company-logo" src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_post_meta( $id, '_company_name', true ) ) . '" loading="lazy" width="120" height="120">';
+    if ( is_numeric( $logo ) && lam_home_logo_available( (string) wp_get_attachment_url( absint( $logo ) ), absint( $logo ) ) ) return wp_get_attachment_image( absint( $logo ), 'thumbnail', false, array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
+    if ( ! is_numeric( $logo ) && is_string( $logo ) && esc_url( $logo ) && lam_home_logo_available( $logo ) ) return '<img class="lam-home-company-logo" src="' . esc_url( $logo ) . '" alt="' . esc_attr( get_post_meta( $id, '_company_name', true ) ) . '" loading="lazy" width="120" height="120">';
     // NhomG's existing job editor explicitly stores company logos as thumbnails.
-    if ( function_exists( 'nhomg_job_logo' ) && has_post_thumbnail( $id ) ) return get_the_post_thumbnail( $id, 'full', array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
+    if ( function_exists( 'nhomg_job_logo' ) && has_post_thumbnail( $id ) ) {
+        $thumbnail = get_post_thumbnail_id( $id );
+        if ( lam_home_logo_available( (string) wp_get_attachment_url( $thumbnail ), $thumbnail ) ) return get_the_post_thumbnail( $id, 'full', array( 'class' => 'lam-home-company-logo', 'loading' => 'lazy' ) );
+    }
     return '<span class="lam-home-logo-empty"><span class="screen-reader-text">' . esc_html__( 'Company logo unavailable', 'jobscout' ) . '</span></span>';
 }
 function lam_home_job_summary( $post ) {
@@ -221,7 +257,7 @@ function lam_home_news_image( $post ) {
 function lam_home_news_excerpt( $post ) {
     return wp_trim_words( wp_strip_all_tags( strip_shortcodes( $post->post_excerpt ? $post->post_excerpt : $post->post_content ) ), 22, '…' );
 }
-function lam_home_background( $key ) {
+function lam_home_background_url( $key ) {
     $url = esc_url_raw( get_theme_mod( 'lam_home_' . $key . '_image', '' ) );
     if ( ! $url && in_array( $key, array( 'hero', 'career' ), true ) ) {
         foreach ( array( 'jpg', 'jpeg', 'webp', 'png' ) as $extension ) {
@@ -236,13 +272,17 @@ function lam_home_background( $key ) {
         $backgrounds = require __DIR__ . '/assets/backgrounds.php';
         $url = esc_url_raw( $backgrounds[ $key ] );
     }
+    return $url;
+}
+function lam_home_background( $key ) {
+    $url = lam_home_background_url( $key );
     return $url ? 'background-image: linear-gradient(rgba(0,0,0,.48), rgba(0,0,0,.48)), url("' . str_replace( array( '\\', '"', "\n", "\r" ), array( '\\\\', '\\"', '', '' ), $url ) . '");' : '';
 }
 function lam_home_customize( $wp_customize ) {
-    $wp_customize->add_section( 'lam_home', array( 'title' => __( 'Home — Content', 'jobscout' ), 'priority' => 36, 'description' => __( 'Upload the original reference images. Two background URLs can be supplied later. Configure additional search locations below.', 'jobscout' ) ) );
+    $wp_customize->add_section( 'lam_home', array( 'title' => __( 'Home — Content', 'jobscout' ), 'priority' => 36, 'description' => __( 'Manage Find Your Dream Jobs in Appearance → Widgets. The banner image below is a fallback when that widget has no content. Configure additional search locations below.', 'jobscout' ) ) );
     $wp_customize->add_setting( 'lam_home_locations', array( 'default' => 'Tokyo', 'sanitize_callback' => 'sanitize_textarea_field' ) );
     $wp_customize->add_control( 'lam_home_locations', array( 'section' => 'lam_home', 'label' => __( 'Additional search locations (one per line)', 'jobscout' ), 'description' => __( 'These are search destinations, not job counts. A destination without open jobs returns no results.', 'jobscout' ), 'type' => 'textarea' ) );
-    foreach ( array( 'hero' => 'Banner image — Japanese landscape', 'career' => 'Career image — cherry blossoms' ) as $key => $label ) {
+    foreach ( array( 'hero' => 'Fallback banner image — Japanese landscape', 'career' => 'Career image — cherry blossoms' ) as $key => $label ) {
         $setting = 'lam_home_' . $key . '_image';
         $wp_customize->add_setting( $setting, array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
         $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, $setting, array( 'section' => 'lam_home', 'label' => $label ) ) );

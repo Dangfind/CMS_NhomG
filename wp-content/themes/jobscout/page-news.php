@@ -7,11 +7,21 @@
 
 get_header();
 
-// Hero image: featured image of page or fallback to contact-hero.jpg
-$hero_image = has_post_thumbnail() ? get_the_post_thumbnail_url( null, 'full' ) : get_template_directory_uri() . '/images/contact-hero.jpg';
+// Hero image: custom banner image > featured image > fallback
+$custom_banner = function_exists( 'nhomg_news_mod' ) ? nhomg_news_mod( 'nhomg_news_banner_image' ) : '';
+if ( ! empty( $custom_banner ) ) {
+    $hero_image = $custom_banner;
+} elseif ( has_post_thumbnail() ) {
+    $hero_image = get_the_post_thumbnail_url( null, 'full' );
+} else {
+    $hero_image = get_template_directory_uri() . '/images/contact-hero.jpg';
+}
 
-// Banner title: page title or fallback "FDS NEWS"
-$banner_title = get_the_title();
+// Banner title: customizer setting > page title > "FDS NEWS"
+$banner_title = function_exists( 'nhomg_news_mod' ) ? nhomg_news_mod( 'nhomg_news_banner_title' ) : '';
+if ( empty( $banner_title ) ) {
+    $banner_title = get_the_title();
+}
 if ( empty( $banner_title ) || is_home() ) {
     $banner_title = 'FDS NEWS';
 }
@@ -31,15 +41,19 @@ if ( empty( $banner_title ) || is_home() ) {
         <!-- Main Blog Entries Section -->
         <section class="nhomg-fullbleed news-entries-section">
             <div class="news-container">
-                <h2 class="news-section-title"><?php esc_html_e( 'NEWEST BLOG ENTRIES', 'jobscout' ); ?></h2>
+                <h2 class="news-section-title"><?php echo esc_html( get_theme_mod( 'news_section_title', __( 'NEWEST BLOG ENTRIES', 'jobscout' ) ) ); ?></h2>
 
                 <div class="news-grid">
                     <?php
                     $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : ( ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1 );
+                    $posts_per_page = function_exists( 'nhomg_news_mod' ) ? absint( nhomg_news_mod( 'nhomg_news_posts_per_page' ) ) : 8;
+                    if ( ! $posts_per_page ) {
+                        $posts_per_page = 8;
+                    }
                     $news_query = new WP_Query( array(
                         'post_type'      => 'post',
                         'post_status'    => 'publish',
-                        'posts_per_page' => 8,
+                        'posts_per_page' => $posts_per_page,
                         'paged'          => $paged,
                     ) );
 
@@ -71,7 +85,7 @@ if ( empty( $banner_title ) || is_home() ) {
                                         </p>
                                     </div>
                                     <div class="news-card-footer">
-                                        <a href="<?php the_permalink(); ?>" class="news-read-more"><?php esc_html_e( 'Read More', 'jobscout' ); ?></a>
+                                        <a href="<?php the_permalink(); ?>" class="news-read-more"><?php echo esc_html( function_exists( 'nhomg_news_mod' ) ? nhomg_news_mod( 'nhomg_news_readmore' ) : __( 'Read More', 'jobscout' ) ); ?></a>
                                     </div>
                                 </div>
                             </article>

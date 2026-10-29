@@ -16,7 +16,7 @@ $hero_image  = nhomg_about_hero_image();
 $intro_image = nhomg_about_image('intro');
 $info_image  = nhomg_about_image('info');
 $facts       = nhomg_about_facts();
-$columns    = array(
+$columns     = array(
 	array(nhomg_about_mod('nhomg_about_vision_title'),  nhomg_about_mod('nhomg_about_vision_text')),
 	array(nhomg_about_mod('nhomg_about_mission_title'), nhomg_about_mod('nhomg_about_mission_text')),
 	array(nhomg_about_mod('nhomg_about_value_title'),   nhomg_about_mod('nhomg_about_value_text')),
@@ -29,11 +29,22 @@ $columns    = array(
 		<?php while (have_posts()) : the_post(); ?>
 
 			<section class="nhomg-fullbleed nhomg-about-hero" <?php echo $hero_image ? ' style="--nhomg-about-hero-image:url(' . esc_url($hero_image) . ')"' : ''; ?>>
-				<h1 class="nhomg-about-hero__title"><?php echo nl2br(esc_html(nhomg_about_mod('nhomg_about_title'))); ?></h1>
+				<div class="nhomg-about-hero__inner">
+					<h1 class="nhomg-about-hero__title"><?php echo nl2br(esc_html(nhomg_about_mod('nhomg_about_title'))); ?></h1>
+					<?php if (nhomg_about_mod('nhomg_about_hero_subtitle')) : ?>
+						<p class="nhomg-about-hero__subtitle"><?php echo esc_html(nhomg_about_mod('nhomg_about_hero_subtitle')); ?></p>
+					<?php endif; ?>
+					<?php if (nhomg_about_facts() || nhomg_about_mod('nhomg_about_heading')) : ?>
+						<a class="nhomg-about-hero__cta" href="#nhomg-about-intro"><?php esc_html_e('Get to know us', 'jobscout'); ?></a>
+					<?php endif; ?>
+				</div>
 			</section>
 
+			<!-- Khoảng trắng ngăn cách giữa banner và khối "About Us". -->
+			<div class="nhomg-about-gap" aria-hidden="true"></div>
+
 			<?php if (nhomg_about_mod('nhomg_about_heading') || array_filter(wp_list_pluck($columns, 0))) : ?>
-				<section class="nhomg-about-intro">
+				<section class="nhomg-about-intro" id="nhomg-about-intro">
 					<div class="nhomg-about-intro__inner">
 						<?php if (nhomg_about_mod('nhomg_about_heading')) : ?>
 							<h2 class="nhomg-about-heading nhomg-about-heading--center"><?php echo esc_html(nhomg_about_mod('nhomg_about_heading')); ?></h2>
@@ -42,12 +53,12 @@ $columns    = array(
 						<div class="nhomg-about-intro__grid">
 							<?php if ($intro_image) : ?>
 								<figure class="nhomg-about-intro__image">
-									<img src="<?php echo esc_url($intro_image); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
+									<img src="<?php echo esc_url($intro_image); ?>" alt="" loading="lazy" width="441" height="286" decoding="async">
 								</figure>
 							<?php endif; ?>
 
 							<div class="nhomg-about-intro__text">
-								<?php foreach ($columns as $column) :
+								<?php foreach ($columns as $index => $column) :
 									if (! $column[0] && ! $column[1]) continue; ?>
 									<div class="nhomg-about-item">
 										<?php if ($column[0]) : ?>
@@ -84,6 +95,9 @@ $columns    = array(
 				<section class="nhomg-fullbleed nhomg-about-info">
 					<div class="nhomg-about-info__inner">
 						<div class="nhomg-about-info__text">
+							<?php if (nhomg_about_mod('nhomg_about_info_heading')) : ?>
+								<h2 class="nhomg-about-info-heading"><?php echo esc_html(nhomg_about_mod('nhomg_about_info_heading')); ?></h2>
+							<?php endif; ?>
 							<dl class="nhomg-about-facts">
 								<?php foreach ($facts as $fact) : ?>
 									<div class="nhomg-about-fact">
@@ -96,7 +110,7 @@ $columns    = array(
 
 						<?php if ($info_image) : ?>
 							<figure class="nhomg-about-info__image">
-								<img src="<?php echo esc_url($info_image); ?>" alt="<?php echo esc_attr(get_the_title()); ?>" loading="lazy">
+								<img src="<?php echo esc_url($info_image); ?>" alt="" loading="lazy" width="800" height="866" decoding="async">
 							</figure>
 						<?php endif; ?>
 					</div>

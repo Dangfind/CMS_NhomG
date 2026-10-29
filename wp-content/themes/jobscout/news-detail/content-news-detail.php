@@ -90,7 +90,7 @@ if (! $news_url) {
     if ($recent_query->have_posts()) :
     ?>
         <section class="news-detail-recent-section">
-            <h2 class="news-detail-recent-title"><?php esc_html_e('NEWEST BLOG ENTRIES', 'jobscout'); ?></h2>
+            <h2 class="news-detail-recent-title"><?php echo esc_html( get_theme_mod( 'news_section_title', __( 'NEWEST BLOG ENTRIES', 'jobscout' ) ) ); ?></h2>
 
             <div class="news-detail-recent-grid">
                 <?php
@@ -118,7 +118,7 @@ if (! $news_url) {
                                 <?php endif; ?>
                             </div>
                             <div class="news-card-footer">
-                                <a href="<?php the_permalink(); ?>" class="news-read-more"><?php esc_html_e('Read More', 'jobscout'); ?></a>
+                                <a href="<?php the_permalink(); ?>" class="news-read-more"><?php echo esc_html( function_exists( 'nhomg_news_mod' ) ? nhomg_news_mod( 'nhomg_news_readmore' ) : __( 'Read More', 'jobscout' ) ); ?></a>
                             </div>
                         </div>
                     </article>

@@ -1,8 +1,24 @@
 /* Shared header/footer only. Do not inherit JobScout's .container clearfix. */
+
+/* JobScout thêm .site-content { margin-top: 50px } (style.css) tạo khoảng trống
+   lớn ngay dưới header. Home không có .site-content nên không bị; About và
+   archive Jobs thì bị. Reset chỉ ở hai ngữ cảnh này, giữ nguyên trang khác. */
+body.nhomg-about-page .site-content,
+body.post-type-archive-job_listing .site-content {
+    margin-top: 0;
+}
+body.post-type-archive-job_listing .site-content > .container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
 .cmsng-header,
 .cmsng-footer {
     --cmsng-orange: #f47714;
     --cmsng-ink: #222;
+    --cmsng-stack-gap: 24px;
+    --cmsng-footer-space: 64px;
+    --cmsng-control-height: 46px;
     font-family: "Nunito Sans", Arial, sans-serif;
     font-size: 14px;
     line-height: 1.5;
@@ -16,9 +32,40 @@
 .cmsng-header-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; width: 100%; max-width: none; min-height: 80px; margin: 0 auto; padding: 0 clamp(24px, 4.15vw, 60px); }
 .cmsng-brand { display: flex; flex: 0 1 auto; flex-direction: column; align-items: flex-start; min-width: 0; padding: 10px 0; }
 .cmsng-brand-link,
-.cmsng-brand-link:visited { display: block; color: var(--cmsng-ink); font-size: 28px; font-weight: 800; line-height: 1.1; text-decoration: none; white-space: nowrap; }
+.cmsng-brand-link:visited { display: block; color: var(--cmsng-ink); font-size: 32px; font-weight: 800; line-height: 1.1; text-decoration: none; white-space: nowrap; }
 .cmsng-header .cmsng-brand-link:hover,
 .cmsng-footer .cmsng-brand-link:hover { color: var(--cmsng-ink); }
+
+/* Logo ảnh (Appearance > Customize > Site Identity).
+   Header cao 80px, brand có padding 10px 0 => chiều cao logo tối đa 60px.
+   Giới hạn cả height lẫn max-width để ảnh dài không đẩy vỡ thanh menu. */
+.cmsng-brand .custom-logo-link,
+.cmsng-footer-brand .custom-logo-link { display: inline-block; line-height: 0; text-decoration: none; }
+
+.cmsng-brand .custom-logo,
+.cmsng-brand .custom-logo-link img {
+    display: block;
+    width: auto;
+    height: auto;
+    /* 40px = giữ nguyên chiều cao header 80px (40 logo + 2×10 padding + tagline 20). */
+    max-height: 40px;
+    max-width: min(150px, 42vw);
+    object-fit: contain;
+}
+
+/* Khi đã có logo, bỏ padding dọc của brand để header không cao hơn vốn có. */
+.cmsng-brand:has(.custom-logo) { padding: 0; }
+
+/* Footer centre column rộng tối đa 1000px -> cho logo to hơn một chút. */
+.cmsng-footer-brand .custom-logo,
+.cmsng-footer-brand .custom-logo-link img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: 72px;
+    max-width: min(260px, 80vw);
+    object-fit: contain;
+}
 .cmsng-recruiting { margin-top: 4px; color: #444; font-size: 14px; font-weight: 700; letter-spacing: .5px; line-height: 1.3; }
 .cmsng-header-navigation { display: flex; align-items: center; gap: 56px; min-width: 0; }
 .cmsng-menu,
@@ -57,29 +104,47 @@
 .cmsng-menu li:hover > .sub-menu,
 .cmsng-menu li:focus-within > .sub-menu { display: block; }
 
-.cmsng-newsletter { min-height: 100px; padding: 20px 0; background: var(--cmsng-orange); color: #fff; }
-.cmsng-newsletter-inner { display: flex; align-items: center; gap: 28px; width: calc(100% - 48px); max-width: 804px; margin: 0 auto; }
+.cmsng-newsletter { min-height: 116px; padding: 24px 0; background: var(--cmsng-orange); color: #fff; }
+.cmsng-newsletter-inner { display: flex; align-items: center; gap: 28px; width: calc(100% - 48px); max-width: 1140px; margin: 0 auto; }
 .cmsng-footer .cmsng-newsletter-title { flex: 0 0 158px; margin: 0; color: #fff; font-family: inherit; font-size: 24px; font-weight: 600; line-height: 30px; white-space: nowrap; }
-.cmsng-newsletter-form { display: grid; flex: 1; grid-template-columns: minmax(0, 1fr) 138px; gap: 18px; min-width: 0; margin: 0; }
+.cmsng-newsletter-form { display: grid; align-items: center; flex: 1; grid-template-columns: minmax(0, 1fr) 138px; gap: 18px; min-width: 0; margin: 0; }
 .cmsng-email-field { position: relative; min-width: 0; background: #fff; }
 .cmsng-email-icon { position: absolute; top: 50%; left: 16px; width: 18px; height: 18px; transform: translateY(-50%); color: var(--cmsng-orange); font-size: 18px; pointer-events: none; }
-.cmsng-footer .cmsng-email { display: block; width: 100%; min-width: 0; height: 46px; margin: 0; padding: 0 14px 0 44px; border: 1px solid #e0e0e0; border-radius: 0; background: #fff; color: var(--cmsng-ink); font-family: inherit; font-size: 14px; line-height: normal; box-shadow: none; }
+.cmsng-footer .cmsng-email { display: block; width: 100%; min-width: 0; height: var(--cmsng-control-height); margin: 0; padding: 0 14px 0 44px; border: 1px solid #e0e0e0; border-radius: 0; background: #fff; color: var(--cmsng-ink); font-family: inherit; font-size: 14px; line-height: normal; box-shadow: none; }
 .cmsng-footer .cmsng-email::placeholder { color: #aaa; opacity: 1; }
-.cmsng-footer .cmsng-subscribe { height: 46px; margin: 0; padding: 0 16px; border: 1px solid #fff; border-radius: 0; background: transparent; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; line-height: 20px; letter-spacing: 0; box-shadow: none; }
+.cmsng-footer .cmsng-subscribe { height: var(--cmsng-control-height); margin: 0; padding: 0 16px; border: 1px solid #fff; border-radius: 0; background: transparent; color: #fff; font-family: inherit; font-size: 14px; font-weight: 700; line-height: 20px; letter-spacing: 0; box-shadow: none; }
 .cmsng-footer .cmsng-subscribe:hover,
 .cmsng-footer .cmsng-subscribe:focus { border-color: #fff; background: transparent; color: #fff; }
 .cmsng-newsletter-status { grid-column: 1 / -1; margin: 0; color: #222; font-size: 13px; }
 .cmsng-newsletter-form noscript { grid-column: 1 / -1; }
 
-.cmsng-footer-main { min-height: 296px; padding: 64px 24px 80px; background: #f2f2f2; }
-.cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; width: 100%; max-width: 1000px; margin: 0 auto; }
+/* CF7 owns validation, Turnstile and submission. Keep its controls in one row. */
+.cmsng-newsletter-cf7 { display: block; }
+.cmsng-newsletter-cf7 .wpcf7,
+.cmsng-newsletter-cf7 .wpcf7-form { width: 100%; min-width: 0; margin: 0; }
+.cmsng-newsletter-fields { display: grid; grid-template-columns: minmax(180px, 1fr) auto; align-items: center; gap: 20px; }
+.cmsng-newsletter-cf7 .cmsng-email-field { display: block; margin: 0; font-weight: inherit; }
+.cmsng-newsletter-cf7 .cmsng-email-icon { z-index: 1; }
+.cmsng-newsletter-cf7 .wpcf7-form-control-wrap { display: block; min-width: 0; }
+.cmsng-newsletter-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+.cmsng-newsletter-actions .wpcf7-turnstile { flex: 0 0 300px; min-height: 65px; }
+.cmsng-newsletter-submit { position: relative; display: inline-flex; flex: 0 0 auto; margin: 0; }
+.cmsng-newsletter-submit .wpcf7-spinner { position: absolute; top: calc(100% + 2px); left: 50%; margin: 0 0 0 -12px; }
+.cmsng-newsletter-cf7 .wpcf7-not-valid-tip { padding-top: 4px; color: #341704; font-size: 13px; line-height: 1.4; }
+.cmsng-newsletter-cf7 .wpcf7-response-output { margin: 16px 0 0; padding: 8px 12px; color: #222; background: #fff; font-size: 14px; }
+
+.cmsng-footer-main { display: grid; place-items: center; min-height: 296px; padding: var(--cmsng-footer-space) 24px; background: #f2f2f2; }
+.cmsng-footer-inner { display: flex; flex-direction: column; align-items: center; gap: var(--cmsng-stack-gap); width: 100%; max-width: 1000px; margin: 0 auto; }
 .cmsng-footer-brand { max-width: 100%; }
-.cmsng-footer-brand .cmsng-brand-link { font-size: 32px; line-height: 1.2; }
+.cmsng-footer-brand .cmsng-brand-link { font-size: 36px; line-height: 1.15; }
 .cmsng-footer-navigation { max-width: 100%; }
 .cmsng-footer-menu { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 28px; }
 .cmsng-footer-menu li { margin: 0; }
 .cmsng-footer-menu a,
 .cmsng-footer-menu .cmsng-unconfigured { color: var(--cmsng-ink); font-size: 14px; font-weight: 700; line-height: 22px; text-decoration: none; text-transform: uppercase; }
+.cmsng-footer-inner > .heateor_sss_sharing_container { max-width: 100%; margin: 0; padding: 0; }
+.cmsng-footer-inner .heateor_sss_sharing_ul { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px; }
+.cmsng-footer-inner .heateor_sss_sharing_ul > a { flex: 0 0 auto; margin: 0; padding: 0; line-height: 0; }
 .cmsng-socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 19px; }
 .cmsng-socials li { margin: 0; }
 .cmsng-social { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; color: #fff; font-size: 23px; line-height: 1; text-decoration: none; }
@@ -100,6 +165,8 @@
 @media (max-width: 1024px) {
     .cmsng-header-inner { flex-wrap: wrap; gap: 0 20px; min-height: 76px; padding-right: 24px; padding-left: 24px; }
     .cmsng-brand { max-width: calc(100% - 64px); }
+    .cmsng-brand .custom-logo,
+    .cmsng-brand .custom-logo-link img { max-height: 48px; max-width: min(180px, 55vw); }
     .cmsng-header-navigation { flex: 0 0 100%; flex-direction: column; align-items: stretch; gap: 16px; padding: 8px 0 24px; }
     .cmsng-menu { flex-direction: column; align-items: stretch; gap: 0; }
     .cmsng-menu > li > a,
@@ -107,14 +174,17 @@
     .cmsng-menu > li > a::after { right: auto; bottom: 4px; width: 30px; }
     .cmsng-menu .sub-menu { position: static; display: block; min-width: 0; max-width: none; padding: 0 0 0 20px; border: 0; }
     .cmsng-submit-job { align-self: flex-start; }
+    .cmsng-newsletter-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
 }
 @media (max-width: 767px) {
+    .cmsng-brand .custom-logo,
+    .cmsng-brand .custom-logo-link img { max-height: 40px; max-width: min(150px, 58vw); }
     .cmsng-newsletter { padding: 24px 0; }
     .cmsng-newsletter-inner { flex-direction: column; align-items: stretch; gap: 18px; max-width: 480px; }
     .cmsng-footer .cmsng-newsletter-title { flex-basis: auto; }
     .cmsng-newsletter-form { flex: auto; }
-    .cmsng-footer-main { min-height: 0; padding: 48px 24px 56px; }
-    .cmsng-footer-inner { gap: 24px; }
+    .cmsng-footer-main { --cmsng-footer-space: 48px; min-height: 0; }
+    .cmsng-footer-inner { gap: var(--cmsng-stack-gap); }
     .cmsng-footer-menu { gap: 12px 22px; }
 }
 @media (max-width: 479px) {
