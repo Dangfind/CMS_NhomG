@@ -114,6 +114,29 @@ function nhomg_is_news_page()
 	return is_page_template('page-news.php') || is_page_template('news.php') || is_page('news');
 }
 
+/**
+ * Lấy ảnh thumbnail bài viết: Featured Image -> Ảnh đầu tiên trong nội dung -> Ảnh fallback mặc định.
+ */
+function nhomg_get_post_image($post_id = null, $size = 'medium')
+{
+	$post_id = $post_id ? $post_id : get_the_ID();
+	if (has_post_thumbnail($post_id)) {
+		$url = get_the_post_thumbnail_url($post_id, $size);
+		if ($url) {
+			return $url;
+		}
+	}
+
+	// Quét ảnh đầu tiên trong nội dung bài viết nếu bài viết chưa gán ảnh đại diện
+	$content = get_post_field('post_content', $post_id);
+	if (!empty($content) && preg_match('/<img[^>]+src=[\'"]([^\'"]+)[\'"]/i', $content, $matches)) {
+		return $matches[1];
+	}
+
+	// Fallback ảnh mặc định của theme
+	return get_template_directory_uri() . '/images/contact-hero.jpg';
+}
+
 add_action('wp_enqueue_scripts', function () {
 	if (nhomg_is_news_page()) {
 		$css_file = get_template_directory() . '/news.css';

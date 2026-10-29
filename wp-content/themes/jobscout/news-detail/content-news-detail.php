@@ -10,7 +10,9 @@
 if (! defined('ABSPATH')) exit;
 
 $post_id    = get_the_ID();
-$post_thumb = has_post_thumbnail($post_id) ? get_the_post_thumbnail_url($post_id, 'medium') : '';
+$post_thumb = function_exists('nhomg_get_post_image')
+    ? nhomg_get_post_image($post_id, 'medium')
+    : (has_post_thumbnail($post_id) ? get_the_post_thumbnail_url($post_id, 'medium') : get_template_directory_uri() . '/images/contact-hero.jpg');
 
 $categories = get_the_category($post_id);
 $location   = get_post_meta($post_id, '_location', true);
@@ -36,11 +38,9 @@ if (! $news_url) {
         <!-- Post Header Card -->
         <header class="news-detail-header-card">
             <div class="news-detail-header-left">
-                <?php if ($post_thumb) : ?>
-                    <div class="news-detail-header-thumb">
-                        <img src="<?php echo esc_url($post_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
-                    </div>
-                <?php endif; ?>
+                <div class="news-detail-header-thumb">
+                    <img src="<?php echo esc_url($post_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
+                </div>
                 <div class="news-detail-header-info">
                     <h1 class="news-detail-title"><?php the_title(); ?></h1>
                     <p class="news-detail-date">
@@ -95,17 +95,17 @@ if (! $news_url) {
             <div class="news-detail-recent-grid">
                 <?php
                 while ($recent_query->have_posts()) : $recent_query->the_post();
-                    $r_thumb   = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : '';
+                    $r_thumb   = function_exists('nhomg_get_post_image')
+                        ? nhomg_get_post_image(get_the_ID(), 'medium')
+                        : (has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : get_template_directory_uri() . '/images/contact-hero.jpg');
                     $r_excerpt = trim(strip_tags((string) get_the_excerpt()));
                 ?>
                     <article class="news-card">
-                        <?php if ($r_thumb) : ?>
-                            <div class="news-card-thumb">
-                                <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
-                                    <img src="<?php echo esc_url($r_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
-                                </a>
-                            </div>
-                        <?php endif; ?>
+                        <div class="news-card-thumb">
+                            <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
+                                <img src="<?php echo esc_url($r_thumb); ?>" alt="<?php the_title_attribute(); ?>" loading="lazy" />
+                            </a>
+                        </div>
                         <div class="news-card-body">
                             <div class="news-card-content">
                                 <h3 class="news-card-title">
