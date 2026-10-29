@@ -59,7 +59,9 @@ if ( empty( $banner_title ) || is_home() ) {
 
                     if ( $news_query->have_posts() ) :
                         while ( $news_query->have_posts() ) : $news_query->the_post();
-                            $post_thumb = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'medium' ) : get_template_directory_uri() . '/images/contact-hero.jpg';
+                            $post_thumb = function_exists( 'nhomg_get_post_image' ) 
+                                ? nhomg_get_post_image( get_the_ID(), 'medium' ) 
+                                : ( has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'medium' ) : get_template_directory_uri() . '/images/contact-hero.jpg' );
                             ?>
                             <article id="post-<?php the_ID(); ?>" <?php post_class( 'news-card' ); ?>>
                                 <div class="news-card-thumb">
