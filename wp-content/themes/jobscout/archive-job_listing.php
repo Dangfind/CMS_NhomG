@@ -76,8 +76,10 @@ $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
             sortSelect.addEventListener('change', function() {
                 const currentUrl = new URL(window.location.href);
                 currentUrl.searchParams.set('sort', this.value);
-                // Reset về trang 1 khi đổi cách sắp xếp
-                window.location.href = currentUrl.pathname + '?sort=' + this.value;
+                // Reset về trang 1 khi đổi cách sắp xếp, giữ lại các tham số khác (vd: post_type)
+                currentUrl.searchParams.delete('paged');
+                currentUrl.pathname = currentUrl.pathname.replace(/page\/\d+\/?$/, '');
+                window.location.href = currentUrl.toString();
             });
         }
     });
@@ -150,9 +152,11 @@ $sort = isset($_GET['sort']) ? sanitize_text_field($_GET['sort']) : 'date_desc';
                     const urlParams = new URLSearchParams(window.location.search);
                     let sortVal = urlParams.get('sort') || 'date_desc';
 
-                    let baseUrl = window.location.pathname;
-                    if (!baseUrl.endsWith('/')) baseUrl += '/';
-                    let nextUrl = baseUrl + 'page/' + nextPage + '/?sort=' + sortVal;
+                    // Dùng tham số paged thay vì ghép /page/N/ để chạy được cả khi URL là ?post_type=job_listing
+                    const nextUrl = new URL(window.location.href);
+                    nextUrl.pathname = nextUrl.pathname.replace(/page\/\d+\/?$/, '');
+                    nextUrl.searchParams.set('paged', nextPage);
+                    nextUrl.searchParams.set('sort', sortVal);
 
                     fetch(nextUrl)
                         .then(response => response.text())
